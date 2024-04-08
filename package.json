@@ -5,8 +5,9 @@
   "main": "climine.js",
   "type": "module",
   "scripts": {
-    "run": "node climine.js",
-    "build": "npx esbuild ./ --bundle --platform=node --outfile=dist/climine.cjs && npx pkg dist/esb.cjs -t node18-win-x64 -o dist/climine.exe && del dist/climine.cjs"
+    "server": "node climine.js",
+    "build-win": "npx esbuild ./ --bundle --platform=node --outfile=dist/climine.cjs && npx pkg dist/climine.cjs -t node18-win-x64 -o dist/climine.exe && del dist/climine.cjs",
+    "build": "npx esbuild ./ --bundle --platform=node --outfile=dist/climine.cjs && echo/ && echo Climine built successfully, run 'node dist/climine.cjs' to start the runtime OR compile it to an executable with your preferred tool"
   },
   "keywords": [],
   "author": "",
