@@ -1,11 +1,12 @@
 {
-  "name": "framework",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "climine-runtime",
+  "version": "0.1.0",
+  "description": "A lightweight web runtime that facilitates easy web development",
+  "main": "climine.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "run": "node climine.js",
+    "build": "npx esbuild ./ --bundle --platform=node --outfile=dist/climine.cjs && npx pkg dist/esb.cjs -t node18-win-x64 -o dist/climine.exe && del dist/climine.cjs"
   },
   "keywords": [],
   "author": "",
