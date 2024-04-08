@@ -78,7 +78,7 @@ my-climine-project/
 }
 ```
 
-### HTLM Markup (index.html)
+### HTML Markup (index.html)
 ```html
 <!DOCTYPE html>
 <html lang="en">
