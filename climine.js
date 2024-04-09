@@ -22,6 +22,12 @@ import { serve } from './template.js';
 
 const args = minimist(process.argv.slice(2));
 
+const defaultConfig = {
+    port: 8080,
+    dir: './default/',
+    env:'.env'
+};
+
 function configLoader(configPath){
     let config = {};
     try {
@@ -34,10 +40,7 @@ function configLoader(configPath){
         } else {
             console.error(chalk.red(`Unknown error occurred while parsing config file ${configPath}. Using default configuration.`));
         }
-        return {
-            port: 8080,
-            dir: './',
-        };
+        return defaultConfig;
     }
 
     //condig["dir"] = resolve (current working directory + config["dir"])
@@ -78,14 +81,32 @@ const config = args.config ?
     })() :
     (() => {
         console.log(chalk.blue('No config file specified. Using default configuration.'));
-        return {
-            port: 8080,
-            dir: './default/',
-        };
+        return defaultConfig;
     })();
 
+    //if config.env is set, load environment variables from the specified file
+const memory = config.env ? 
+    (() => {
+        try {
+            //get correct path to the environment file using config.dir
+            const envPath = path.isAbsolute(config.env) ? path.resolve(config.env) : path.resolve(config.dir, config.env);
+            console.log(chalk.blue(`Using environment ${envPath}`));
+            return JSON.parse(fs.readFileSync(envPath));
+        } catch (err) {
+            if (err.code === 'ENOENT') {
+                console.error(chalk.red(`Environment ${config.env} does not exist.`));
+            } else if (err instanceof SyntaxError) {
+                console.error(chalk.red(`Error occurred while parsing environment ${config.env}.`));
+            } else {
+                console.error(chalk.red(`Unknown error occurred while parsing environment ${config.env}.`));
+            }
+            return {};
+        }
+    })() :
+    {};
+
 const server = http.createServer(async (req, res) => {
-    await serve(req, res, config);
+    await serve(req, res, config, memory);
 }
 );
 
