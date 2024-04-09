@@ -54,7 +54,7 @@ export function render(template, data) {
             if (key.indexOf('[') > -1) {
                 const keys = key.split('[');
                 keys[1] = keys[1].replace(']', '');
-                if (value[keys[0]][keys[1]] === undefined) {
+                if (value[keys[0]]?.[keys[1]] === undefined) {
                     console.log(chalk.yellow(`${keys[1]} not found in ${keys[0]} in the data`));
                     value = `{{${keys[1]}}}`;
                 } else {
@@ -132,7 +132,8 @@ async function prerender(
     url,
     res,
     htmlPath,
-    jsonPath
+    jsonPath,
+    memory
 ){
     let html = '';
     const json = {};
@@ -150,28 +151,65 @@ async function prerender(
         }
     }
 
-    for (const key in json) {
-        if (Object.hasOwnProperty.call(json, key)) {
-            const request = json[key];
-
-            if (request.require) {
-                let flag = false;
-                for (const variable in request.require) {
-                    if (!data[variable]) {
-                        if (request.require[variable] !== null) {
-                            data[variable] = request.require[variable];
-                        } else {
-                            console.error(chalk.red('Required variable', variable, 'for request to', request.to, 'not found in data object. Aborting request'));
-                            flag = true;
-                        }
-                    }
-                }
-                if (flag) {
-                    continue;
+    //if "iplimit": "1/<seconds>", check if the IP has made more than 1 request in the last <seconds> seconds
+    if (json.iplimit) {
+        const [limit, seconds] = json.iplimit.split('/');
+        const ip = res.socket.remoteAddress;
+        const key = `ip:${ip}`;
+        if (memory[key]) {
+            const [count, time] = memory[key].split(':');
+            if (Date.now() - time > seconds * 1000) {
+                memory[key] = '1:' + Date.now();
+            } else {
+                if (count >= limit) {
+                    console.log(chalk.red(`IP ${ip} has exceeded the request limit of ${limit} requests in the last ${seconds} seconds`));
+                    return 429;
+                } else {
+                    memory[key] = `${parseInt(count) + 1}:${time}`;
                 }
             }
+        } else {
+            memory[key] = '1:' + Date.now();
+        }
+    }
+
+    //if "use": ["key1", "key2"], get key1, key2 from memory and add it to data's memory dictionary
+    //should be accessible as data.memory.key1, data.memory.key2
+    if (json.use) {
+        data.memory = {};
+        //json.use is a list of keys to be used from memory
+        for (const key of json.use) {
+            if (memory[key]) {
+                data.memory[key] = memory[key];
+            } else {
+                console.log(chalk.yellow(`Key ${key} not found in memory. Defaulting to null`));
+                data.memory[key] = null;
+            }
+        }
+        
+    }
+    
+    for (const key in json) {
+        if (Object.hasOwnProperty.call(json, key)) { 
+            const request = json[key];
 
             if (request.to) {
+                if (request.require) {
+                    let flag = false;
+                    for (const variable in request.require) {
+                        if (!data[variable]) {
+                            if (request.require[variable] !== null) {
+                                data[variable] = request.require[variable];
+                            } else {
+                                console.error(chalk.red('Required variable', variable, 'for request to', request.to, 'not found in data object. Aborting request'));
+                                flag = true;
+                            }
+                        }
+                    }
+                    if (flag) {
+                        continue;
+                    }
+                }
 
                 request.to = render(request.to, data);
 
@@ -241,11 +279,8 @@ async function prerender(
                 } else {
                     console.error(chalk.red('Invalid protocol specified for request', request.to, 'aborting request'));
                 }
-            } else {
-                console.error(chalk.red('No "to" field specified for request', request, 'aborting request'));
-            }
-        } else {
-            console.error(chalk.red('Invalid request', key, 'aborting request'));
+            } 
+
         }
     }
 
@@ -263,7 +298,7 @@ async function prerender(
 
 }
 
-export async function serve (req, res, config){
+export async function serve (req, res, config, memory){
     const { dir, errors } = config;
     console.log(chalk.blue(`Request for ${req.url} as ${req.method}`));
 
@@ -323,7 +358,8 @@ export async function serve (req, res, config){
                     config.errors["404"][0],
                     res,
                     errors["404"][1],
-                    errors["404"][2]
+                    errors["404"][2],
+                    memory
                 );
                 res.writeHead(404, { 'Content-Type': errors["404"][1] ? 'text/html' : 'application/json' });
                 res.end(output);
@@ -347,7 +383,8 @@ export async function serve (req, res, config){
                         config.errors["404"][0],
                         res,
                         errors["404"][1],
-                        errors["404"][2]
+                        errors["404"][2],
+                        memory
                     );
                     res.writeHead(404, { 'Content-Type': errors["404"][1] ? 'text/html' : 'application/json' });
                     res.end(output);
@@ -381,7 +418,8 @@ export async function serve (req, res, config){
                 config.errors["404"][0],
                 res,
                 errors["404"][1],
-                errors["404"][2]
+                errors["404"][2],
+                memory
             );
             res.writeHead(404, { 'Content-Type': errors["404"][1] ? 'text/html' : 'application/json' });
             res.end(output);
@@ -401,10 +439,11 @@ export async function serve (req, res, config){
         purl.href,
         res,
         htmlPath,
-        jsonPath
+        jsonPath,
+        memory
     );
 
-    if (final || final === 200) {
+    if (typeof final === 'string') {
         res.writeHead(200, { 'Content-Type': htmlExists ? 'text/html' : 'application/json' });
         res.end(final);
     } else {
@@ -416,7 +455,8 @@ export async function serve (req, res, config){
                 config.errors[final][0],
                 res,
                 errors[final][1],
-                errors[final][2]
+                errors[final][2],
+                memory
             );
             res.writeHead(final, { 'Content-Type': errors["404"][1] ? 'text/html' : 'application/json' });
             res.end(output);
