@@ -1,9 +1,9 @@
 import boxen from 'boxen';
 import chalk from 'chalk';
 import { performance } from 'perf_hooks';
-
+const v = '0.1.0';
 console.log(
-    boxen(chalk.hex("#04e1c3").bold('Welcome to Climine!'), {
+    boxen(chalk.hex("#04e1c3").bold(`Climine Runtime ${v}`), {
         padding: 1,
         margin: 1,
         borderStyle: 'double',
@@ -19,6 +19,20 @@ import fs from 'fs';
 import path from 'path';
 import minimist from 'minimist';
 import { serve } from './template.js';
+import request from 'then-request';
+
+try {
+    const latest = JSON.parse((await request('GET', 'https://api.github.com/repos/climine/climine-runtime/releases/latest', {
+        headers: {
+            'User-Agent': 'climine'
+        }
+    })).getBody());
+    if (latest.tag_name !== v) {
+        console.log(chalk.yellow(`Climine ${latest.tag_name} is available! Please consider upgrading.`));
+    }
+} catch (err) {
+    console.error(chalk.red('Error occurred while checking for updates.'));
+}
 
 const args = minimist(process.argv.slice(2));
 

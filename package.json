@@ -16,7 +16,8 @@
     "boxen": "^7.1.1",
     "chalk": "^4.1.2",
     "expr-eval": "^2.0.2",
-    "minimist": "^1.2.8"
+    "minimist": "^1.2.8",
+    "then-request": "^6.0.2"
   },
   "devDependencies": {
     "esbuild": "0.20.2"
