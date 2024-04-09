@@ -90,6 +90,12 @@ export const errorCodeToMessage = (errorCode) => {
         case 405:
             message = 'Method Not Allowed';
             break;
+        case 408:
+            message = 'Request Timeout';
+            break;
+        case 429:
+            message = 'Too Many Requests';
+            break;
         case 500:
             message = 'Internal Server Error';
             break;
