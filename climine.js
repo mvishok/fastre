@@ -19,22 +19,12 @@ import fs from 'fs';
 import path from 'path';
 import minimist from 'minimist';
 import { serve } from './template.js';
+import { update } from './modules.js';
 import request from 'then-request';
 
-try {
-    const latest = JSON.parse((await request('GET', 'https://api.github.com/repos/climine/climine-runtime/releases/latest', {
-        headers: {
-            'User-Agent': 'climine'
-        }
-    })).getBody());
-    if (latest.tag_name !== v) {
-        console.log(chalk.yellow(`Climine ${latest.tag_name} is available! Please consider upgrading.`));
-    }
-} catch (err) {
-    console.error(chalk.red('Error occurred while checking for updates.'));
-}
-
 const args = minimist(process.argv.slice(2));
+
+update(v, request);
 
 const defaultConfig = {
     port: 8080,

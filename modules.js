@@ -1,6 +1,21 @@
 import { request } from 'http';
 import chalk from 'chalk';
 
+export async function update(v, request){
+    try {
+        const latest = JSON.parse((await request('GET', 'https://api.github.com/repos/climine/climine-runtime/releases/latest', {
+            headers: {
+                'User-Agent': 'climine'
+            }
+        })).getBody());
+        if (latest.tag_name !== v) {
+            console.log(chalk.yellow(`Climine ${latest.tag_name} is available! Please consider upgrading.`));
+        }
+    } catch (err) {
+        console.error(chalk.red('NOTE: Error occurred while checking for updates.'));
+    }
+}
+    
 export const makeRequest = (options) => {
     return new Promise((resolve, reject) => {
         const apiReq = request(options, apiRes => {
