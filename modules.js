@@ -21,7 +21,6 @@ export const makeRequest = (options) => {
         const apiReq = request(options, apiRes => {
             let data = '';
             if (apiRes.statusCode < 200 || apiRes.statusCode > 299) {
-                //non 2xx status code
                 console.log(chalk.yellow(`${apiRes.statusCode} response from ${options.hostname} (${options.path})`));
             }
             apiRes.on('data', chunk => {
@@ -51,71 +50,32 @@ export const makeRequest = (options) => {
 };
 
 export const ftype = (fileExtension) => {
-    let contentType = 'text/plain';
-    switch (fileExtension) {
-        case '.html':
-            contentType = 'text/html';
-            break;
-        case '.css':
-            contentType = 'text/css';
-            break;
-        case '.js':
-            contentType = 'application/javascript';
-            break;
-        case '.json':
-            contentType = 'application/json';
-            break;
-        case '.png':
-            contentType = 'image/png';
-            break;
-        case '.jpg':
-            contentType = 'image/jpeg';
-            break;
-        case '.gif':
-            contentType = 'image/gif';
-            break;
-        case '.svg':
-            contentType = 'image/svg+xml';
-            break;
-        case '.ico':
-            contentType = 'image/x-icon';
-            break;
+    const contentTypeMap = {
+        '.html': 'text/html',
+        '.css': 'text/css',
+        '.js': 'application/javascript',
+        '.json': 'application/json',
+        '.png': 'image/png',
+        '.jpg': 'image/jpeg',
+        '.gif': 'image/gif',
+        '.svg': 'image/svg+xml',
+        '.ico': 'image/x-icon',
+    };
 
-        default:
-            break;
-    }
-    return contentType;
+    return contentTypeMap[fileExtension] || 'text/plain';
 }
 
 export const errorCodeToMessage = (errorCode) => {
-    let message = '';
-    switch (errorCode) {
-        case 400:
-            message = 'Bad Request';
-            break;
-        case 401:
-            message = 'Unauthorized';
-            break;
-        case 403:
-            message = 'Forbidden';
-            break;
-        case 404:
-            message = 'Not Found';
-            break;
-        case 405:
-            message = 'Method Not Allowed';
-            break;
-        case 408:
-            message = 'Request Timeout';
-            break;
-        case 429:
-            message = 'Too Many Requests';
-            break;
-        case 500:
-            message = 'Internal Server Error';
-            break;
-        default:
-            break;
-    }
-    return message;
+    const errorMessages = {
+        400: 'Bad Request',
+        401: 'Unauthorized',
+        403: 'Forbidden',
+        404: 'Not Found',
+        405: 'Method Not Allowed',
+        408: 'Request Timeout',
+        429: 'Too Many Requests',
+        500: 'Internal Server Error',
+    };
+
+    return errorMessages[errorCode] || '';
 }

@@ -32,49 +32,45 @@ const defaultConfig = {
     env:'.env'
 };
 
-function configLoader(configPath){
+function configLoader(configPath) {
     let config = {};
+
     try {
         config = JSON.parse(fs.readFileSync(configPath));
     } catch (err) {
-        if (err.code === 'ENOENT') {
-            console.log(chalk.yellow(`Config file ${configPath} does not exist. Using default configuration.`));
-        } else if (err instanceof SyntaxError) {
-            console.error(chalk.red(`Error occurred while parsing config file ${configPath}. Using default configuration.`));
-        } else {
-            console.error(chalk.red(`Unknown error occurred while parsing config file ${configPath}. Using default configuration.`));
-        }
+        console.log(chalk.yellow(`Error occurred while parsing config file ${configPath}. Using default configuration.`));
         return defaultConfig;
     }
 
-    //condig["dir"] = resolve (current working directory + config["dir"])
-    if (config.dir) {
-        config.dir = path.dirname(path.resolve( configPath, config.dir));
-    } else {
+    if (!config.dir) {
         console.log(chalk.yellow(`No directory specified in config file. Using ${process.cwd()} (current working directory)`));
         config.dir = process.cwd();
+    } else {
+        config.dir = path.resolve(path.dirname(configPath), config.dir);
     }
 
     if (config.errors) {
         for (const key of Object.keys(config.errors)) {
-            const i = path.resolve(config.dir + config.errors[key]);
-            const html = fs.existsSync(`${i}.html`) ? `${i}.html` : false;
-            const json = fs.existsSync(`${i}.json`) ? `${i}.json` : false;
-            const indexHtml = fs.existsSync(path.join(i, 'index.html')) ? path.join(i, 'index.html') : false;
-            const indexJson = fs.existsSync(path.join(i, 'index.json')) ? path.join(i, 'index.json') : false;
-            if (html || json){
-                config.errors[key] = [i, html , json];
-            } else if (indexHtml || indexJson){
-                config.errors[key] = [i, indexHtml, indexJson];
+            const errorPath = path.resolve(config.dir, config.errors[key]);
+            const html = fs.existsSync(`${errorPath}.html`) ? `${errorPath}.html` : false;
+            const json = fs.existsSync(`${errorPath}.json`) ? `${errorPath}.json` : false;
+            const indexHtml = fs.existsSync(path.join(errorPath, 'index.html')) ? path.join(errorPath, 'index.html') : false;
+            const indexJson = fs.existsSync(path.join(errorPath, 'index.json')) ? path.join(errorPath, 'index.json') : false;
+
+            if (html || json) {
+                config.errors[key] = [errorPath, html, json];
+            } else if (indexHtml || indexJson) {
+                config.errors[key] = [errorPath, indexHtml, indexJson];
             } else {
-                console.log(chalk.yellow(`No ${key}.json or ${key}.html found in ${i}. Removing ${key} from errors object`));
+                console.log(chalk.yellow(`No ${key}.json or ${key}.html found in ${errorPath}. Removing ${key} from errors object`));
                 delete config.errors[key];
             }
         }
     }
 
-    return config;    
+    return config;
 }
+
 const config = args.config ? 
     (() => {
         //if args .config is relative path, resolve it to absolute path using process.cwd()
@@ -89,25 +85,23 @@ const config = args.config ?
     })();
 
     //if config.env is set, load environment variables from the specified file
-const memory = config.env ? 
-    (() => {
-        try {
-            //get correct path to the environment file using config.dir
-            const envPath = path.isAbsolute(config.env) ? path.resolve(config.env) : path.resolve(config.dir, config.env);
-            console.log(chalk.blue(`Using environment ${envPath}`));
-            return JSON.parse(fs.readFileSync(envPath));
-        } catch (err) {
-            if (err.code === 'ENOENT') {
-                console.error(chalk.red(`Environment ${config.env} does not exist.`));
-            } else if (err instanceof SyntaxError) {
-                console.error(chalk.red(`Error occurred while parsing environment ${config.env}.`));
-            } else {
-                console.error(chalk.red(`Unknown error occurred while parsing environment ${config.env}.`));
-            }
-            return {};
+let memory = {};
+
+if (config.env) {
+    try {
+        const envPath = path.isAbsolute(config.env) ? path.resolve(config.env) : path.resolve(config.dir, config.env);
+        console.log(chalk.blue(`Using environment ${envPath}`));
+        memory = JSON.parse(fs.readFileSync(envPath));
+    } catch (err) {
+        if (err.code === 'ENOENT') {
+            console.error(chalk.red(`Environment ${config.env} does not exist.`));
+        } else if (err instanceof SyntaxError) {
+            console.error(chalk.red(`Error occurred while parsing environment ${config.env}.`));
+        } else {
+            console.error(chalk.red(`Unknown error occurred while parsing environment ${config.env}.`));
         }
-    })() :
-    {};
+    }
+}
 
 const server = http.createServer(async (req, res) => {
     await serve(req, res, config, memory);
