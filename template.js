@@ -10,32 +10,18 @@ import { Parser } from "expr-eval";
 const parser = new Parser();
 
 function evaluateCondition(condition, data) {
-    condition = condition.replace(/\b\w+\b/g, match => {
-        // Replace variable names with their corresponding values from data
-        let value = data;
-        match.split('.').forEach(key => {
-            if (key.indexOf('[') > -1) {
-                const keys = key.split('[');
-                keys[1] = keys[1].replace(']', '');
-                if (value[keys[0]][keys[1]] === undefined) {
-                    console.log(chalk.yellow(`${keys[1]} not found in ${keys[0]} in the data. Defaulting to 0`));
-                    value = 0;
-                } else {
-                    value = JSON.stringify(value[keys[0]][keys[1]]);
-                }
-            } else {
-                if (typeof value[key] === 'object' && value[key] !== null){
-                    console.log(chalk.yellow(`${key} is an object, using ${Object.keys(value[key]).length} (length of the object) as the value`));
-                    value = Object.keys(value[key]).length;
-                } else {
-                    if (value[key]){
-                        value = JSON.stringify(value[key]);
-                    } else {
-                        value = 0;
-                    }
-                }
-            }
-        });
+    condition = condition.replace(/[a-zA-Z_]+[a-zA-Z0-9_]*(\.[a-zA-Z_]+[a-zA-Z0-9_]*|\[[a-zA-Z_]+[a-zA-Z0-9_]*\])*/g , match => {
+        if (match === 'and' || match === 'or') return match;
+        let value = getValueFromData(match, data);
+        if (typeof value === 'undefined') {
+            console.log(chalk.yellow(`Variable ${match} not found in data object. Defaulting to 0`));
+            value = 0;
+        } else if (typeof value === 'object') {
+            console.log(chalk.yellow(`Variable ${match} is an object. Defaulting to length of the object`));
+            value = Object.keys(value).length;
+        } else {
+            value = JSON.stringify(value);
+        }
         return value;
     });
     try {
@@ -46,73 +32,60 @@ function evaluateCondition(condition, data) {
     }
 }
 
+function getValueFromData(match, data) {
+    const parts = match.split(/\.|\[|\]/).filter(part => part.trim() !== '');
+    let value = data;
+    for (const part of parts) {
+        value = value[part];
+        if (value === undefined) break;
+    }
+    return value;
+}
+
 export function render(template, data) {
     // Handle variables with {{variable}} syntax
     template = template.replace(/{{([^}}]+)?}}/g, (match, variable) => {
-        let value = data;
-        variable.split('.').forEach(key => {
-            if (key.indexOf('[') > -1) {
-                const keys = key.split('[');
-                keys[1] = keys[1].replace(']', '');
-                if (value[keys[0]]?.[keys[1]] === undefined) {
-                    console.log(chalk.yellow(`${keys[1]} not found in ${keys[0]} in the data`));
-                    value = `{{${keys[1]}}}`;
-                } else {
-                    value = value[keys[0]][keys[1]];
-                }
-            } else {
-                if (typeof value[key] === 'object' && value[key] !== null){
-                    console.log(chalk.yellow(`${key} is an object`));
-                    value = JSON.stringify(value[key]);
-                } else {
-                    if (value[key] === undefined) {
-                        value = `{{${key}}}`;
-                    } else {
-                        value = value[key];
-                    }
-                }
-            }
-        });
-        return value;
+        let value = getValueFromData(variable.trim(), data);
+        
+        if (typeof value === 'undefined') {
+            return `{{${variable}}}`;
+        } else if (typeof value === 'object') {
+            return JSON.stringify(value);
+        } else {
+            return value;
+        }
     });
 
     // Handle control flow statements with if else and endif blocks. else is optional
-    template = template.replace(/{% if ([^%]+)?%}([^]*)?({% else %}([^]*)?)?{% endif %}/g, (match, condition, ifBlock, elseBlock) => {
-        if (evaluateCondition(condition, data)) {
-            return ifBlock;
-        } else {
-            return elseBlock ? elseBlock : '';
+    template = template.replace(/{% if(?:\[(\d+)\])?\s([^%]+)%}((?:(?!{% endif(?:\[\1\])? %}).)*?)(?:{% else(?:\[\1\])? %}([^]*?))?{% endif(?:\[\1\])? %}/gs, 
+        (match, identifier, condition, ifBlock, elseBlock) => {
+            if (evaluateCondition(condition, data)) {
+                return ifBlock;
+            } else {
+                return elseBlock ? elseBlock : '';
+            }
         }
-    });
+    );
     /* syntax for if else
     {% if condition %}
-        //code
+        {{variable}}
     {% else %}
-        //code
+        {{variable}}
     {% endif %}
     */
 
-    template = template.replace(/{% for ([^%]+)? in ([^%]+)?%}([^]*)?{% endfor %}/g, (match, key, array, block) => {
-        let output = '';
-        let value = data;
-        const itemData = {};
-        array = array.replace(/\s/g, '');
-
-        array.split('.').forEach(j => { 
-            if (j.indexOf('[') > -1) {
-                const keys = j.split('[');
-                keys[1] = keys[1].replace(']', '');
-                value = value[keys[0]][keys[1]];
-            } else {
-                value = value[j];
+    template = template.replace(/{% for ([^%]+)? in ([^%]+)?%}([^]*?){% endfor %}/gs, (match, key, array, block) => {
+        let result = '';
+        array = array.trim();
+        const items = getValueFromData(array, data);
+        if (items && items.length > 0) {
+            for (const item of items) {
+                result += render(block, { ...data, [key]: item });
             }
-        });
-
-        value.forEach(item => {
-            itemData[key] = item;
-            output += render(block, itemData);
-        });
-        return output;
+        } else {
+            console.log(chalk.yellow(`Array ${array} not found in data object or is empty. Skipping for loop`));
+        }
+        return result;
     });
     /* syntax for loops
     {% for key in array %}
