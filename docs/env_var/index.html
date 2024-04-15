@@ -8,26 +8,28 @@
       
       
       
-      
-        <link rel="prev" href="installation.html">
-      
-      
-        <link rel="next" href="config.html">
+        <link rel="canonical" href="https://climine.github.io/runtime/docs/env_var/">
       
       
-      <link rel="icon" href="assets/favicon.svg">
+        <link rel="prev" href="../page/">
+      
+      
+        <link rel="next" href="../param/">
+      
+      
+      <link rel="icon" href="../assets/favicon.svg">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
     
     
       
-        <title>Usage - Climine Runtime Docs</title>
+        <title>Environment Variables - Climine Runtime Docs</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.bcfcd587.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.bcfcd587.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
       
       
   
@@ -60,7 +62,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -86,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#project-structure" class="md-skip">
+        <a href="#accessing-environment-variables" class="md-skip">
           Skip to content
         </a>
       
@@ -102,9 +104,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Climine Runtime Docs" class="md-header__button md-logo" aria-label="Climine Runtime Docs" data-md-component="logo">
+    <a href=".." title="Climine Runtime Docs" class="md-header__button md-logo" aria-label="Climine Runtime Docs" data-md-component="logo">
       
-  <img src="assets/logo.png" alt="logo">
+  <img src="../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -121,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Usage
+              Environment Variables
             
           </span>
         </div>
@@ -233,6 +235,18 @@
 </div>
     
     
+      <div class="md-header__source">
+        <a href="https://github.com/climine/runtime" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    climine/runtime
+  </div>
+</a>
+      </div>
+    
   </nav>
   
 </header>
@@ -258,13 +272,25 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Climine Runtime Docs" class="md-nav__button md-logo" aria-label="Climine Runtime Docs" data-md-component="logo">
+    <a href=".." title="Climine Runtime Docs" class="md-nav__button md-logo" aria-label="Climine Runtime Docs" data-md-component="logo">
       
-  <img src="assets/logo.png" alt="logo">
+  <img src="../assets/logo.png" alt="logo">
 
     </a>
     Climine Runtime Docs
   </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/climine/runtime" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2023 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    climine/runtime
+  </div>
+</a>
+    </div>
   
   <ul class="md-nav__list" data-md-scrollfix>
     
@@ -272,19 +298,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
         
           
           <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
@@ -298,7 +322,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -312,7 +336,7 @@
   
   
     <li class="md-nav__item">
-      <a href="index.html" class="md-nav__link">
+      <a href=".." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -333,7 +357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="installation.html" class="md-nav__link">
+      <a href="../installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -351,28 +375,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Usage
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="example.html" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../example/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -381,60 +387,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#project-structure" class="md-nav__link">
-    <span class="md-ellipsis">
-      Project Structure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuration-configjson" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configuration (config.json)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-request-file-indexjson" class="md-nav__link">
-    <span class="md-ellipsis">
-      API Request File (index.json)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#html-markup-indexhtml" class="md-nav__link">
-    <span class="md-ellipsis">
-      HTML Markup (index.html)
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -489,7 +441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="config.html" class="md-nav__link">
+      <a href="../config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -510,7 +462,7 @@
   
   
     <li class="md-nav__item">
-      <a href="port.html" class="md-nav__link">
+      <a href="../port/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -531,7 +483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dir.html" class="md-nav__link">
+      <a href="../dir/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -552,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="env.html" class="md-nav__link">
+      <a href="../env/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -573,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="error.html" class="md-nav__link">
+      <a href="../error/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -598,17 +550,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -622,7 +576,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Page Configuration
@@ -636,7 +590,7 @@
   
   
     <li class="md-nav__item">
-      <a href="page.html" class="md-nav__link">
+      <a href="../page/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -654,10 +608,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="env_var.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Environment Variables
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -666,6 +638,33 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#accessing-environment-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accessing Environment Variables
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -678,7 +677,7 @@
   
   
     <li class="md-nav__item">
-      <a href="param.html" class="md-nav__link">
+      <a href="../param/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -699,7 +698,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rate.html" class="md-nav__link">
+      <a href="../rate/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -720,7 +719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="req.html" class="md-nav__link">
+      <a href="../req/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -783,7 +782,7 @@
   
   
     <li class="md-nav__item">
-      <a href="template.html" class="md-nav__link">
+      <a href="../template/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -804,7 +803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="templating_var.html" class="md-nav__link">
+      <a href="../templating_var/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -825,7 +824,7 @@
   
   
     <li class="md-nav__item">
-      <a href="if_condition.html" class="md-nav__link">
+      <a href="../if_condition/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -846,7 +845,7 @@
   
   
     <li class="md-nav__item">
-      <a href="for_loop.html" class="md-nav__link">
+      <a href="../for_loop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -892,36 +891,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#project-structure" class="md-nav__link">
+  <a href="#accessing-environment-variables" class="md-nav__link">
     <span class="md-ellipsis">
-      Project Structure
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#configuration-configjson" class="md-nav__link">
-    <span class="md-ellipsis">
-      Configuration (config.json)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#api-request-file-indexjson" class="md-nav__link">
-    <span class="md-ellipsis">
-      API Request File (index.json)
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#html-markup-indexhtml" class="md-nav__link">
-    <span class="md-ellipsis">
-      HTML Markup (index.html)
+      Accessing Environment Variables
     </span>
   </a>
   
@@ -941,55 +913,48 @@
                 
                   
 
+  
+  
 
-  <h1>Usage</h1>
 
-<p>Let's walk through an example of using Climine Runtime to create a simple dynamic website. We'll start by defining our project structure and then showcase the contents of the configuration files, HTML markup, and API request file.</p>
-<h3 id="project-structure">Project Structure</h3>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>my-climine-project/
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├──<span class="w"> </span>config.json
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├──<span class="w"> </span>index.html
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>└──<span class="w"> </span>index.json
+  <h1>Environment Variables</h1>
+
+<p>These are variables that are sourced from the environment in which Climine Runtime is running. They are typically defined outside of your Climine Runtime configuration and can be accessed within your Climine Runtime Page Configuration files. Environment variables provide a convenient way to store sensitive information like API keys, database credentials, and configuration settings.</p>
+<h2 id="accessing-environment-variables">Accessing Environment Variables</h2>
+<p>To access an environment variable in your Climine Runtime Page Configuration file:</p>
+<ol>
+<li>
+<p>Define the environment variable in the environment where Climine Runtime is running. Click <a href="../env/">here</a> to learn how to define environment variables.</p>
+</li>
+<li>
+<p>Import the environment variable in your Climine Runtime Page Configuration file using the following syntax:
+    <div class="language-json highlight"><span class="filename">index.json</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;use&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;ENV_VAR_NAME&quot;</span><span class="p">]</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
 </span></code></pre></div>
-<h3 id="configuration-configjson">Configuration (config.json)</h3>
-<div class="language-json highlight"><span class="filename">config.json</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">8080</span><span class="p">,</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="nt">&quot;dir&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;./&quot;</span><span class="p">,</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nt">&quot;errors&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="nt">&quot;404&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/error/404/&quot;</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="p">}</span>
+    Replace <code>ENV_VAR_NAME</code> with the name of the environment variable you want to access.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code>use</code> property expects an array of environment variable names. You can import multiple environment variables by providing their names in the array.</p>
+</div>
+</li>
+<li>
+<p>Use the imported environment variable in your Climine Runtime Page Configuration file.
+    Syntax: <code>{{ memory[ENV_VAR_NAME] }}</code>
+    <div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nt">&quot;request1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;http://www.randomnumberapi.com/api/v1.0/random?min={{min}}&amp;max={{max}}&amp;count={{count}}&quot;</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">        </span><span class="nt">&quot;headers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">            </span><span class="nt">&quot;Content-Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span><span class="p">,</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">            </span><span class="nt">&quot;Authorization&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Bearer {{memory[token]}}&quot;</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="p">}</span>
 </span></code></pre></div>
-<h3 id="api-request-file-indexjson">API Request File (index.json)</h3>
-<div class="language-json highlight"><span class="filename">index.json</span><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="nt">&quot;request1&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">        </span><span class="nt">&quot;to&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://api.example.com/data&amp;q={{query}}&quot;</span><span class="p">,</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;GET&quot;</span><span class="p">,</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">        </span><span class="nt">&quot;headers&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">            </span><span class="nt">&quot;Content-Type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;application/json&quot;</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="p">},</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="nt">&quot;require&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">            </span><span class="nt">&quot;query&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="p">}</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">}</span>
-</span></code></pre></div>
-<h3 id="html-markup-indexhtml">HTML Markup (index.html)</h3>
-<div class="language-html highlight"><span class="filename">index.html</span><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>  <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>  <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>My Climine Project<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Welcome to Climine Runtime!<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is a dynamic website powered by Climine.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Here&#39;s some dynamic content:<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ request1.responseKey }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
-</span></code></pre></div>
-<p>In this example, <code>config.json</code> defines the configuration for the Climine Runtime. <code>index.html</code> contains the HTML markup, while <code>index.json</code> defines an API request that fetches dynamic data to be inserted into that HTML markup</p>
+    In this example, the <code>token</code> environment variable is used in the <code>Authorization</code> header of the <code>request1</code>'s endpoint.</p>
+</li>
+</ol>
 
 
 
@@ -1050,6 +1015,10 @@
             
 
 
+  
+    
+  
+
 
 
 
@@ -1060,6 +1029,19 @@
 <input class="md-toggle" type="checkbox" id="__settings" checked>
 <div class="md-consent__settings">
   <ul class="task-list">
+    
+      
+      
+        
+        
+      
+      <li class="task-list-item">
+        <label class="task-list-control">
+          <input type="checkbox" name="github" checked>
+          <span class="task-list-indicator"></span>
+          GitHub
+        </label>
+      </li>
     
   </ul>
 </div>
@@ -1083,10 +1065,10 @@
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "content.code.copy"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "content.code.copy"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.1e8ae164.min.js"></script>
+      <script src="../assets/javascripts/bundle.1e8ae164.min.js"></script>
       
     
   </body>
