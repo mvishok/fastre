@@ -26,20 +26,15 @@ const args = minimist(process.argv.slice(2));
 
 update(v, request);
 
-const defaultConfig = {
-    port: 8080,
-    dir: './default/',
-    env:'.env'
-};
-
 function configLoader(configPath) {
     let config = {};
 
     try {
         config = JSON.parse(fs.readFileSync(configPath));
     } catch (err) {
-        console.log(chalk.yellow(`Error occurred while parsing config file ${configPath}. Using default configuration.`));
-        return defaultConfig;
+        console.log(chalk.yellow(`Error occurred while parsing config file ${configPath}`));
+        console.error(err);
+        process.exit(1);
     }
 
     if (!config.dir) {
@@ -80,8 +75,9 @@ const config = args.config ?
         return configLoader(configPath);
     })() :
     (() => {
-        console.log(chalk.blue('No config file specified. Using default configuration.'));
-        return defaultConfig;
+        console.log(chalk.blue('No config file specified. Using default configuration \\default\\config.json'));
+        return configLoader("./default/config.json");
+
     })();
 
     //if config.env is set, load environment variables from the specified file
