@@ -51,7 +51,7 @@ function configLoader(configPath) {
 
     if (config.errors) {
         for (const key of Object.keys(config.errors)) {
-            const errorPath = path.resolve(config.dir, config.errors[key]);
+            const errorPath = path.resolve(config.dir + config.errors[key]);
             const html = fs.existsSync(`${errorPath}.html`) ? `${errorPath}.html` : false;
             const json = fs.existsSync(`${errorPath}.json`) ? `${errorPath}.json` : false;
             const indexHtml = fs.existsSync(path.join(errorPath, 'index.html')) ? path.join(errorPath, 'index.html') : false;
