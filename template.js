@@ -362,10 +362,11 @@ export async function serve (req, res, config, memory){
                     res.writeHead(404, { 'Content-Type': errors["404"][1] ? 'text/html' : 'application/json' });
                     res.end(output);
                     console.log(chalk.red(`The requested route ${fileName} (${purl.href}) was not found.`));
-                }
+                } else {
                 res.writeHead(404, { 'Content-Type': 'text/plain' });
                 res.end('The requested resource was not found.');
                 console.log(chalk.red(`The requested static file ${fileName} (${purl.href}) was not found.`));
+                }
             } else {
                 const contentType = ftype(fileExtension);
                 res.writeHead(200, { 'Content-Type': contentType });
