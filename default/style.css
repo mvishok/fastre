@@ -1,0 +1,140 @@
+@font-face {
+    font-family: mono;
+    src: url(../mono.ttf);
+}
+
+::-webkit-scrollbar {
+    width: 2px;
+}
+
+body {
+    background-color: #000000;
+    font-family: mono;
+}
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+    color: white;
+  }
+  
+  .logo {
+    order: 1;
+    font-size: 2rem;
+    font-weight: 800;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  
+  nav ul {
+    display: flex;
+    order: 2;
+  }
+  
+  nav ul a {
+    color: #000000;
+    font-size: 1.6rem;
+    margin-left: 2rem;
+  }
+  
+  .container {
+    height: 600px;
+    padding: 20px;
+    margin-left: 40px;
+    margin-right: 40px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+  }
+  
+  .container img {
+    width: 100%;
+    height: 280px;
+    border: 2px solid #00eecf;
+    border-radius: 5px;
+  }
+  
+  .hero-text {
+    width: 80%;
+  }
+  
+  .hero-text h1 {
+    font-size: 3.3rem;
+    margin-bottom: 12px;
+    color: #00eecf;
+    font-family: mono;
+  }
+  
+  .hero-text p {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+  }
+  
+  button {
+    padding: 1em 2.1em 1.1em;
+    border-radius: 4px;
+    margin: 8px;
+    border: none;
+    background-color: #00eecf;
+    color: #000000;
+    font-weight: 800;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    text-align: center;
+    box-shadow: 0em -0.2rem 0em #00eecf inset;
+  }
+  
+  button:hover {
+    cursor: pointer;
+  }
+
+  .download:hover {
+    background-color: white;
+    box-shadow: 0em -0.2rem 0em white inset;
+  }
+
+  .docs:hover {
+    background-color: #6dbd4b;
+    box-shadow: 0em -0.2rem 0em #6dbd4b inset;
+  }
+
+  .github:hover {
+    background-color: #24292e;
+    box-shadow: 0em -0.2rem 0em #24292e inset;
+    color: white !important;
+  }
+  
+  @media (max-width: 884px) {
+    .container {
+      margin-top: 10px;
+      flex-direction: column;
+    }
+    .hero-text {
+      width: 100%;
+      text-align: center;
+    }
+    .hero-text h1 {
+      font-size: 3rem;
+    }
+  }
+  
+  @media (max-width: 678px) {
+    .hero-text h1 {
+      font-size: 2rem;
+    }
+  }
+  @media (max-width: 428px) {
+    nav ul {
+      display: none;
+    }
+  }
