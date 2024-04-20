@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import boxen from 'boxen';
 import chalk from 'chalk';
 import { performance } from 'perf_hooks';
@@ -23,6 +24,9 @@ import { update } from './modules.js';
 import request from 'then-request';
 
 const args = minimist(process.argv.slice(2));
+
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(new URL(import.meta.url)));
 
 update(v, request);
 
@@ -76,7 +80,7 @@ const config = args.config ?
     })() :
     (() => {
         console.log(chalk.blue('No config file specified. Using default configuration \\default\\config.json'));
-        return configLoader("./default/config.json");
+        return configLoader(__dirname + '/default/config.json');
 
     })();
 

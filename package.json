@@ -1,5 +1,5 @@
 {
-  "name": "climine-runtime",
+  "name": "climine",
   "version": "0.1.0",
   "description": "A lightweight web runtime that facilitates easy web development",
   "main": "climine.js",
@@ -9,9 +9,14 @@
     "build-win": "npx esbuild ./ --bundle --platform=node --outfile=dist/climine.cjs && npx pkg dist/climine.cjs -t node18-win-x64 -o dist/climine.exe && del dist\\climine.cjs",
     "build": "npx esbuild ./ --bundle --platform=node --outfile=dist/climine.cjs && echo/ && echo Climine built successfully, run 'node dist/climine.cjs' to start the runtime OR compile it to an executable with your preferred tool"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "climine",
+    "runtime",
+    "web",
+    "development"
+  ],
+  "author": "Vishok Manikantan",
+  "license": "MIT",
   "dependencies": {
     "boxen": "^7.1.1",
     "chalk": "^4.1.2",
@@ -21,5 +26,8 @@
   },
   "devDependencies": {
     "esbuild": "0.20.2"
+  },
+  "bin": {
+    "climine": "./climine.js"
   }
 }
