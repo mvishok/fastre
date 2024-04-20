@@ -22,11 +22,23 @@ import minimist from 'minimist';
 import { serve } from './template.js';
 import { update } from './modules.js';
 import request from 'then-request';
+import { execSync } from 'child_process';
 
 const args = minimist(process.argv.slice(2));
 
 import { fileURLToPath } from 'url';
-const __dirname = path.dirname(fileURLToPath(new URL(import.meta.url)));
+import { dirname } from 'path';
+import { existsSync } from 'fs';
+
+let __dirname;
+
+try {
+    // Try ES Modules method
+    __dirname = dirname(fileURLToPath(new URL(import.meta.url)));
+} catch (error) {
+    // If it fails, use CommonJS method
+    __dirname = existsSync(__filename) ? dirname(__filename) : process.cwd();
+}
 
 update(v, request);
 
@@ -70,6 +82,7 @@ function configLoader(configPath) {
     return config;
 }
 
+// --config flag
 const config = args.config ? 
     (() => {
         //if args .config is relative path, resolve it to absolute path using process.cwd()
@@ -102,6 +115,75 @@ if (config.env) {
         }
     }
 }
+
+// --compile flag
+if (args.compile) {
+
+    try {
+        execSync('npm -v');
+    } catch (err) {
+        console.error(chalk.red('npm is not installed. Please install npm to use the --compile flag'));
+        process.exit(1);
+    }
+
+    const dist = path.join(config.dir, 'dist');
+    const defaultDir = path.join(dist, 'default');
+
+    if (!fs.existsSync(dist)) {
+        fs.mkdirSync(dist);
+    }
+
+    if (!fs.existsSync(defaultDir)) {
+        fs.mkdirSync(defaultDir);
+    }
+
+    fs.readdirSync(config.dir).forEach(file => {
+        if (file !== 'dist') {
+            fs.copyFileSync(path.join(config.dir, file), path.join(defaultDir, file));
+        }
+    });
+
+    //create package.json with project name and version
+    const packageJson = {
+        "name": config.name || "climine",
+        "version": config.version || "1.0.0",
+        "description": config.description || "Climine Runtime project",
+        "main": "climine.cjs",
+        "scripts": {
+            "start": "node climine.cjs"
+            },
+        "dependencies": {
+            "boxen": "^7.1.1",
+            "chalk": "^4.1.2",
+            "expr-eval": "^2.0.2",
+            "minimist": "^1.2.8",
+            "then-request": "^6.0.2"
+        },
+        "devDependencies": {
+            "esbuild": "0.20.2"
+        }
+    }
+    
+    try {
+        fs.writeFileSync(path.join(dist, 'package.json'), JSON.stringify(packageJson, null, 2));
+    } catch (err) {
+        console.error(chalk.red(`Error occurred while creating package.json`));
+        console.error(err);
+        process.exit(1);
+    }
+
+    try {
+        execSync(`npx esbuild ./ --bundle --platform=node --outfile=${dist}/index.cjs`);
+    } catch (err) {
+        console.error(chalk.red(`Error occurred while compiling Climine Runtime project`));
+        console.error(err);
+        process.exit(1);
+    }
+
+    console.log(chalk.green(`Built Climine Runtime project to ${defaultDir}`));
+    process.exit(0);
+}
+
 
 const server = http.createServer(async (req, res) => {
     await serve(req, res, config, memory);
