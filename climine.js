@@ -38,6 +38,10 @@ try {
 } catch (error) {
     // If it fails, use CommonJS method
     __dirname = existsSync(__filename) ? dirname(__filename) : process.cwd();
+    //if it starts with C:\snapshot\, use process.argv[0] as __dirname
+    if (__dirname.startsWith('C:\\snapshot\\')) {
+        __dirname = path.dirname(process.argv[0]);
+    }
 }
 
 update(v, request);
