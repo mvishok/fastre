@@ -184,7 +184,7 @@ if (args.compile) {
         process.exit(1);
     }
 
-    console.log(chalk.green(`Built Climine Runtime project to ${defaultDir}`));
+    console.log(chalk.green(`Built Climine Runtime project to ${dist}`));
     process.exit(0);
 }
 
