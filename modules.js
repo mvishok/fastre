@@ -77,5 +77,5 @@ export const errorCodeToMessage = (errorCode) => {
         500: 'Internal Server Error',
     };
 
-    return errorMessages[errorCode] || '';
+    return errorMessages[errorCode] || 'Internal Server Error';
 }
