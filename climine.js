@@ -143,6 +143,9 @@ if (args.compile) {
 
     fs.readdirSync(config.dir).forEach(file => {
         if (file !== 'dist') {
+            if (file === 'node_modules' || file==='package.json' || file === 'package-lock.json' || file === 'dist' || file === 'default') {
+                return;
+            }
             fs.copyFileSync(path.join(config.dir, file), path.join(defaultDir, file));
         }
     });
@@ -177,7 +180,7 @@ if (args.compile) {
     }
 
     try {
-        execSync(`npx esbuild ./ --bundle --platform=node --outfile=${dist}/index.cjs`);
+        execSync(`npx esbuild ${__dirname} --bundle --platform=node --outfile=${dist}/index.cjs`);
     } catch (err) {
         console.error(chalk.red(`Error occurred while compiling Climine Runtime project`));
         console.error(err);
