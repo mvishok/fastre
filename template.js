@@ -103,7 +103,7 @@ async function prerender(
     jsonExists,
     data,
     url,
-    res,
+    res,req,
     htmlPath,
     jsonPath,
     memory
@@ -165,7 +165,15 @@ async function prerender(
     for (const key in json) {
         if (Object.hasOwnProperty.call(json, key)) { 
             const entry = json[key];
+            if (!entry.on) {
+                entry.on = ['GET'];
+            }
 
+            if (!entry.on.includes(req.method)) {
+                continue;
+            }
+            
+            // if it is an api request
             if (entry.to) {
                 if (entry.require) {
                     let flag = false;
@@ -252,7 +260,7 @@ async function prerender(
                 } else {
                     console.error(chalk.red('Invalid protocol specified for request', entry.to, 'aborting request'));
                 }
-            } 
+            }
 
         }
     }
@@ -329,7 +337,7 @@ export async function serve (req, res, config, memory){
                     errors["404"][2] ? true : false,
                     data,
                     config.errors["404"][0],
-                    res,
+                    res,req,
                     errors["404"][1],
                     errors["404"][2],
                     memory
@@ -354,7 +362,7 @@ export async function serve (req, res, config, memory){
                         errors["404"][2] ? true : false,
                         data,
                         config.errors["404"][0],
-                        res,
+                        res,req,
                         errors["404"][1],
                         errors["404"][2],
                         memory
@@ -390,7 +398,7 @@ export async function serve (req, res, config, memory){
                 errors["404"][2] ? true : false,
                 data,
                 config.errors["404"][0],
-                res,
+                res,req,
                 errors["404"][1],
                 errors["404"][2],
                 memory
@@ -411,7 +419,7 @@ export async function serve (req, res, config, memory){
         jsonExists,
         data,
         purl.href,
-        res,
+        res,req,
         htmlPath,
         jsonPath,
         memory
@@ -427,7 +435,7 @@ export async function serve (req, res, config, memory){
                 errors[final][2] ? true : false,
                 data,
                 config.errors[final][0],
-                res,
+                res,req,
                 errors[final][1],
                 errors[final][2],
                 memory
