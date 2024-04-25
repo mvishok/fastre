@@ -1,6 +1,6 @@
 {
   "name": "climine",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A lightweight web runtime that facilitates easy web development",
   "main": "climine.js",
   "type": "module",
