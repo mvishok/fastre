@@ -165,16 +165,17 @@ async function prerender(
     for (const key in json) {
         if (Object.hasOwnProperty.call(json, key)) { 
             const entry = json[key];
-            if (!entry.on) {
-                entry.on = ['GET'];
-            }
-
-            if (!entry.on.includes(req.method)) {
-                continue;
-            }
             
             // if it is an api request
             if (entry.to) {
+                if (!entry.on) {
+                    entry.on = ['GET'];
+                }
+    
+                if (!entry.on.includes(req.method)) {
+                    continue;
+                }
+                
                 if (entry.require) {
                     let flag = false;
                     for (const variable in entry.require) {
@@ -259,6 +260,27 @@ async function prerender(
                     }
                 } else {
                     console.error(chalk.red('Invalid protocol specified for request', entry.to, 'aborting request'));
+                }
+                continue;
+            }
+
+            //if it is "respond": json, render the json and return it
+            if (key === 'respond') {
+                if (typeof entry === 'object') {
+                    let final = render(JSON.stringify(entry), data);
+                    try {
+                        return JSON.parse(final);
+                    } catch (err) {
+                        console.error(chalk.red(`Error parsing JSON object for ${key} (${url}):\n`), err);
+                        return 500;
+                    }
+                } else if (typeof entry === 'string') {
+                    return render(entry, data);
+                } else if (typeof entry === 'number') {
+                    return entry;
+                } else {
+                    console.error(chalk.red(`Invalid response type for ${key} (${url})`));
+                    return 500;
                 }
             }
 
@@ -428,6 +450,10 @@ export async function serve (req, res, config, memory){
     if (typeof final === 'string') {
         res.writeHead(200, { 'Content-Type': htmlExists ? 'text/html' : 'application/json' });
         res.end(final);
+    } else if (typeof final === 'object'){
+        //application/json
+        res.writeHead(200, { 'Content-Type': 'application/json' });
+        res.end(JSON.stringify(final));
     } else {
         if (errors?.[final]){
             const output = await prerender(
