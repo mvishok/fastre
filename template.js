@@ -164,17 +164,17 @@ async function prerender(
     
     for (const key in json) {
         if (Object.hasOwnProperty.call(json, key)) { 
-            const request = json[key];
+            const entry = json[key];
 
-            if (request.to) {
-                if (request.require) {
+            if (entry.to) {
+                if (entry.require) {
                     let flag = false;
-                    for (const variable in request.require) {
+                    for (const variable in entry.require) {
                         if (!data[variable]) {
-                            if (request.require[variable] !== null) {
-                                data[variable] = request.require[variable];
+                            if (entry.require[variable] !== null) {
+                                data[variable] = entry.require[variable];
                             } else {
-                                console.error(chalk.red('Required variable', variable, 'for request to', request.to, 'not found in data object. Aborting request'));
+                                console.error(chalk.red('Required variable', variable, 'for request to', entry.to, 'not found in data object. Aborting request'));
                                 flag = true;
                             }
                         }
@@ -184,73 +184,73 @@ async function prerender(
                     }
                 }
 
-                request.to = render(request.to, data);
+                entry.to = render(entry.to, data);
 
-                const api = new URL(request.to);
+                const api = new URL(entry.to);
                 if (api.protocol === 'http:' || api.protocol === 'https:') {
 
-                    if (request.method) {
-                        request.method = render(request.method, data);
-                        if (!['GET', 'POST', 'PUT', 'DELETE', 'PATCH'].includes(request.method)) {
-                            console.log(chalk.yellow('Invalid method specified for request', request.to, 'defaulting to GET'));
-                            request.method = 'GET';
+                    if (entry.method) {
+                        entry.method = render(entry.method, data);
+                        if (!['GET', 'POST', 'PUT', 'DELETE', 'PATCH'].includes(entry.method)) {
+                            console.log(chalk.yellow('Invalid method specified for request', entry.to, 'defaulting to GET'));
+                            entry.method = 'GET';
                         }
                     } else {
-                        console.log(chalk.yellow('No method specified for request', request.to, 'defaulting to GET'));
-                        request.method = 'GET';
+                        console.log(chalk.yellow('No method specified for request', entry.to, 'defaulting to GET'));
+                        entry.method = 'GET';
                     }
 
-                    if (request.headers) {
+                    if (entry.headers) {
                         const headers = {};
-                        for (const header of Object.keys(request.headers)) {
-                            headers[header] = render(request.headers[header].toString(), data);
+                        for (const header of Object.keys(entry.headers)) {
+                            headers[header] = render(entry.headers[header].toString(), data);
                         }
-                        request.headers = headers;
+                        entry.headers = headers;
                     } else {
-                        console.log(chalk.yellow('No headers specified for request', request.to, 'defaulting to empty object'));
-                        request.headers = {};
+                        console.log(chalk.yellow('No headers specified for request', entry.to, 'defaulting to empty object'));
+                        entry.headers = {};
                     }
 
-                    if (request.body) {
-                        if (typeof request.body === 'string') {
-                            request.body = render(request.body, data);
+                    if (entry.body) {
+                        if (typeof entry.body === 'string') {
+                            entry.body = render(entry.body, data);
                         } else {
                             const body = {};
-                            for (const entry of Object.keys(request.body)) {
-                                body[entry] = render(request.body[entry].toString(), data);
+                            for (const i of Object.keys(entry.body)) {
+                                body[i] = render(entry.body[i].toString(), data);
                             }
-                            request.body = body;
+                            entry.body = body;
                         }
                     } else {
-                        console.log(chalk.yellow('No body specified for request', request.to, 'defaulting to empty object'));
-                        request.body = {};
+                        console.log(chalk.yellow('No body specified for request', entry.to, 'defaulting to empty object'));
+                        entry.body = {};
                     }
 
                     const options = {
                         hostname: api.hostname,
                         port: api.port,
                         path: api.pathname + api.search, //pathname includes the leading slash and search includes the query string
-                        method: request.method,
-                        headers: request.headers,
-                        body: request.body
+                        method: entry.method,
+                        headers: entry.headers,
+                        body: entry.body
                     };
 
                     try {
-                        console.log(chalk.white(`Making request to ${request.to} (${url})`));
+                        console.log(chalk.white(`Making request to ${entry.to} (${url})`));
                         performance.mark('B');
                         const response = await makeRequest(options);
                         performance.mark('C');
                         performance.measure('B to C', 'B', 'C');
                         const timeTaken = performance.getEntriesByName('B to C')[0].duration.toFixed(2);
                         performance.clearMeasures('B to C');
-                        console.log(chalk.blue(`Request to ${request.to} (${url}) completed in ${timeTaken}ms`));
+                        console.log(chalk.blue(`request to ${entry.to} (${url}) completed in ${timeTaken}ms`));
                         data[key] = response;
                     } catch (err) {
-                        console.error(chalk.red(`Error making request to ${request.to} (${url}):\n`), err);
+                        console.error(chalk.red(`Error making request to ${entry.to} (${url}):\n`), err);
                         return 500;
                     }
                 } else {
-                    console.error(chalk.red('Invalid protocol specified for request', request.to, 'aborting request'));
+                    console.error(chalk.red('Invalid protocol specified for request', entry.to, 'aborting request'));
                 }
             } 
 
