@@ -3,12 +3,12 @@ import chalk from 'chalk';
 
 export async function update(v, request){
     try {
-        const latest = JSON.parse((await request('GET', 'https://api.github.com/repos/climine/climine-runtime/releases/latest', {
+        const latest = JSON.parse((await request('GET', 'https://api.github.com/repos/climine/runtime/releases/latest', {
             headers: {
                 'User-Agent': 'climine'
             }
         })).getBody());
-        if (latest.tag_name !== v) {
+        if (v.localeCompare(latest.tag_name, undefined, { numeric: true, sensitivity: 'base' }) === -1) {
             console.log(chalk.yellow(`Climine ${latest.tag_name} is available! Please consider upgrading.`));
         }
     } catch (err) {
