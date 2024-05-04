@@ -29,6 +29,7 @@ const args = minimist(process.argv.slice(2));
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { existsSync } from 'fs';
+import input from '@inquirer/input';
 
 let __dirname;
 
@@ -194,6 +195,74 @@ if (args.compile) {
     process.exit(0);
 }
 
+// --init flag
+//create a new Climine project in args.init directory
+if (args.init) {
+    const initDir = args.init ? path.resolve(args.init) : process.cwd();
+    
+    if (!fs.existsSync(initDir)) {
+        fs.mkdirSync(initDir);
+    }
+
+    //prompt user for project name, description and version, root directory (config.dir)
+    const name = await input({
+        message: 'Enter project name',
+        initial: 'climine'
+    });
+
+    const description = await input({
+        message: 'Enter project description',
+        initial: 'Climine Runtime project'
+    });
+
+    const version = await input({
+        message: 'Enter project version',
+        initial: '1.0.0'
+    });
+
+    const dir = await input({
+        message: 'Enter project root directory',
+        initial: '.'
+    });
+
+    const port = await input({
+        message: 'Enter port',
+        initial: '8080'
+    });
+
+    const config = {
+        name,
+        description,
+        version,
+        dir,
+        port
+    }
+
+    let projectDir;
+    if (config.dir !== '.' && config.dir !== './') {
+        projectDir = path.join(initDir, config.dir);
+        if (!fs.existsSync(projectDir)) {
+            fs.mkdirSync(projectDir);
+        }
+    } else {
+        projectDir = initDir;
+    }
+    const configPath = path.join(initDir, 'config.json');
+    fs.writeFileSync(configPath, JSON.stringify(config, null, 2));
+
+    const html = `<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${name}</title><style>@font-face{font-family:mono;src:url(mono.ttf)}::-webkit-scrollbar{width:2px}body{background-color:#000;font-family:mono}*{margin:0;padding:0;list-style:none;text-decoration:none;color:#fff}.logo{order:1;font-size:2rem;font-weight:800}nav{display:flex;justify-content:space-between;align-items:center;height:64px;margin-left:50px;margin-right:50px}nav ul{display:flex;order:2}nav ul a{color:#000;font-size:1.6rem;margin-left:2rem}.container{height:600px;padding:20px;margin-left:40px;margin-right:40px;display:flex;flex-direction:row-reverse;justify-content:space-between;align-items:center;gap:40px}.container img{width:100%;height:280px;border:2px solid #00eecf;border-radius:5px}.hero-text{width:80%}.hero-text h1{font-size:3.3rem;margin-bottom:12px;color:#00eecf;font-family:mono}.hero-text p{font-size:1.4rem;margin-bottom:12px}button{padding:1em 2.1em 1.1em;border-radius:4px;margin:8px;border:none;background-color:#00eecf;color:#000;font-weight:800;font-size:.85em;text-transform:uppercase;text-align:center;box-shadow:0 -.2rem 0 #00eecf inset}button:hover{cursor:pointer}.download:hover{background-color:#fff;box-shadow:0 -.2rem 0 #fff inset}.docs:hover{background-color:#6dbd4b;box-shadow:0 -.2rem 0 #6dbd4b inset}.github:hover{background-color:#24292e;box-shadow:0 -.2rem 0 #24292e inset;color:#fff!important}@media (max-width:884px){.container{margin-top:10px;flex-direction:column}.hero-text{width:100%;text-align:center}.hero-text h1{font-size:3rem}}@media (max-width:678px){.hero-text h1{font-size:2rem}}@media (max-width:428px){nav ul{display:none}}</style></head><body><main><div class="container"><img src="../climine.png" alt="Climine Runtime"><div class="hero-text"><center><h1>${name} v${version}</h1><p>${description}</p><p style="color:green">Project ${name} created successfully!</p></center></div></div></main></body></html>`
+    fs.writeFileSync(path.join(projectDir, 'index.html'), html);
+
+    //copy climine.png to projectDir
+    fs.copyFileSync(path.resolve(__dirname, 'default/climine.png'), path.join(projectDir, 'climine.png'));
+
+    //copy mono.ttf to projectDir
+    fs.copyFileSync(path.resolve(__dirname, 'default/mono.ttf'), path.join(projectDir, 'mono.ttf'));
+
+    console.log(chalk.green(`Created Climine project in ${initDir}`));
+
+    process.exit(0);
+}
 
 const server = http.createServer(async (req, res) => {
     await serve(req, res, config, memory);
