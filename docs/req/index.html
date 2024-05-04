@@ -14,7 +14,7 @@
         <link rel="prev" href="../rate/">
       
       
-        <link rel="next" href="../template/">
+        <link rel="next" href="../respond/">
       
       
       <link rel="icon" href="../assets/favicon.svg">
@@ -744,6 +744,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#on" class="md-nav__link">
+    <span class="md-ellipsis">
+      on
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#to" class="md-nav__link">
     <span class="md-ellipsis">
       to
@@ -797,6 +806,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../respond/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Respond
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -988,6 +1018,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#on" class="md-nav__link">
+    <span class="md-ellipsis">
+      on
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#to" class="md-nav__link">
     <span class="md-ellipsis">
       to
@@ -1075,6 +1114,8 @@
 <p>In this example, the <code>request1</code> object defines an API request that sends a <code>GET</code> request to <code>https://api.example.com/data</code> with a <code>Content-Type</code> header set to <code>application/json</code>.</p>
 <h2 id="properties-of-an-api-request">Properties of an API Request</h2>
 <p>An API request in Climine Runtime can have the following properties:</p>
+<h3 id="on"><code>on</code></h3>
+<p>The <code>on</code> proeprty specifies on which request method (the method that the visitor uses to access the page) the request should be made. The value of this property can be a list of request methods. If the <code>on</code> property is not specified, the request will be made on all request methods.</p>
 <h3 id="to"><code>to</code></h3>
 <p>The <code>to</code> property specifies the URL of the endpoint to which the request is made. This URL can be an absolute URL or a relative URL, depending on the target server.</p>
 <h3 id="method"><code>method</code></h3>

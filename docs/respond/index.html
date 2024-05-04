@@ -8,11 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://climine.github.io/runtime/docs/for_loop/">
+        <link rel="canonical" href="https://climine.github.io/runtime/docs/respond/">
       
       
-        <link rel="prev" href="../if_condition/">
+        <link rel="prev" href="../req/">
       
+      
+        <link rel="next" href="../template/">
       
       
       <link rel="icon" href="../assets/favicon.svg">
@@ -20,7 +22,7 @@
     
     
       
-        <title>For Loops - Climine Runtime Docs</title>
+        <title>Respond - Climine Runtime Docs</title>
       
     
     
@@ -86,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#syntax" class="md-skip">
+        <a href="#responding-json" class="md-skip">
           Skip to content
         </a>
       
@@ -121,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              For Loops
+              Respond
             
           </span>
         </div>
@@ -548,17 +550,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
@@ -572,7 +576,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             Page Configuration
@@ -688,10 +692,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../respond/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Respond
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -700,6 +722,33 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#responding-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      Responding JSON
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -716,19 +765,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
           <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
@@ -742,7 +789,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             Page Templates
@@ -816,28 +863,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    For Loops
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../for_loop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -846,42 +875,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
-    <span class="md-ellipsis">
-      Syntax
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -919,18 +912,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#syntax" class="md-nav__link">
+  <a href="#responding-json" class="md-nav__link">
     <span class="md-ellipsis">
-      Syntax
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#example" class="md-nav__link">
-    <span class="md-ellipsis">
-      Example
+      Responding JSON
     </span>
   </a>
   
@@ -954,24 +938,22 @@
   
 
 
-  <h1>For Loops</h1>
+  <h1>Respond</h1>
 
-<p>Climine Runtime supports simple for loops, allowing developers to iterate over arrays and generate repetitve content dynamically within Climine Runtime Page Template.</p>
-<h2 id="syntax">Syntax</h2>
-<p>The syntax for <code>for</code> loops in Climine Runtime follows a straightforward pattern:</p>
-<div class="language-html highlight"><span class="filename">index.html</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>{% for key in array %}
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="cm">&lt;!-- Content to display for each iteration --&gt;</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    {{ key }}
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>{% endfor %}
+<h2 id="responding-json">Responding JSON</h2>
+<p>In Climine Runtime, you can respond to requests with JSON data using the <code>respond</code> property in the Page Configuration file. This property allows you to define the JSON response that the server sends back to the client when the page is accessed.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the <code>respond</code> property is defined and interpreted, Climine Runtime will ignore the rest of the page/process and send the JSON response to the client.</p>
+</div>
+<p>Here's an example of a JSON response configuration in a Climine Runtime Page Configuration file:</p>
+<div class="language-json highlight"><span class="filename">index.json</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">&quot;respond&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="nt">&quot;yourKey&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;yourValue&quot;</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
 </span></code></pre></div>
-<p>In this syntax, <code>key</code> is a variable that represents the current element in the array being iterated over. The <code>array</code> variable is the array that the loop is iterating over.</p>
-<h2 id="example">Example</h2>
-<p>Here is an example of a simple <code>for</code> loop in Climine Runtime:</p>
-<div class="language-html highlight"><span class="filename">index.html</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{% for fruit in fruits %}
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>{{ fruit }}<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>{% endfor %}
-</span></code></pre></div>
-<p>In this example, the <code>for</code> loop iterates over an array called <code>fruits</code> and displays each element in a paragraph element.</p>
+<p>In this example, the <code>respond</code> object defines a JSON response with a key-value pair of <code>yourKey: yourValue</code>. When the page is accessed, the server will respond with this JSON data, even if there are other processes defined in the page or Page Template exisits.</p>
 
 
 

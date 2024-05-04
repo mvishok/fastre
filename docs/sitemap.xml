@@ -2,87 +2,92 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://climine.github.io/runtime/docs/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/config/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/dir/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/env/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/env_var/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/error/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/example/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/for_loop/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/if_condition/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/installation/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/page/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/param/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/port/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/rate/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/req/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://climine.github.io/runtime/docs/respond/</loc>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/template/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/templating_var/</loc>
-         <lastmod>2024-04-15</lastmod>
+         <lastmod>2024-05-04</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
