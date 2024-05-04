@@ -49,7 +49,7 @@ update(v, request);
 
 // --init flag
 //create a new Climine project in args.init directory
-if (args.init) {
+if (args.init && typeof args.init === 'string') {
     const initDir = args.init ? path.resolve(args.init) : process.cwd();
     
     if (!fs.existsSync(initDir)) {
@@ -89,6 +89,9 @@ if (args.init) {
     console.log(chalk.green(`Created Climine project in ${initDir}`));
 
     process.exit(0);
+} else if (args.init) {
+    console.error(chalk.red('Invalid directory specified for --init flag'));
+    process.exit(1);
 }
 
 
