@@ -29,7 +29,7 @@ const args = minimist(process.argv.slice(2));
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { existsSync } from 'fs';
-import input from '@inquirer/input';
+import readline from 'readline-sync';
 
 let __dirname;
 
@@ -47,77 +47,6 @@ try {
 
 update(v, request);
 
-// --compile flag
-if (args.compile) {
-
-    try {
-        execSync('npm -v');
-    } catch (err) {
-        console.error(chalk.red('npm is not installed. Please install npm to use the --compile flag'));
-        process.exit(1);
-    }
-
-    const dist = path.join(config.dir, 'dist');
-    const defaultDir = path.join(dist, 'default');
-
-    if (!fs.existsSync(dist)) {
-        fs.mkdirSync(dist);
-    }
-
-    if (!fs.existsSync(defaultDir)) {
-        fs.mkdirSync(defaultDir);
-    }
-
-    fs.readdirSync(config.dir).forEach(file => {
-        if (file !== 'dist') {
-            if (file === 'node_modules' || file==='package.json' || file === 'package-lock.json' || file === 'dist' || file === 'default') {
-                return;
-            }
-            fs.copyFileSync(path.join(config.dir, file), path.join(defaultDir, file));
-        }
-    });
-
-    //create package.json with project name and version
-    const packageJson = {
-        "name": config.name || "climine",
-        "version": config.version || "1.0.0",
-        "description": config.description || "Climine Runtime project",
-        "main": "climine.cjs",
-        "scripts": {
-            "start": "node climine.cjs"
-            },
-        "dependencies": {
-            "boxen": "^7.1.1",
-            "chalk": "^4.1.2",
-            "expr-eval": "^2.0.2",
-            "minimist": "^1.2.8",
-            "then-request": "^6.0.2"
-        },
-        "devDependencies": {
-            "esbuild": "0.20.2"
-        }
-    }
-    
-    try {
-        fs.writeFileSync(path.join(dist, 'package.json'), JSON.stringify(packageJson, null, 2));
-    } catch (err) {
-        console.error(chalk.red(`Error occurred while creating package.json`));
-        console.error(err);
-        process.exit(1);
-    }
-
-    try {
-        execSync(`npx esbuild ${__dirname} --bundle --platform=node --outfile=${dist}/index.cjs`);
-    } catch (err) {
-        console.error(chalk.red(`Error occurred while compiling Climine Runtime project`));
-        console.error(err);
-        process.exit(1);
-    }
-
-    console.log(chalk.green(`Built Climine Runtime project to ${dist}`));
-    process.exit(0);
-}
-
 // --init flag
 //create a new Climine project in args.init directory
 if (args.init) {
@@ -127,40 +56,15 @@ if (args.init) {
         fs.mkdirSync(initDir);
     }
 
-    //prompt user for project name, description and version, root directory (config.dir)
-    const name = await input({
-        message: 'Enter project name',
-        initial: 'climine'
-    });
+    //ask for project name, version, description, dir, port
+    const name = readline.question('Project name: ');
+    const version = readline.question('Version: ');
+    const description = readline.question('Description: ');
+    const dir = readline.question('Directory: ');
+    const port = readline.question('Port: ');
 
-    const description = await input({
-        message: 'Enter project description',
-        initial: 'Climine Runtime project'
-    });
-
-    const version = await input({
-        message: 'Enter project version',
-        initial: '1.0.0'
-    });
-
-    const dir = await input({
-        message: 'Enter project root directory',
-        initial: '.'
-    });
-
-    const port = await input({
-        message: 'Enter port',
-        initial: '8080'
-    });
-
-    const config = {
-        name,
-        description,
-        version,
-        dir,
-        port
-    }
-
+    const config = { name, version, description, dir, port };
+    
     let projectDir;
     if (config.dir !== '.' && config.dir !== './') {
         projectDir = path.join(initDir, config.dir);
@@ -229,10 +133,11 @@ function configLoader(configPath) {
 }
 
 // --config flag
+let configPath;
 const config = args.config ? 
     (() => {
         //if args .config is relative path, resolve it to absolute path using process.cwd()
-        const configPath = path.isAbsolute(args.config) ? path.resolve(args.config) : path.resolve(process.cwd(), args.config);
+        configPath = path.isAbsolute(args.config) ? path.resolve(args.config) : path.resolve(process.cwd(), args.config);
         console.log(configPath)
         console.log(chalk.blue(`Using config file ${configPath}`));
         return configLoader(configPath);
@@ -240,8 +145,82 @@ const config = args.config ?
     (() => {
         console.log(chalk.blue('No config file specified. Using default configuration \\default\\config.json'));
         return configLoader(path.resolve(__dirname, 'default/config.json'));
-
     })();
+
+
+// --compile flag
+if (args.compile) {
+
+    try {
+        execSync('npm -v');
+    } catch (err) {
+        console.error(chalk.red('npm is not installed. Please install npm to use the --compile flag'));
+        process.exit(1);
+    }
+
+    const dist = path.join(path.dirname(configPath), 'dist');
+    const defaultDir = path.join(dist, 'default');
+
+    if (!fs.existsSync(dist)) {
+        fs.mkdirSync(dist);
+    }
+
+    if (!fs.existsSync(defaultDir)) {
+        fs.mkdirSync(defaultDir);
+    }
+
+    fs.readdirSync(config.dir).forEach(file => {
+        if (file !== 'dist') {
+            if (file === 'node_modules' || file==='package.json' || file === 'package-lock.json' || file === 'dist' || file === 'default' || file === 'config.json') {
+                return;
+            }
+            fs.cpSync(path.join(config.dir, file), path.join(defaultDir, file), {recursive: true});
+        }
+    });
+
+    config.dir = './';
+    fs.writeFileSync(path.join(dist, '/default/config.json'), JSON.stringify(config, null, 2));
+
+    //create package.json with project name and version
+    const packageJson = {
+        "name": config.name || "climine",
+        "version": config.version || "1.0.0",
+        "description": config.description || "Climine Runtime project",
+        "main": "climine.cjs",
+        "scripts": {
+            "start": "node climine.cjs"
+            },
+        "dependencies": {
+            "boxen": "^7.1.1",
+            "chalk": "^4.1.2",
+            "expr-eval": "^2.0.2",
+            "minimist": "^1.2.8",
+            "then-request": "^6.0.2"
+        },
+        "devDependencies": {
+            "esbuild": "0.20.2"
+        }
+    }
+    
+    try {
+        fs.writeFileSync(path.join(dist, 'package.json'), JSON.stringify(packageJson, null, 2));
+    } catch (err) {
+        console.error(chalk.red(`Error occurred while creating package.json`));
+        console.error(err);
+        process.exit(1);
+    }
+
+    try {
+        execSync(`npx esbuild ${__dirname} --bundle --platform=node --outfile=${dist}/index.cjs`);
+    } catch (err) {
+        console.error(chalk.red(`Error occurred while compiling Climine Runtime project`));
+        console.error(err);
+        process.exit(1);
+    }
+
+    console.log(chalk.green(`Built Climine Runtime project to ${dist}`));
+    process.exit(0);
+}
 
 //if config.env is set, load environment variables from the specified file
 let memory = {};
