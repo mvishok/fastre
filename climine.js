@@ -266,8 +266,17 @@ if (args.init) {
 
 const server = http.createServer(async (req, res) => {
     await serve(req, res, config, memory);
+});
+
+if (!config.port) {
+    config.port = 8080;
+    console.log(chalk.yellow('No port specified in config file. Using default port 8080'));
 }
-);
+
+if (config.port < 1024 || config.port > 49151) {
+    console.log(chalk.red('Port must be between 1024 and 49151'));
+    process.exit(1);
+}
 
 server.listen(config.port, () => {
     performance.mark('end');
