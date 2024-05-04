@@ -97,11 +97,11 @@ const config = args.config ?
     })() :
     (() => {
         console.log(chalk.blue('No config file specified. Using default configuration \\default\\config.json'));
-        return configLoader(path.resolve(__dirname, '/config.json'));
+        return configLoader(path.resolve(__dirname, 'default/config.json'));
 
     })();
 
-    //if config.env is set, load environment variables from the specified file
+//if config.env is set, load environment variables from the specified file
 let memory = {};
 
 if (config.env) {
@@ -119,6 +119,9 @@ if (config.env) {
         }
     }
 }
+
+//include environment variables from current environment
+memory = { ...process.env, ...memory };
 
 // --compile flag
 if (args.compile) {
