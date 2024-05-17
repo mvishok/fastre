@@ -4,7 +4,7 @@ import { errorCodeToMessage, ftype, makeRequest } from './modules.js';
 import fs from 'fs';
 import path from 'path';
 import { performance } from "perf_hooks";
-
+import * as string from './functions/string.js'
 
 import { Parser } from "expr-eval";
 const parser = new Parser();
@@ -33,13 +33,48 @@ function evaluateCondition(condition, data) {
 }
 
 function getValueFromData(match, data) {
+    let f = null;
+    let args = null;
+    if (match.includes('.')){
+        const split = match.split('.');
+        f = split[1];
+        match = split[0];
+        if (f.includes('(')){
+            const split = f.split('(');
+            f = split[0];
+            //args should be either string or number or list. if its without quotes, its a variable. call getValueFromData to get the value
+            args = split[1].slice(0, -1).split(',').map(arg => {
+                arg = arg.trim();
+                if (arg[0] === '"' && arg[arg.length - 1] === '"') {
+                    return arg.slice(1, -1);
+                } else if (!isNaN(arg)) {
+                    return parseFloat(arg);
+                } else if (arg === 'true' || arg === 'false') {
+                    return arg === 'true';
+                } else {
+                    return getValueFromData(arg, data);
+                }
+            });
+        }
+    }
+
     const parts = match.split(/\.|\[|\]/).filter(part => part.trim() !== '');
     let value = data;
     for (const part of parts) {
         value = value[part];
         if (value === undefined) break;
     }
-    return value;
+
+    if (f !== null){
+        //if typeof value is string, call the function from string.js
+        if (typeof value === 'string'){
+            if (string[f]){
+                return string[f](value, args);
+            }
+        }
+    } else {
+        return value;
+    }
 }
 
 export function render(template, data) {
