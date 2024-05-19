@@ -27,4 +27,8 @@ function replace(string, args) {
     return string.replace(args[0], args[1])
 }
 
-export { lower, upper, capitalize, reverse, length, trim, replace }
+function split(string, args) {
+    return string.split(args[0])
+}
+
+export { lower, upper, capitalize, reverse, length, trim, replace, split }
