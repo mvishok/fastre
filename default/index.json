@@ -1,6 +1,7 @@
 {
     "use": ["version"],
     "define": {
-        "product": "Runtime v{{ memory[version] }}"
+        "product": "Runtime v{{ memory[version] }}",
+        "list": "{{ product.split(' ') }}"
     }
 }
