@@ -10,7 +10,7 @@ import * as int from './functions/int.js'
 import { Parser } from "expr-eval";
 const parser = new Parser();
 
-function frameCondition(condition, data) {
+function evaluateCondition(condition, data) {
     let keywords = ['and', 'or', 'not', 'true', 'false'];
     let operators = ['+', '-', '*', '/', '%', '==', '!=', '>', '<', '>=', '<=', '&&', '||', '!', '(', ')'];
     
@@ -36,14 +36,7 @@ function frameCondition(condition, data) {
             condition[i] = value;
         }
     }
-    return condition.join(' ');
-    
-}
-
-
-function evaluateCondition(condition, data) {
-    condition = frameCondition(condition, data);
-
+    condition = condition.join(' ');
     try {
         return parser.parse(condition).evaluate();
     } catch (err) {
