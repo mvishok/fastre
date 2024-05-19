@@ -10,21 +10,40 @@ import * as int from './functions/int.js'
 import { Parser } from "expr-eval";
 const parser = new Parser();
 
-function evaluateCondition(condition, data) {
-    condition = condition.replace(/[a-zA-Z_]+[a-zA-Z0-9_]*(\.[a-zA-Z_]+[a-zA-Z0-9_]*|\[[a-zA-Z_]+[a-zA-Z0-9_]*\])*/g , match => {
-        if (match === 'and' || match === 'or') return match;
-        let value = getValueFromData(match, data);
-        if (typeof value === 'undefined') {
-            console.log(chalk.yellow(`Variable ${match} not found in data object. Defaulting to 0`));
-            value = 0;
-        } else if (typeof value === 'object') {
-            console.log(chalk.yellow(`Variable ${match} is an object. Defaulting to length of the object`));
-            value = Object.keys(value).length;
+function frameCondition(condition, data) {
+    let keywords = ['and', 'or', 'not', 'true', 'false'];
+    let operators = ['+', '-', '*', '/', '%', '==', '!=', '>', '<', '>=', '<=', '&&', '||', '!', '(', ')'];
+    
+    condition = condition.split(' ')
+    for (let i = 0; i < condition.length; i++){
+        if (keywords.includes(condition[i])){
+            continue;
+        } else if (operators.includes(condition[i])){
+            continue;
+        } else if (!isNaN(condition[i])){
+            continue;
         } else {
-            value = JSON.stringify(value);
+            let value = getValueFromData(condition[i], data);
+            if (typeof value === 'undefined') {
+                console.log(chalk.yellow(`Variable ${condition[i]} not found in data object. Defaulting to 0`));
+                value = 0;
+            } else if (typeof value === 'object') {
+                console.log(chalk.yellow(`Variable ${condition[i]} is an object. Defaulting to length of the object`));
+                value = Object.keys(value).length;
+            } else {
+                value = JSON.stringify(value);
+            }
+            condition[i] = value;
         }
-        return value;
-    });
+    }
+    return condition.join(' ');
+    
+}
+
+
+function evaluateCondition(condition, data) {
+    condition = frameCondition(condition, data);
+
     try {
         return parser.parse(condition).evaluate();
     } catch (err) {
