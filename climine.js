@@ -2,7 +2,7 @@
 import boxen from 'boxen';
 import chalk from 'chalk';
 import { performance } from 'perf_hooks';
-const v = '0.1.3';
+const v = '0.3';
 console.log(
     boxen(chalk.hex("#04e1c3").bold(`Climine Runtime ${v}`), {
         padding: 1,
