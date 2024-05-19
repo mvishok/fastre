@@ -45,7 +45,7 @@ function getValueFromData(match, data) {
             //args should be either string or number or list. if its without quotes, its a variable. call getValueFromData to get the value
             args = split[1].slice(0, -1).split(',').map(arg => {
                 arg = arg.trim();
-                if (arg[0] === '"' && arg[arg.length - 1] === '"') {
+                if (arg[0] === '"' && arg[arg.length - 1] === '"' || arg[0] === "'" && arg[arg.length - 1] === "'") {
                     return arg.slice(1, -1);
                 } else if (!isNaN(arg)) {
                     return parseFloat(arg);
@@ -321,10 +321,40 @@ async function prerender(
 
             // if it is "define": {key: value}, render the value and add it to data
             if (key === 'define') {
+                //it can be {key: value} or {key: {value: value, type: type}}. if type is not specified, automatically detect the type (string, number, object)
                 for (const variable in entry) {
-                    data[variable] = render(entry[variable], data);
+                    //if type is specified, use that type
+                    if (typeof entry[variable] === 'object') {
+                        if (entry[variable].type === 'string') {
+                            data[variable] = render(entry[variable].value, data).toString();
+                        } else if (entry[variable].type === 'int') {
+                            data[variable] = parseInt(render(entry[variable].value, data));
+                        } else if (entry[variable].type === 'float') {
+                            data[variable] = parseFloat(render(entry[variable].value, data));
+                        } else if (entry[variable].type === 'object' || entry[variable].type === 'array' || entry[variable].type === 'json') {
+                            data[variable] = JSON.parse(render(entry[variable].value, data)); 
+                        } else {
+                            data[variable] = render(entry[variable].value, data);
+                        }
+                    } else {
+                        //automatically detect the type of the value
+                        //render the value and check if it is a number or a json object
+                        const value = render(entry[variable].toString(), data);
+                        //if int
+                        if (Number.isInteger(parseInt(value))) {
+                            data[variable] = parseInt(value);
+                        } else if (!isNaN(parseFloat(value))) {
+                            data[variable] = parseFloat(value);
+                        } else {
+                            try {
+                                data[variable] = JSON.parse(value);
+                            } catch (err) {
+                                data[variable] = value;
+                            }
+                        }
+
+                    }
                 }
-                continue;
             }
         }
     }
