@@ -1,3 +1,6 @@
 {
-    "use": ["version"]
+    "use": ["version"],
+    "define": {
+        "product": "Runtime v{{ memory[version] }}"
+    }
 }

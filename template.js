@@ -319,6 +319,13 @@ async function prerender(
                 }
             }
 
+            // if it is "define": {key: value}, render the value and add it to data
+            if (key === 'define') {
+                for (const variable in entry) {
+                    data[variable] = render(entry[variable], data);
+                }
+                continue;
+            }
         }
     }
 
