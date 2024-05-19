@@ -150,6 +150,15 @@ const config = args.config ?
         return configLoader(path.resolve(__dirname, 'default/config.json'));
     })();
 
+// --port flag
+if (args.port) {
+    if (isNaN(args.port)) {
+        console.log(chalk.red('Port must be a number'));
+        process.exit(1);
+    }
+    config.port = args.port;
+    console.log(chalk.blue(`Using port ${config.port}`));
+}
 
 // --compile flag
 if (args.compile) {
