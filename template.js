@@ -5,6 +5,7 @@ import fs from 'fs';
 import path from 'path';
 import { performance } from "perf_hooks";
 import * as string from './functions/string.js'
+import * as int from './functions/int.js'
 
 import { Parser } from "expr-eval";
 const parser = new Parser();
@@ -70,6 +71,13 @@ function getValueFromData(match, data) {
         if (typeof value === 'string'){
             if (string[f]){
                 return string[f](value, args);
+            }
+        } else if (typeof value === 'number'){
+            //if value is integer
+            if (Number.isInteger(value)){
+                if (int[f]){
+                    return int[f](value, args);
+                }
             }
         }
     } else {
