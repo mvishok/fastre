@@ -8,26 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://climine.github.io/runtime/docs/">
+        <link rel="canonical" href="https://climine.github.io/runtime/docs/string/replace/">
       
       
+        <link rel="prev" href="../lower/">
       
-        <link rel="next" href="installation/">
+      
+        <link rel="next" href="../reverse/">
       
       
-      <link rel="icon" href="assets/favicon.svg">
+      <link rel="icon" href="../../assets/favicon.svg">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.5.17">
     
     
       
-        <title>Introduction - Documentation</title>
+        <title>replace - Documentation</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/main.bcfcd587.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bcfcd587.min.css">
       
         
-        <link rel="stylesheet" href="assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
   
@@ -60,7 +62,7 @@
       
     
     
-    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -86,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#getting-started" class="md-skip">
+        <a href="#syntax" class="md-skip">
           Skip to content
         </a>
       
@@ -102,9 +104,9 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="." title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
+    <a href="../.." title="Documentation" class="md-header__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="assets/logo.png" alt="logo">
+  <img src="../../assets/logo.png" alt="logo">
 
     </a>
     <label class="md-header__button md-icon" for="__drawer">
@@ -121,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Introduction
+              replace
             
           </span>
         </div>
@@ -270,9 +272,9 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="." title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
+    <a href="../.." title="Documentation" class="md-nav__button md-logo" aria-label="Documentation" data-md-component="logo">
       
-  <img src="assets/logo.png" alt="logo">
+  <img src="../../assets/logo.png" alt="logo">
 
     </a>
     Documentation
@@ -296,19 +298,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
         
           
           <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
@@ -322,7 +322,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -333,30 +333,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Introduction
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="." class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -365,44 +345,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#who-is-it-for" class="md-nav__link">
-    <span class="md-ellipsis">
-      Who is it for?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#knowledge-prerequisites" class="md-nav__link">
-    <span class="md-ellipsis">
-      Knowledge Prerequisites
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -415,7 +357,7 @@
   
   
     <li class="md-nav__item">
-      <a href="installation/" class="md-nav__link">
+      <a href="../../installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -436,7 +378,7 @@
   
   
     <li class="md-nav__item">
-      <a href="example/" class="md-nav__link">
+      <a href="../../example/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -457,7 +399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="init/" class="md-nav__link">
+      <a href="../../init/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -478,7 +420,7 @@
   
   
     <li class="md-nav__item">
-      <a href="port_flag/" class="md-nav__link">
+      <a href="../../port_flag/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -499,7 +441,7 @@
   
   
     <li class="md-nav__item">
-      <a href="compile/" class="md-nav__link">
+      <a href="../../compile/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -562,7 +504,7 @@
   
   
     <li class="md-nav__item">
-      <a href="config/" class="md-nav__link">
+      <a href="../../config/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -583,7 +525,7 @@
   
   
     <li class="md-nav__item">
-      <a href="port/" class="md-nav__link">
+      <a href="../../port/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -604,7 +546,7 @@
   
   
     <li class="md-nav__item">
-      <a href="dir/" class="md-nav__link">
+      <a href="../../dir/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -625,7 +567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="env/" class="md-nav__link">
+      <a href="../../env/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -646,7 +588,7 @@
   
   
     <li class="md-nav__item">
-      <a href="error/" class="md-nav__link">
+      <a href="../../error/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -709,7 +651,7 @@
   
   
     <li class="md-nav__item">
-      <a href="page/" class="md-nav__link">
+      <a href="../../page/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -730,7 +672,7 @@
   
   
     <li class="md-nav__item">
-      <a href="env_var/" class="md-nav__link">
+      <a href="../../env_var/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -751,7 +693,7 @@
   
   
     <li class="md-nav__item">
-      <a href="param/" class="md-nav__link">
+      <a href="../../param/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -772,7 +714,7 @@
   
   
     <li class="md-nav__item">
-      <a href="rate/" class="md-nav__link">
+      <a href="../../rate/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -793,7 +735,7 @@
   
   
     <li class="md-nav__item">
-      <a href="req/" class="md-nav__link">
+      <a href="../../req/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -814,7 +756,7 @@
   
   
     <li class="md-nav__item">
-      <a href="respond/" class="md-nav__link">
+      <a href="../../respond/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -877,7 +819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="template/" class="md-nav__link">
+      <a href="../../template/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -898,7 +840,7 @@
   
   
     <li class="md-nav__item">
-      <a href="templating_var/" class="md-nav__link">
+      <a href="../../templating_var/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -919,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="if_condition/" class="md-nav__link">
+      <a href="../../if_condition/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -940,7 +882,7 @@
   
   
     <li class="md-nav__item">
-      <a href="for_loop/" class="md-nav__link">
+      <a href="../../for_loop/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -965,17 +907,19 @@
       
   
   
+    
   
   
+  
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -989,7 +933,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             String Methods
@@ -1003,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="string/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1024,7 +968,7 @@
   
   
     <li class="md-nav__item">
-      <a href="string/capitalize/" class="md-nav__link">
+      <a href="../capitalize/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1045,7 +989,7 @@
   
   
     <li class="md-nav__item">
-      <a href="string/length/" class="md-nav__link">
+      <a href="../length/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1066,7 +1010,7 @@
   
   
     <li class="md-nav__item">
-      <a href="string/lower/" class="md-nav__link">
+      <a href="../lower/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1084,10 +1028,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="string/replace/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    replace
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -1096,6 +1058,42 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#syntax" class="md-nav__link">
+    <span class="md-ellipsis">
+      Syntax
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1108,7 +1106,7 @@
   
   
     <li class="md-nav__item">
-      <a href="string/reverse/" class="md-nav__link">
+      <a href="../reverse/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1129,7 +1127,7 @@
   
   
     <li class="md-nav__item">
-      <a href="string/split/" class="md-nav__link">
+      <a href="../split/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1150,7 +1148,7 @@
   
   
     <li class="md-nav__item">
-      <a href="string/trim/" class="md-nav__link">
+      <a href="../trim/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1180,7 +1178,7 @@
   
   
     <li class="md-nav__item">
-      <a href="blog/" class="md-nav__link">
+      <a href="../../blog/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1210,8 +1208,6 @@
   
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -1220,18 +1216,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#who-is-it-for" class="md-nav__link">
+  <a href="#syntax" class="md-nav__link">
     <span class="md-ellipsis">
-      Who is it for?
+      Syntax
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#knowledge-prerequisites" class="md-nav__link">
+  <a href="#example" class="md-nav__link">
     <span class="md-ellipsis">
-      Knowledge Prerequisites
+      Example
     </span>
   </a>
   
@@ -1255,32 +1251,29 @@
   
 
 
-<h1 id="getting-started">Getting Started</h1>
-<p>Climine Runtime is a lightweight, straightforward and fault-tolerant runtime environment for web development designed to streamline the process of building dynamic websites, without the complexity of traditional backend setups or server-side scripting languages. With Climine Runtime, developers can easily convert static HTML/CSS/JS designs into dynamic web applications by integrating API responses directly into their HTML markup.</p>
-<h2 id="who-is-it-for">Who is it for?</h2>
+  <h1>replace</h1>
+
+<p><code>replace</code> is a method that replaces a specified value with another value in a string.</p>
+<p>This method takes two arguments:</p>
 <ul>
-<li>
-<p><strong>Beginners:</strong> Climine Runtime offers a user-friendly solution for those new to web development, providing a gentle introduction to dynamic web content.</p>
-</li>
-<li>
-<p><strong>Small Projects:</strong> For quickly prototyping and deploying simple dynamic websites without the need for extensive backend infrastructure.</p>
-</li>
-<li>
-<p><strong>API Integration:</strong> Climine Runtime is perfect for integrating API responses directly into your HTML markup, allowing you to build dynamic web applications with ease.</p>
-</li>
+<li><code>old</code>: The value to be replaced.</li>
+<li><code>new</code>: The value to replace <code>old</code> with.</li>
 </ul>
-<h2 id="knowledge-prerequisites">Knowledge Prerequisites</h2>
-<ul>
-<li>
-<p><strong>HTML/CSS/JS:</strong> A basic understanding of HTML, CSS, and JavaScript is required to get started with Climine Runtime.</p>
-</li>
-<li>
-<p><strong>APIs:</strong> Familiarity with APIs and how to consume them will be beneficial when integrating external data sources into your web applications.</p>
-</li>
-<li>
-<p><strong>Javascript Object Notation (JSON):</strong> Understanding JSON data structures will be helpful when working with API responses and configuration files.</p>
-</li>
-</ul>
+<h3 id="syntax">Syntax</h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>{{ string.replace(&quot;old&quot;, &quot;new&quot;) }}
+</span></code></pre></div>
+<h3 id="example">Example</h3>
+<div class="language-html highlight"><span class="filename">index.html</span><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>{{ title.replace(&quot; &quot;, &quot;-&quot;) }}<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>In the example above, all spaces in the <code>title</code> string are replaced with hyphens.</p>
+<div class="admonition note">
+<p class="admonition-title">Original String Unchanged</p>
+<p>The <code>replace</code> method does not modify the original string. It returns a new string with the desired transformation.</p>
+</div>
 
 
 
@@ -1391,10 +1384,10 @@
       </div>
       <script>var consent=__md_get("__consent");if(consent)for(var input of document.forms.consent.elements)input.name&&(input.checked=consent[input.name]||!1);else"file:"!==location.protocol&&setTimeout(function(){document.querySelector("[data-md-component=consent]").hidden=!1},250);var action,form=document.forms.consent;for(action of["submit","reset"])form.addEventListener(action,function(e){if(e.preventDefault(),"reset"===e.type)for(var n of document.forms.consent.elements)n.name&&(n.checked=!1);__md_set("__consent",Object.fromEntries(Array.from(new FormData(form).keys()).map(function(e){return[e,!0]}))),location.hash="",location.reload()})</script>
     
-    <script id="__config" type="application/json">{"base": ".", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "content.code.copy"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.instant.prefetch", "navigation.instant.progress", "navigation.tracking", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="assets/javascripts/bundle.1e8ae164.min.js"></script>
+      <script src="../../assets/javascripts/bundle.1e8ae164.min.js"></script>
       
     
   </body>
