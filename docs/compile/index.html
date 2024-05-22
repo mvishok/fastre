@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://climine.github.io/runtime/docs/installation/">
+        <link rel="canonical" href="https://climine.github.io/runtime/docs/compile/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../init/">
       
       
-        <link rel="next" href="../example/">
+        <link rel="next" href="../config/">
       
       
       <link rel="icon" href="../assets/favicon.svg">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Installation - Documentation</title>
+        <title>Compile - Documentation</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#using-pre-built-binaries" class="md-skip">
+        <a href="#compiling-your-project" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installation
+              Compile
             
           </span>
         </div>
@@ -356,28 +356,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Installation
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -386,42 +368,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#using-pre-built-binaries" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using Pre-built Binaries
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compiling-from-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compiling from Source
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -473,10 +419,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../compile/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Compile
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -485,6 +449,33 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#compiling-your-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Compiling your project
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -985,18 +976,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#using-pre-built-binaries" class="md-nav__link">
+  <a href="#compiling-your-project" class="md-nav__link">
     <span class="md-ellipsis">
-      Using Pre-built Binaries
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compiling-from-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compiling from Source
+      Compiling your project
     </span>
   </a>
   
@@ -1020,35 +1002,26 @@
   
 
 
-  <h1>Installation</h1>
+  <h1>Compile</h1>
 
-<p>To install Climine Runtime, you have a couple of options:</p>
-<ul>
-<li>
-<h3 id="using-pre-built-binaries">Using Pre-built Binaries</h3>
-<p>You can download pre-built binaries for your operating system from the <a href="https://github.com/climine/climine-runtime/releases/latest">Releases</a> page. Once downloaded, extract the archive and add the executable to your system's PATH.</p>
-</li>
-<li>
-<h3 id="compiling-from-source">Compiling from Source</h3>
-<p>If pre-built binaries are unavailable for your operating system, you can compile Climine Runtime from source. Follow these steps:</p>
-</li>
-<li>
-<p>Clone the repository: 
- <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/climine/climine-runtime.git
-</span></code></pre></div></p>
-</li>
-<li>Navigate to the project directory: 
- <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>runtime
-</span></code></pre></div></li>
-<li>Install dependencies: 
- <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>npm<span class="w"> </span>install
-</span></code></pre></div></li>
-<li>Build the project: 
- <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>npm<span class="w"> </span>run<span class="w"> </span>build
-</span></code></pre></div></li>
-<li>The compiled binary will be available in the dist directory.</li>
-</ul>
-<p>That's it! You're now ready to use Climine Runtime.</p>
+<h2 id="compiling-your-project">Compiling your project</h2>
+<p>To compile your project, you can use the <code>compile</code> flag with the <code>climine</code> command. The <code>compile</code> flag compiles your Climine Runtime project into a Climine Runtime Server (Node.JS) that can be run locally or deployed to a cloud platform.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>To use the <code>compile</code> flag, you need to have npm installed on your system.</p>
+</div>
+<p>Here's how you can compile your project:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>climine<span class="w"> </span>--config<span class="w"> </span>path/to/config.json<span class="w"> </span>--compile
+</span></code></pre></div>
+<p>Replace <code>path/to/config.json</code> with the path to your Climine Runtime Page Configuration file.</p>
+<p>After running the command, a <code>dist</code> directory will be created in the root of your project (where the <code>config.json</code> file is located). The <code>dist</code> directory contains the compiled Climine Runtime Server that can be run locally or deployed to a cloud platform. The compiled Climine Runtime Server is a Node.JS application that can be run using the <code>node</code> command.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To run the compiled Climine Runtime Server, you need to have Node.JS installed on your system.</p>
+</div>
+<p>To run the compiled Climine Runtime Server locally, you can use the following command:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>node<span class="w"> </span>dist/index.cjs
+</span></code></pre></div>
 
 
 

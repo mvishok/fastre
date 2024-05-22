@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://climine.github.io/runtime/docs/installation/">
+        <link rel="canonical" href="https://climine.github.io/runtime/docs/init/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../example/">
       
       
-        <link rel="next" href="../example/">
+        <link rel="next" href="../compile/">
       
       
       <link rel="icon" href="../assets/favicon.svg">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Installation - Documentation</title>
+        <title>Initialize - Documentation</title>
       
     
     
@@ -88,7 +88,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#using-pre-built-binaries" class="md-skip">
+        <a href="#initialize-a-new-project" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installation
+              Initialize
             
           </span>
         </div>
@@ -356,28 +356,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Installation
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -386,42 +368,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#using-pre-built-binaries" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using Pre-built Binaries
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compiling-from-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compiling from Source
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -452,10 +398,28 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../init/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Initialize
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -464,6 +428,33 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#initialize-a-new-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      Initialize a new project
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -985,18 +976,9 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#using-pre-built-binaries" class="md-nav__link">
+  <a href="#initialize-a-new-project" class="md-nav__link">
     <span class="md-ellipsis">
-      Using Pre-built Binaries
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compiling-from-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compiling from Source
+      Initialize a new project
     </span>
   </a>
   
@@ -1020,35 +1002,30 @@
   
 
 
-  <h1>Installation</h1>
+  <h1>Initialize</h1>
 
-<p>To install Climine Runtime, you have a couple of options:</p>
+<h2 id="initialize-a-new-project">Initialize a new project</h2>
+<p>To initialize a new project, you can use the <code>init</code> flag with the <code>climine</code> command. The <code>init</code> flag creates a new Climine Runtime project in the current directory, by prompting you to enter the project details.</p>
+<p>Here's how you can initialize a new project:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>climine<span class="w"> </span>--init<span class="w"> </span>directory_name
+</span></code></pre></div>
+<p>Replace <code>directory_name</code> with the name of the directory where you want to create the project.</p>
+<p>After running the command, you will be prompted to enter the following details:</p>
 <ul>
-<li>
-<h3 id="using-pre-built-binaries">Using Pre-built Binaries</h3>
-<p>You can download pre-built binaries for your operating system from the <a href="https://github.com/climine/climine-runtime/releases/latest">Releases</a> page. Once downloaded, extract the archive and add the executable to your system's PATH.</p>
-</li>
-<li>
-<h3 id="compiling-from-source">Compiling from Source</h3>
-<p>If pre-built binaries are unavailable for your operating system, you can compile Climine Runtime from source. Follow these steps:</p>
-</li>
-<li>
-<p>Clone the repository: 
- <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/climine/climine-runtime.git
-</span></code></pre></div></p>
-</li>
-<li>Navigate to the project directory: 
- <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>runtime
-</span></code></pre></div></li>
-<li>Install dependencies: 
- <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>npm<span class="w"> </span>install
-</span></code></pre></div></li>
-<li>Build the project: 
- <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>npm<span class="w"> </span>run<span class="w"> </span>build
-</span></code></pre></div></li>
-<li>The compiled binary will be available in the dist directory.</li>
+<li><strong>Project Name</strong>: Enter the name of the project.</li>
+<li><strong>Version</strong>: Enter the version of the project.</li>
+<li><strong>Description</strong>: Enter a brief description of the project.</li>
+<li><strong>Directory</strong>: Enter the directory where you want to create the project. This is where the website files will be stored.</li>
+<li><strong>Port</strong>: Enter the port number where you want to run the project. The default port is <code>8080</code>.</li>
 </ul>
-<p>That's it! You're now ready to use Climine Runtime.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The port number should be a valid port number lying in range 1024-49151. This is because ports below 1024 are reserved for system services and ports above 49151 are used for dynamic and private ports.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The default directory for the project is the current directory where you run the command. </p>
+</div>
 
 
 

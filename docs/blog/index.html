@@ -8,13 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://climine.github.io/runtime/docs/installation/">
+        <link rel="canonical" href="https://climine.github.io/runtime/docs/blog/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../for_loop/">
       
-      
-        <link rel="next" href="../example/">
       
       
       <link rel="icon" href="../assets/favicon.svg">
@@ -22,7 +20,7 @@
     
     
       
-        <title>Installation - Documentation</title>
+        <title>Blog - Documentation</title>
       
     
     
@@ -88,7 +86,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#using-pre-built-binaries" class="md-skip">
+        <a href="#blog" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Installation
+              Blog
             
           </span>
         </div>
@@ -298,19 +296,17 @@
       
   
   
-    
   
   
-  
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
         
           
           <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
@@ -324,7 +320,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_1">
             <span class="md-nav__icon md-icon"></span>
             Getting Started
@@ -356,28 +352,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    Installation
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -386,42 +364,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#using-pre-built-binaries" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using Pre-built Binaries
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compiling-from-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compiling from Source
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -942,12 +884,23 @@
       
   
   
-  
     
   
   
-    <li class="md-nav__item">
-      <a href="../blog/" class="md-nav__link">
+    
+      
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -956,6 +909,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -977,32 +931,8 @@
   
   
   
+    
   
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#using-pre-built-binaries" class="md-nav__link">
-    <span class="md-ellipsis">
-      Using Pre-built Binaries
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#compiling-from-source" class="md-nav__link">
-    <span class="md-ellipsis">
-      Compiling from Source
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -1011,60 +941,150 @@
             
           
           
-            <div class="md-content" data-md-component="content">
-              <article class="md-content__inner md-typeset">
-                
-                  
-
-  
-  
-
-
-  <h1>Installation</h1>
-
-<p>To install Climine Runtime, you have a couple of options:</p>
-<ul>
-<li>
-<h3 id="using-pre-built-binaries">Using Pre-built Binaries</h3>
-<p>You can download pre-built binaries for your operating system from the <a href="https://github.com/climine/climine-runtime/releases/latest">Releases</a> page. Once downloaded, extract the archive and add the executable to your system's PATH.</p>
-</li>
-<li>
-<h3 id="compiling-from-source">Compiling from Source</h3>
-<p>If pre-built binaries are unavailable for your operating system, you can compile Climine Runtime from source. Follow these steps:</p>
-</li>
-<li>
-<p>Clone the repository: 
- <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/climine/climine-runtime.git
-</span></code></pre></div></p>
-</li>
-<li>Navigate to the project directory: 
- <div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>runtime
-</span></code></pre></div></li>
-<li>Install dependencies: 
- <div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>npm<span class="w"> </span>install
-</span></code></pre></div></li>
-<li>Build the project: 
- <div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>npm<span class="w"> </span>run<span class="w"> </span>build
-</span></code></pre></div></li>
-<li>The compiled binary will be available in the dist directory.</li>
-</ul>
-<p>That's it! You're now ready to use Climine Runtime.</p>
-
-
-
-
-
-
-
-
-
-
-
-
-                
-              </article>
-            </div>
+  <div class="md-content" data-md-component="content">
+    <div class="md-content__inner">
+      <header class="md-typeset">
+        <h1 id="blog">Blog</h1>
+<p>This is the official blog of Climine Runtime. Here you will find articles, tutorials, and other resources to help you get started with Climine Runtime and build powerful web applications.</p>
+      </header>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+      <nav class="md-post__authors md-typeset">
+        
+          <span class="md-author">
+            <img src="https://github.com/mvishok.png" alt="Vishok Manikantan">
+          </span>
+        
+      </nav>
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2024-05-05 00:00:00">May 5, 2024</time></li>
+        
+        
           
+          <li class="md-meta__item">
+            
+              2 min read
+            
+          </li>
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="installing-climine-runtime-on-windows-through-github-releases-on-windows"><a class="toclink" href="2024/05/05/install-climine-runtime-through-github-releases-on-windows/">Installing Climine Runtime on Windows through Github Releases on Windows</a></h2>
+<h4 id="installing-climine-runtime-on-windows-a-step-by-step-guide"><a class="toclink" href="2024/05/05/install-climine-runtime-through-github-releases-on-windows/#installing-climine-runtime-on-windows-a-step-by-step-guide">Installing Climine Runtime on Windows: A Step-by-Step Guide</a></h4>
+<p>Hello Developers! In this post, we will dive into the process of installing Climine Runtime on your Windows Machine through Github Releases!</p>
+<h5 id="downloading-the-latest-release"><a class="toclink" href="2024/05/05/install-climine-runtime-through-github-releases-on-windows/#downloading-the-latest-release">Downloading the Latest Release:</a></h5>
+<p>To download the Latest Release, follow these steps:</p>
+<ol>
+<li>
+<p><strong>Head to Climine Runtime:</strong> Head over to <a href="https://climine.github.io/runtime">Climine Runtime</a>, and click the <code>GITHUB</code> button. This will redirect you to the Github Repository of Climine Runtime</p>
+<p><img alt="" src="https://i.postimg.cc/mr0kCDyT/1.png" title="Climine Runtime" /></p>
+</li>
+<li>
+<p><strong>Navigate to Releases:</strong> Once the Github Repo has been loaded, navigate to the <code>Releases</code> section of the repository</p>
+<p><img alt="" src="https://i.postimg.cc/XvZXrFF2/2.png" title="climine/runtime" /></p>
+</li>
+<li>
+<p><strong>Go to Latest Release:</strong> After the releases page is loaded, click on the release link with <code>Latest</code> tag</p>
+<p><img alt="" src="https://i.postimg.cc/T3Np2QyL/3.png" title="climine/runtime - Releases" /></p>
+</li>
+<li>
+<p><strong>Download the Release:</strong> After opening the latest release page, scroll down and click on the climine-runtime-win executable link. This will download the Climine Runtime Installer.</p>
+<p><img alt="" src="https://i.postimg.cc/L88JMGsF/4.png" /></p>
+</li>
+</ol>
+<h5 id="installing-climine-runtime"><a class="toclink" href="2024/05/05/install-climine-runtime-through-github-releases-on-windows/#installing-climine-runtime">Installing Climine Runtime</a></h5>
+<p>After downloading the latest release, run the installer (by double clicking on the downloaded file)</p>
+<ol>
+<li>
+<p><strong>Accept the License Agreement:</strong> The installer will prompt you to accept the license agreement. Climine Runtime is licensed under MIT</p>
+<p><img alt="" src="https://i.postimg.cc/T3vXVDZ7/5.png" title="installer - 1" /></p>
+</li>
+<li>
+<p><strong>(Optional) Create Desktop Shortcut:</strong> Optionally, you can create desktop shortcuts for Climine Runtime</p>
+<p><img alt="" src="https://i.postimg.cc/nzXHRtT0/6.png" title="Installer - 2" /></p>
+</li>
+<li>
+<p>Next, Click on Install</p>
+</li>
+<li>
+<p>Click on Finish</p>
+</li>
+</ol>
+<p>And there you have it! You have installed Climine Runtime on your Windows Machine!</p>
+    
+  </div>
+</article>
+      
+        <article class="md-post md-post--excerpt">
+  <header class="md-post__header">
+    
+      <nav class="md-post__authors md-typeset">
+        
+          <span class="md-author">
+            <img src="https://github.com/mvishok.png" alt="Vishok Manikantan">
+          </span>
+        
+      </nav>
+    
+    <div class="md-post__meta md-meta">
+      <ul class="md-meta__list">
+        <li class="md-meta__item">
+          <time datetime="2024-05-01 00:00:00">May 1, 2024</time></li>
+        
+        
+          
+          <li class="md-meta__item">
+            
+              2 min read
+            
+          </li>
+        
+      </ul>
+      
+    </div>
+  </header>
+  <div class="md-post__content md-typeset">
+    <h2 id="what-is-climine-runtime"><a class="toclink" href="2024/05/01/what-is-climine-runtime/">What is Climine Runtime?</a></h2>
+<h4 id="introducing-climine-runtime-simplifying-web-development"><a class="toclink" href="2024/05/01/what-is-climine-runtime/#introducing-climine-runtime-simplifying-web-development">Introducing Climine Runtime: Simplifying Web Development</a></h4>
+<p>Are you tired of wrestling with complex backend setups and server-side scripting languages every time you want to create a dynamic website? Enter Climine Runtime – a lightweight and intuitive runtime environment designed to streamline the web development process.</p>
+<h5 id="what-is-climine-runtime_1"><a class="toclink" href="2024/05/01/what-is-climine-runtime/#what-is-climine-runtime_1">What is Climine Runtime?</a></h5>
+<p>Climine Runtime is a powerful yet straightforward tool that empowers developers to build dynamic websites without the headaches of traditional backend configurations. It allows you to seamlessly integrate API responses directly into your HTML markup, transforming static designs into interactive web applications with ease.</p>
+<h5 id="who-can-benefit"><a class="toclink" href="2024/05/01/what-is-climine-runtime/#who-can-benefit">Who Can Benefit?</a></h5>
+<h6 id="beginners"><a class="toclink" href="2024/05/01/what-is-climine-runtime/#beginners"><strong>Beginners</strong></a></h6>
+<p>If you're new to web development, Climine Runtime provides a user-friendly solution to dive into dynamic web content creation without overwhelming complexity. Say goodbye to steep learning curves and hello to instant results.</p>
+<h6 id="small-projects"><a class="toclink" href="2024/05/01/what-is-climine-runtime/#small-projects"><strong>Small Projects</strong></a></h6>
+<p>Whether you're prototyping a new idea or launching a simple dynamic website, Climine Runtime is the perfect companion. It enables you to bring your vision to life quickly and efficiently, without the need for extensive backend infrastructure.</p>
+<p>But Climine Runtime isn't just for beginners and small projects – it's for anyone looking to simplify their web development workflow and focus on what truly matters: creating exceptional user experiences.</p>
+<p>Stay tuned for more updates and tutorials on how to harness the full potential of Climine Runtime for your next web project!</p>
+<h5 id="get-started-today"><a class="toclink" href="2024/05/01/what-is-climine-runtime/#get-started-today">Get Started Today</a></h5>
+<p>Ready to revolutionize your web development process? Visit <a href="https://climine.github.io/runtime">climine.github.io/runtime</a> to learn more and start building dynamic websites with ease.</p>
+<p>Stay tuned for more exciting updates from the runtime team. Happy coding!</p>
+    
+  </div>
+</article>
+      
+      
+        
+          
+
+
+
+<nav class="md-pagination">
+  
+</nav>
+        
+      
+    </div>
+  </div>
+
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
