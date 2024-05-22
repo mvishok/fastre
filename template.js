@@ -6,6 +6,7 @@ import path from 'path';
 import { performance } from "perf_hooks";
 import * as string from './functions/string.js'
 import * as int from './functions/int.js'
+import * as json from './functions/json.js'
 
 import { Parser } from "expr-eval";
 const parser = new Parser();
@@ -90,6 +91,10 @@ function getValueFromData(match, data) {
                 if (int[f]){
                     return int[f](value, args);
                 }
+            }
+        } else if (typeof value === 'object'){
+            if (json[f]){
+                return json[f](value, args);
             }
         }
     } else {
