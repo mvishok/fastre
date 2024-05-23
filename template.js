@@ -408,10 +408,6 @@ async function prerender(
                         console.error(chalk.red('Cookie value not specified. Skipping cookie creation'));
                         continue;
                     }
-                    if (!cookie.expires) {
-                        cookie.expires = 3600;
-                        console.log(chalk.yellow(`Cookie expiry not specified for ${cookie.key}. Defaulting to 1 hour`));
-                    }
                     if (!cookie.path) {
                         cookie.path = '/';
                         console.log(chalk.yellow(`Cookie path not specified for ${cookie.key}. Defaulting to /`));
@@ -428,7 +424,7 @@ async function prerender(
                     //render the values
                     cookie.key = render(cookie.key, data);
                     cookie.value = render(cookie.value, data);
-                    cookie.expires = parseInt(render(cookie.expires.toString(), data));
+                    cookie.expires = parseInt(render(cookie.expires? cookie.expires.toString() : "", data));
                     cookie.path = render(cookie.path, data);
                     cookie.domain = render(cookie.domain, data);
                     cookie.secure = render(cookie.secure.toString(), data) === 'true';
