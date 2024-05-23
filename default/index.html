@@ -19,6 +19,9 @@
         <p style="color:green">
             Climine Runtime is working perfectly!
         </p>
+        {% if cookies[count] %}
+        Reload Streak: {{ cookies[count] }}
+        {% endif %}
         </center>
       </div>
     </div>
