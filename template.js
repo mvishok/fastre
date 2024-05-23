@@ -424,12 +424,13 @@ async function prerender(
                     //render the values
                     cookie.key = render(cookie.key, data);
                     cookie.value = render(cookie.value, data);
-                    cookie.expires = parseInt(render(cookie.expires? cookie.expires.toString() : "", data));
+                    //cookie.expires = parseInt(render(cookie.expires? cookie.expires.toString() : "", data));
                     cookie.path = render(cookie.path, data);
                     cookie.domain = render(cookie.domain, data);
                     cookie.secure = render(cookie.secure.toString(), data) === 'true';
 
-                    res.setHeader('Set-Cookie', `${cookie.key}=${cookie.value}; Expires=${new Date(Date.now() + cookie.expires * 1000).toUTCString()}; Path=${cookie.path}; Domain=${cookie.domain}; Secure=${cookie.secure}`);
+                    let expClause = cookie.expires ? `Expires=${new Date(Date.now() + parseInt(render(cookie.expires.toString(), data)) * 1000).toUTCString()};`: '';
+                    res.setHeader('Set-Cookie', `${cookie.key}=${cookie.value}; ${expClause} Path=${cookie.path}; Domain=${cookie.domain}; Secure=${cookie.secure}`);
                     console.log(chalk.green(`Successfully set cookie ${cookie.key}`));
                 }
             }

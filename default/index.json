@@ -8,5 +8,5 @@
         "product": "Runtime v{{ memory[version] }}",
         "list": "{{ product.split(' ') }}"
     },
-    "cookie": [{"key": "count", "value":"{{count}}","expires": 3600, "path": "/", "domain": "localhost", "secure": true}]
+    "cookie": [{"key": "count", "value":"{{count}}", "path": "/", "domain": "localhost", "secure": true}]
 }
