@@ -49,6 +49,7 @@ function evaluateCondition(condition, data) {
 function getValueFromData(match, data) {
     let f = null;
     let args = null;
+    
     if (match.includes('.')){
         const split = match.split('.');
         f = split[1];
@@ -80,8 +81,22 @@ function getValueFromData(match, data) {
     }
 
     if (f !== null){
+        if (typeof value === 'undefined') {
+            value = 0;
+        }
         //if typeof value is string, call the function from string.js
         if (typeof value === 'string'){
+
+            //if string is integer in double quotes, convert it to integer, call int function, return the value as string
+            if (!isNaN(value)){
+                value = parseInt(value);
+                if (Number.isInteger(value)){
+                    if (int[f]){
+                        return int[f](value, args).toString();
+                    }
+                }
+            }
+
             if (string[f]){
                 return string[f](value, args);
             }
@@ -381,6 +396,48 @@ async function prerender(
                     }
                 }
             }
+
+            //if it is "cookie": [{key: value, expires: seconds, path: path, domain: domain, secure: true/false}, ..., ...], set the cookie. use default values if not specified
+            if (key === 'cookie') {
+                for (const cookie of entry) {
+                    if (!cookie.key) {
+                        console.error(chalk.red('Cookie key not specified. Skipping cookie creation'));
+                        continue;
+                    }
+                    if (!cookie.value) {
+                        console.error(chalk.red('Cookie value not specified. Skipping cookie creation'));
+                        continue;
+                    }
+                    if (!cookie.expires) {
+                        cookie.expires = 3600;
+                        console.log(chalk.yellow(`Cookie expiry not specified for ${cookie.key}. Defaulting to 1 hour`));
+                    }
+                    if (!cookie.path) {
+                        cookie.path = '/';
+                        console.log(chalk.yellow(`Cookie path not specified for ${cookie.key}. Defaulting to /`));
+                    }
+                    if (!cookie.domain) {
+                        cookie.domain = req.headers.host;
+                        console.log(chalk.yellow(`Cookie domain not specified for ${cookie.key}. Defaulting to ${req.headers.host}`));
+                    }
+                    if (!cookie.secure) {
+                        cookie.secure = false;
+                        console.log(chalk.yellow(`Cookie secure not specified for ${cookie.key}. Defaulting to false`));
+                    }
+
+                    //render the values
+                    cookie.key = render(cookie.key, data);
+                    cookie.value = render(cookie.value, data);
+                    cookie.expires = parseInt(render(cookie.expires.toString(), data));
+                    cookie.path = render(cookie.path, data);
+                    cookie.domain = render(cookie.domain, data);
+                    cookie.secure = render(cookie.secure.toString(), data) === 'true';
+
+                    res.setHeader('Set-Cookie', `${cookie.key}=${cookie.value}; Expires=${new Date(Date.now() + cookie.expires * 1000).toUTCString()}; Path=${cookie.path}; Domain=${cookie.domain}; Secure=${cookie.secure}`);
+                    console.log(chalk.green(`Successfully set cookie ${cookie.key}`));
+                }
+            }
+
         }
     }
 
@@ -412,6 +469,17 @@ export async function serve (req, res, config, memory){
     }
 
     const data = {};
+
+    if (req.headers.cookie) {
+        const cookies = req.headers.cookie.split(';');
+        data.cookies = {};
+        for (const cookie of cookies) {
+            const [key, value] = cookie.split('=');
+            data.cookies[key.trim()] = value.trim();
+        }
+    } else {
+        data.cookies = {};
+    }
 
     
     if (req.method === "GET" && query.length > 0) {
