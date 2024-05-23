@@ -60,4 +60,84 @@ function split(n, args) {
     return n.toString().match(new RegExp('.{1,' + args[0] + '}', 'g'));
 }
 
-export { factorial, isPrime, greatestCommonDivisor, leastCommonMultiple, toBinary, toOctal, toHex, abs, isPerfectSquare, reverse, count, isPalindrome, split }
+//arithmetics
+function add(n, args){
+    return n + args[0];
+}
+
+function subtract(n, args){
+    return n - args[0];
+}
+
+function multiply(n, args){
+    return n * args[0];
+}
+
+function divide(n, args){
+    return n / args[0];
+}
+
+function modulo(n, args){
+    return n % args[0];
+}
+
+function power(n, args){
+    return Math.pow(n, args[0]);
+}
+
+function root(n, args){
+    return Math.pow(n, 1 / args[0]);
+}
+
+function log(n, args){
+    return Math.log(n) / Math.log(args[0]);
+}
+
+function round(n, args){
+    return Math.round(n);
+}
+
+function ceil(n, args){
+    return Math.ceil(n);
+}
+
+function floor(n, args){
+    return Math.floor(n);
+}
+
+function increment(n){
+    return n + 1;
+}
+
+function decrement(n){
+    return n - 1;
+}
+
+export {
+    factorial,
+    isPrime,
+    greatestCommonDivisor,
+    leastCommonMultiple,
+    toBinary,
+    toOctal,
+    toHex,
+    abs,
+    isPerfectSquare,
+    reverse,
+    count,
+    isPalindrome,
+    split,
+    add,
+    subtract,
+    multiply,
+    divide,
+    modulo,
+    power,
+    root,
+    log,
+    round,
+    ceil,
+    floor,
+    increment,
+    decrement
+}
