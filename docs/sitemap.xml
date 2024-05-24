@@ -2,167 +2,172 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://climine.github.io/runtime/docs/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/compile/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/config/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://climine.github.io/runtime/docs/cookie/</loc>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/dir/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/env/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/env_var/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/error/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/example/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/for_loop/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/if_condition/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/init/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/installation/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/page/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/param/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/port/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/port_flag/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/rate/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/req/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/respond/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/template/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/templating_var/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/blog/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/blog/2024/05/05/install-climine-runtime-through-github-releases-on-windows/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/blog/2024/05/01/what-is-climine-runtime/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/string/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/string/capitalize/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/string/length/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/string/lower/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/string/replace/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/string/reverse/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/string/split/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/string/trim/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://climine.github.io/runtime/docs/blog/archive/2024/</loc>
-         <lastmod>2024-05-22</lastmod>
+         <lastmod>2024-05-24</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
