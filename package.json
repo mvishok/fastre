@@ -30,5 +30,10 @@
   },
   "bin": {
     "climine": "./climine.js"
+  },
+  "homepage": "https://climine.github.io/runtime",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/climine/runtime.git"
   }
 }
