@@ -28,7 +28,8 @@ function replaceOne(string, args) {
 }
 
 function replace(string, args) {
-    return string.replace(new RegExp(args[0], 'g'), args[1])
+    const escapedPattern = args[0].replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+    return string.replace(new RegExp(escapedPattern, 'g'), args[1]);
 }
 
 function split(string, args) {
