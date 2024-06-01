@@ -7,6 +7,7 @@ import { performance } from "perf_hooks";
 import * as string from './functions/string.js'
 import * as int from './functions/int.js'
 import * as json from './functions/json.js'
+import * as fn from './functions/functions.js'
 
 import { Parser } from "expr-eval";
 const parser = new Parser();
@@ -47,6 +48,27 @@ function evaluateCondition(condition, data) {
 }
 
 function getValueFromData(match, data) {
+
+    //if it is a function call: fn(value).function(args)
+    if (match.includes('(')){
+       const func = match.split('(')[0];
+       const args = match.split('(')[1].slice(0, -1).split(',').map(arg => {
+            arg = arg.trim();
+            if (arg[0] === '"' && arg[arg.length - 1] === '"' || arg[0] === "'" && arg[arg.length - 1] === "'") {
+                return arg.slice(1, -1);
+            } else if (!isNaN(arg)) {
+                return parseFloat(arg);
+            } else if (arg === 'true' || arg === 'false') {
+                return arg === 'true';
+            } else {
+                return getValueFromData(arg, data);
+            }
+        });
+        if (fn[func] && func !== 'init'){
+            return fn[func](args);
+        }
+    }
+
     let f = null;
     let args = null;
     
@@ -455,6 +477,7 @@ async function prerender(
 export async function serve (req, res, config, memory){
     const { dir, errors } = config;
     console.log(chalk.blue(`Request for ${req.url} as ${req.method}`));
+    fn.init(dir);
 
     performance.mark('A');
 
@@ -514,7 +537,7 @@ export async function serve (req, res, config, memory){
         const fileName = path.basename(filePath);
         const fileExtension = path.extname(filePath);
 
-        if (fileExtension === '.json' || fileExtension === '.html') {
+        if (fileExtension === '.json' || fileExtension === '.html' || fileExtension === ".db") {
             if (errors?.["404"]){
                 const output = await prerender(
                     errors["404"][1] ? true : false,
