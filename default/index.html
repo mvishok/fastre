@@ -22,13 +22,9 @@
         {% if cookies[count] %}
         Reload Streak: {{ cookies[count] }}
         {% endif %}
-
-        {{ count("views", "increment") }}
-
-        {% if count("views","display") > 0 %}
         <br>
+        {{ count("views", "increment") }}
         Viewed {{ count("views", "display") }} times
-        {% endif %}
         </center>
       </div>
     </div>

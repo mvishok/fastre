@@ -29,16 +29,31 @@ function count(args){
         }
         return value.value;
     } else if (fn === "increment"){
-        db.prepare("UPDATE counter SET value = value + 1 WHERE id = ?").run(id);
+        if (db.prepare("SELECT value FROM counter WHERE id = ?").get(id) === undefined){
+            db.prepare("INSERT INTO counter (id, value) VALUES (?, 1)").run(id);
+        } else {
+            db.prepare("UPDATE counter SET value = value + 1 WHERE id = ?").run(id);
+        }
         return "";
     } else if (fn === "decrement"){
-        db.prepare("UPDATE counter SET value = value - 1 WHERE id = ?").run(id);
+        if (db.prepare("SELECT value FROM counter WHERE id = ?").get(id) === undefined){
+            db.prepare("INSERT INTO counter (id, value) VALUES (?, -1)").run(id);
+        } else {
+            db.prepare("UPDATE counter SET value = value - 1 WHERE id = ?").run(id);
+        }
         return "";
     } else if (fn === "reset"){
-        db.prepare("UPDATE counter SET value = 0 WHERE id = ?").run(id);
+        if (db.prepare("SELECT value FROM counter WHERE id = ?").get(id) === undefined){
+            db.prepare("INSERT INTO counter (id, value) VALUES (?, 0)").run(id);
+        } else {
+            db.prepare("UPDATE counter SET value = 0 WHERE id = ?").run(id);
+        }
         return "";
     } else if (fn === "onclick"){
         //return a string that will be used in the onclick attribute of a button. it should send a request to the server to increment the counter, /counter?id=1&fn=increment
+        if (db.prepare("SELECT value FROM counter WHERE id = ?").get(id) === undefined){
+            db.prepare("INSERT INTO counter (id, value) VALUES (?, 0)").run(id);
+        }
         return `fetch('/counter?id=${id}&fn=increment')`;
     }
 }
