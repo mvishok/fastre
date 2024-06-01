@@ -484,6 +484,13 @@ export async function serve (req, res, config, memory){
     const purl = new URL(req.url, `http://${req.headers.host}`);
     const query = purl.searchParams.toString() ? purl.searchParams.toString().split('&') : {};
 
+    //if it is /counter?id=1&fn=increment, call the count function
+    if (purl.pathname === '/counter') {
+        const id = query.find(q => q.startsWith('id=')).split('=')[1];
+        const func = query.find(q => q.startsWith('fn=')).split('=')[1];
+        return fn.count([id, func]);
+    }
+    
     if (purl.pathname.endsWith('/')) {
         purl.pathname += 'index';
     }
