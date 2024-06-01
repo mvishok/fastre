@@ -6,6 +6,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Climine Runtime</title>
   <link rel="stylesheet" href="style.css">
+  <script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+  <style>
+    .heart {
+        width: 100px;
+        height: 100px;
+        background: url("https://cssanimation.rocks/images/posts/steps/heart.png") no-repeat;
+        background-position: 0 0;
+        cursor: pointer;
+        transition: background-position 1s steps(28);
+        transition-duration: 0s;
+    }
+    .heart.is-active {
+        transition-duration: 1s;
+        background-position: -2800px 0;
+    }
+  </style>
 </head>
 <body>
   <main>
@@ -20,14 +36,25 @@
             Climine Runtime is working perfectly!
         </p>
         {% if cookies[count] %}
-        Reload Streak: {{ cookies[count] }}
+            Reload Streak: {{ cookies[count] }}
         {% endif %}
         <br>
         {{ count("views", "increment") }}
         Viewed {{ count("views", "display") }} times
+        <div class="heart" onclick={{ count("likes", "onclick") }}></div>
+        <span id="likes">{{ count("likes", "display") }}</span> Likes
         </center>
       </div>
     </div>
   </main>
+  <script>
+    $(function() {
+        $(".heart").on("click", function() {
+            $(this).toggleClass("is-active");
+            $(this).off("click");
+            $("#likes").text(parseInt($("#likes").text()) + 1);
+        });
+    });
+    </script>
 </body>
 </html>
