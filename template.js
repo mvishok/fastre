@@ -419,6 +419,14 @@ async function prerender(
                 }
             }
 
+            //if it is "set": {key: value} set it in fn.set()
+            if (key === 'set') {
+                for (const variable in entry) {
+                    const value = render(entry[variable].toString(), data);
+                    fn.set([variable, value]);
+                }
+            }
+
             //if it is "cookie": [{key: value, expires: seconds, path: path, domain: domain, secure: true/false}, ..., ...], set the cookie. use default values if not specified
             if (key === 'cookie') {
                 for (const cookie of entry) {
