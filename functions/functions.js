@@ -4,6 +4,8 @@ let db;
 
 function init(dir){
     db = new Database(dir + "/database.db");
+    db.prepare("CREATE TABLE IF NOT EXISTS counter (id TEXT PRIMARY KEY, value INTEGER)").run();
+    db.prepare("CREATE TABLE IF NOT EXISTS variables (name TEXT PRIMARY KEY, value TEXT, t VARCHAR(10))").run();
 }
 
 function log(n){
@@ -19,7 +21,6 @@ function count(args){
     let id = args[0];
     let fn = args[1];
 
-    db.prepare("CREATE TABLE IF NOT EXISTS counter (id TEXT PRIMARY KEY, value INTEGER)").run();
     //if fn == display, display the value of the counter
     if(fn === "display"){
         let value = db.prepare("SELECT value FROM counter WHERE id = ?").get(id);
@@ -58,8 +59,52 @@ function count(args){
     }
 }
 
+function set(args){
+    let name = args[0];
+    let val = args[1];
+    //find the type of the value
+    let t = typeof val;
+    if(t === "object"){
+        t = "array";
+    }
+    db.prepare("INSERT OR REPLACE INTO variables (name, value, t) VALUES (?, ?, ?)").run(name, val, t);
+
+    return "";
+}
+
+function get(args){
+    if (args.length === 0){
+        return "";
+    } else {
+        let r = [];
+        for (const n of args){
+            //this method gets variable value from variables
+            let val = db.prepare("SELECT value FROM variables WHERE name = ?").get(n);
+            if(val === undefined){
+                return "";
+            }
+            
+            if(val.t === "number"){
+                r.push(Number(val.value));
+            } else if(val.t === "array"){
+                r.push(JSON.parse(val.value));
+            } else {
+                r.push(val.value);
+            }
+        }
+        if(r.length === 1){
+            return r[0];
+        } else {
+            return r;
+        }
+    }
+    
+}
+
 export {
     init,
     log,
-    count
+    count,
+    set,
+    get
 }
