@@ -1,5 +1,5 @@
 import { load } from "cheerio";
-import { appendData, data } from "../storage/unique.js";
+import { appendData, data, removeData } from "../storage/unique.js";
 import { log } from "../modules/log.js";
 import bent from "bent";
 import { performance } from 'perf_hooks';
@@ -49,10 +49,14 @@ export default async function renderHTML($){
 
         if (id){
             appendData(id, response);
+        } else {
+            appendData("inherit", response);
         }
 
         let tagBody = await renderHTML(load($(request).html()), null, false);
         $(request).replaceWith(`<span>${tagBody}</span>`);
+
+        if (!id) removeData(url);
     }
 
     const dataTags = $('data');
