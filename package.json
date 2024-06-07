@@ -1,40 +1,38 @@
 {
-  "name": "climine",
-  "version": "0.1.7",
-  "description": "A lightweight web runtime that facilitates easy web development",
-  "main": "climine.js",
-  "type": "module",
-  "scripts": {
-    "server": "node climine.js",
-    "build-win": "npx esbuild ./ --bundle --platform=node --outfile=dist/climine.cjs && npx pkg dist/climine.cjs -t node18-win-x64 -o dist/climine.exe && del dist\\climine.cjs",
-    "build": "npx esbuild ./ --bundle --platform=node --outfile=dist/climine.cjs && echo/ && echo Climine built successfully, run 'node dist/climine.cjs' to start the runtime OR compile it to an executable with your preferred tool"
-  },
-  "keywords": [
-    "climine",
-    "runtime",
-    "web",
-    "development"
-  ],
-  "author": "Vishok Manikantan",
-  "license": "MIT",
-  "dependencies": {
-    "better-sqlite3": "^11.0.0",
-    "boxen": "^7.1.1",
-    "chalk": "^4.1.2",
-    "expr-eval": "^2.0.2",
-    "minimist": "^1.2.8",
-    "readline-sync": "^1.4.10",
-    "then-request": "^6.0.2"
-  },
-  "devDependencies": {
-    "esbuild": "0.20.2"
-  },
-  "bin": {
-    "climine": "./climine.js"
-  },
-  "homepage": "https://climine.github.io/runtime",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/climine/runtime.git"
-  }
+    "name": "climine",
+    "version": "0.1.7",
+    "description": "A lightweight web runtime that facilitates easy web development",
+    "main": "climine.js",
+    "type": "module",
+    "scripts": {
+        "server": "node climine.js",
+        "build-win": "npx esbuild ./ --bundle --platform=node --outfile=dist/climine.cjs && npx pkg dist/climine.cjs -t node18-win-x64 -o dist/climine.exe && del dist\\climine.cjs",
+        "build": "npx esbuild ./ --bundle --platform=node --outfile=dist/climine.cjs && echo/ && echo Climine built successfully, run 'node dist/climine.cjs' to start the runtime OR compile it to an executable with your preferred tool"
+    },
+    "keywords": [
+        "climine",
+        "runtime",
+        "web",
+        "development"
+    ],
+    "author": "Vishok Manikantan",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^1.7.2",
+        "boxen": "^7.1.1",
+        "chalk": "^5.3.0",
+        "cheerio": "^1.0.0-rc.12",
+        "minimist": "^1.2.8"
+    },
+    "devDependencies": {
+        "esbuild": "0.20.2"
+    },
+    "bin": {
+        "climine": "./climine.js"
+    },
+    "homepage": "https://climine.github.io/runtime",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/climine/runtime.git"
+    }
 }

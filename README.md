@@ -1,3 +1,5 @@
+# This project is being re-written for better syntax and performance.
+
 # Climine Runtime
 
 Climine Runtime is a lightweight and straightforward runtime environment for web development designed to streamline the process of building dynamic websites, without the complexity of traditional backend setups or server-side scripting languages. With Climine Runtime, developers can easily convert static HTML/CSS/JS designs into dynamic web applications by integrating API responses directly into their HTML markup.
