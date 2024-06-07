@@ -2,13 +2,14 @@ import { load } from "cheerio";
 import { appendData, data } from "../storage/unique.js";
 import { log } from "../modules/log.js";
 import bent from "bent";
+import { performance } from 'perf_hooks';
 
 export default async function renderHTML($){
 
     const requests = $('request');
     for (let i = 0; i < requests.length; i++){
         const request = requests.eq(i);
-        const to = $(request).attr('to');
+        const url = $(request).attr('to');
         const method = $(request).attr('method') || 'get';
         let headers = $(request).attr('headers') || "";
         let rbody = null;
@@ -16,7 +17,7 @@ export default async function renderHTML($){
         try{
             rbody = $(request).attr('body') ? JSON.parse($(request).attr('body')): "";
         } catch {
-            log(`[OUT] [${method}] ${to} failed`, 'error');
+            log(`[OUT] [${method}] ${url} failed`, 'error');
             log("Invalid JSON", 'error');
             continue;
         }
@@ -31,13 +32,17 @@ export default async function renderHTML($){
         });
         
         try{
-            log(`[OUT] [${method}] ${to}`, 'info');
-            const url = to;
+            log(`[OUT] [${method}] ${url} initiated`, 'info');
+            performance.mark("B")
             const request = bent(url, method, 'json', 200);
             response = await request(rbody, headers)
-            log(`[OUT] [${method}] ${to} success`, 'info');
+            performance.mark("C")
+            performance.measure('B to C', 'B', 'C');
+            const time = performance.getEntriesByName('B to C')[0].duration.toFixed(2);
+            performance.clearMeasures('B to C');
+            log(`[OUT] [${method}] ${url} success in ${time}ms`, 'info');
         } catch (err){
-            log(`[OUT] [${method}] ${to} failed`, 'error');
+            log(`[OUT] [${method}] ${url} failed`, 'error');
             log(err, 'error');
             continue;
         }
@@ -53,14 +58,30 @@ export default async function renderHTML($){
     const dataTags = $('data');
     dataTags.each((index, tag) => {
         const id = $(tag).attr('id');
+        const val = $(tag).attr('val');
+        let keys = $(tag).attr('key') || "";
+
+        keys = keys == "" ? [] : keys.split(" ")
+
         if (!id){
             log("Data tag without id", 'error');
             return
-        } else if (!data[id]){
+        } else if (!data[id] & val){
+            appendData(id, val)
+            return
+        } else if (!data[id]){{
             log(`${id} is not defined`, 'error');
             return
+        }
         } else {
-            $(tag).replaceWith(typeof data[id] === 'object' ? JSON.stringify(data[id], null, 2) : data[id]);
+            let v = data[id];
+            if (keys.length > 0 ){
+                for (const key of keys) {
+                    v = v[key]
+                    if (v===undefined) break;
+                }
+            }
+            $(tag).replaceWith(typeof v === 'object' ? JSON.stringify(v, null, 2) : v);
         }
     });
 
