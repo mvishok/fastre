@@ -1,7 +1,7 @@
 import { performance } from 'perf_hooks';
 import { join } from "path";
 import { log } from "../modules/log.js";
-import { data, clearData } from "../storage/unique.js";
+import { clearData } from "../storage/unique.js";
 import getParams from "./param.js";
 import { config } from "../storage/global.js"
 import serveStatic from "./static.js";
