@@ -1,23 +1,24 @@
 import { load } from "cheerio";
-import { appendData } from "../storage/unique.js";
-import fetch from "./requests.js";
+import { appendData, data } from "../storage/unique.js";
 import { log } from "../modules/log.js";
+import bent from "bent";
 
-export default function renderHTML($){
+export default async function renderHTML($){
 
     const requests = $('request');
-    requests.each(async (index, request) => {
+    for (let i = 0; i < requests.length; i++){
+        const request = requests.eq(i);
         const to = $(request).attr('to');
-        const method = $(request).attr('method');
+        const method = $(request).attr('method') || 'get';
         let headers = $(request).attr('headers') || "";
-        let rbody;
+        let rbody = null;
 
         try{
             rbody = $(request).attr('body') ? JSON.parse($(request).attr('body')): "";
         } catch {
             log(`[OUT] [${method}] ${to} failed`, 'error');
             log("Invalid JSON", 'error');
-            return
+            continue;
         }
 
         const id = $(request).attr('id');
@@ -28,22 +29,41 @@ export default function renderHTML($){
             const [key, value] = header.split(':');
             return {key, value};
         });
-
+        
         try{
-            response = await fetch(to, method, headers, rbody);
+            log(`[OUT] [${method}] ${to}`, 'info');
+            const url = to;
+            const request = bent(url, method, 'json', 200);
+            response = await request(rbody, headers)
+            log(`[OUT] [${method}] ${to} success`, 'info');
         } catch (err){
             log(`[OUT] [${method}] ${to} failed`, 'error');
             log(err, 'error');
-            return
+            continue;
         }
 
         if (id){
             appendData(id, response);
         }
 
-        let tagBody = renderHTML(load($(request).html()));
-        $(request).replaceWith(tagBody);
+        let tagBody = await renderHTML(load($(request).html()), null, false);
+        $(request).replaceWith(`<span>${tagBody}</span>`);
+    }
 
+    const dataTags = $('data');
+    dataTags.each((index, tag) => {
+        const id = $(tag).attr('id');
+        if (!id){
+            log("Data tag without id", 'error');
+            return
+        } else if (!data[id]){
+            log(`${id} is not defined`, 'error');
+            return
+        } else {
+            $(tag).replaceWith(typeof data[id] === 'object' ? JSON.stringify(data[id], null, 2) : data[id]);
+        }
     });
-    return $
+
+
+    return $.html();
 }
