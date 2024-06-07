@@ -21,11 +21,10 @@ export default async function render(path){
         body = readFileSync(path, 'utf-8');
     }
 
-    const $ = renderHTML(load(body));
+    body = await renderHTML(load(body));
 
     status = 200;
     headers = {"Content-Type": "text/html"};
-    body = $.html();
 
     return [status, headers, body];
 }
