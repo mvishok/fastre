@@ -7,3 +7,7 @@ export function clearData(){
 export function appendData(key, value){
     data[key] = value;
 }
+
+export function removeData(key){
+    delete data[key]
+}
