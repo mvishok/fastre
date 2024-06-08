@@ -1,16 +1,13 @@
 {
-    "name": "climine",
-    "version": "0.1.7",
+    "name": "runtime",
+    "version": "1.0.0",
     "description": "A lightweight web runtime that facilitates easy web development",
-    "main": "climine.js",
+    "main": "runtime.js",
     "type": "module",
     "scripts": {
-        "server": "node climine.js",
-        "build-win": "npx esbuild ./ --bundle --platform=node --outfile=dist/climine.cjs && npx pkg dist/climine.cjs -t node18-win-x64 -o dist/climine.exe && del dist\\climine.cjs",
-        "build": "npx esbuild ./ --bundle --platform=node --outfile=dist/climine.cjs && echo/ && echo Climine built successfully, run 'node dist/climine.cjs' to start the runtime OR compile it to an executable with your preferred tool"
+        "server": "node runtime.js"
     },
     "keywords": [
-        "climine",
         "runtime",
         "web",
         "development"
@@ -24,15 +21,9 @@
         "cheerio": "^1.0.0-rc.12",
         "minimist": "^1.2.8"
     },
-    "devDependencies": {
-        "esbuild": "0.20.2"
-    },
-    "bin": {
-        "climine": "./climine.js"
-    },
-    "homepage": "https://climine.github.io/runtime",
+    "homepage": "https://vishok.is-a.dev/runtime",
     "repository": {
         "type": "git",
-        "url": "https://github.com/climine/runtime.git"
+        "url": "https://github.com/mvishok/runtime.git"
     }
 }
