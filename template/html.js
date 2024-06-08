@@ -67,6 +67,7 @@ export default async function renderHTML($){
     dataTags.each((index, tag) => {
         const id = $(tag).attr('id');
         const val = $(tag).attr('val');
+        const type = $(tag).attr('type');
         let keys = $(tag).attr('key') || "";
 
         keys = keys == "" ? [] : keys.split(" ")
@@ -74,10 +75,11 @@ export default async function renderHTML($){
         if (!id){
             log("Data tag without id", 'error');
             return
-        } else if (!data[id] & val){
+        } else if (!data[id] && val){
             appendData(id, val)
+            $(tag).replaceWith("");
             return
-        } else if (!data[id]){{
+        } else if (!data[id]){
             if (id == "inherit"){
                 log(`No parent data found to inherit`, 'error');
                 return
@@ -85,7 +87,6 @@ export default async function renderHTML($){
                 log(`${id} is not defined`, 'error');
                 return
             }
-        }
         } else {
             let v = data[id];
             if (keys.length > 0 ){
