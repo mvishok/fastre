@@ -56,7 +56,11 @@ export default async function renderHTML($){
         let tagBody = await renderHTML(load($(request).html()), null, false);
         $(request).replaceWith(`<span>${tagBody}</span>`);
 
-        if (!id) removeData(url);
+        if (id){
+            removeData(id);
+        } else {
+            removeData("inherit");
+        }
     }
 
     const dataTags = $('data');
@@ -74,8 +78,13 @@ export default async function renderHTML($){
             appendData(id, val)
             return
         } else if (!data[id]){{
-            log(`${id} is not defined`, 'error');
-            return
+            if (id == "inherit"){
+                log(`No parent data found to inherit`, 'error');
+                return
+            } else {
+                log(`${id} is not defined`, 'error');
+                return
+            }
         }
         } else {
             let v = data[id];
