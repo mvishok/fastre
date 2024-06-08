@@ -3,7 +3,7 @@ import { appendData, data, removeData } from "../storage/unique.js";
 import { log } from "../modules/log.js";
 import bent from "bent";
 import { performance } from 'perf_hooks';
-import { setType } from "../modules/type.js";
+import { autoType, setType } from "../modules/type.js";
 
 export default async function renderHTML($){
 
@@ -49,9 +49,9 @@ export default async function renderHTML($){
         }
 
         if (id){
-            appendData(id, response);
+            appendData(id, autoType(response));
         } else {
-            appendData("inherit", response);
+            appendData("inherit", autoType(response));
         }
 
         let tagBody = await renderHTML(load($(request).html()), null, false);
