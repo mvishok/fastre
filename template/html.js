@@ -3,6 +3,7 @@ import { appendData, data, removeData } from "../storage/unique.js";
 import { log } from "../modules/log.js";
 import bent from "bent";
 import { performance } from 'perf_hooks';
+import { setType } from "../modules/type.js";
 
 export default async function renderHTML($){
 
@@ -66,7 +67,7 @@ export default async function renderHTML($){
     const dataTags = $('data');
     dataTags.each((index, tag) => {
         const id = $(tag).attr('id');
-        const val = $(tag).attr('val');
+        let val = $(tag).attr('val');
         const type = $(tag).attr('type');
         let keys = $(tag).attr('key') || "";
 
@@ -76,6 +77,9 @@ export default async function renderHTML($){
             log("Data tag without id", 'error');
             return
         } else if (!data[id] && val){
+            
+            val = setType(type, val);
+
             appendData(id, val)
             $(tag).replaceWith("");
             return
@@ -95,7 +99,7 @@ export default async function renderHTML($){
                     if (v===undefined) break;
                 }
             }
-            $(tag).replaceWith(typeof v === 'object' ? JSON.stringify(v, null, 2) : v);
+            $(tag).replaceWith(typeof v === 'object' ? JSON.stringify(v, null, 2) : v.toString());
         }
     });
 
