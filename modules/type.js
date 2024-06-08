@@ -29,3 +29,23 @@ export function setType(type, str){
     log(`Invalid type: ${type}`, 'error');
     return str;
 }
+
+export function autoType(val){
+    if (typeof val == "string"){
+        if (val == "true"){
+            return true;
+        } else if (val == "false"){
+            return false;
+        } else if (!isNaN(val)){
+            return Number(val);
+        } else {
+            try {
+                return JSON.parse(val);
+            } catch (error) {
+                return val;
+            }
+        }
+    } else {
+        return val;
+    }
+}
