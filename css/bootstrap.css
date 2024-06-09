@@ -66,7 +66,7 @@ body {
   color: #343a40;
   text-align: left;
   overflow-y: hidden;
-  background-color: #02eccf; }
+  background-color: #E2EFFB; }
 
 [tabindex="-1"]:focus {
   outline: 0 !important; }
@@ -305,7 +305,7 @@ template {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 1rem;
-  font-family: inherit;
+  font-family: 'Raleway', sans-serif;
   font-weight: 700;
   line-height: 1.5;
   color: #000000; }
@@ -5087,7 +5087,7 @@ footer a {
 
 /*Gradients*/
 .bg-gradient {
-    background: #02eccf;
+    background: #E2EFFB;
 }
 
 /*Code Window*/
@@ -5253,3 +5253,12 @@ pre[class*="language-"].line-numbers > code {
   display: block;
   padding-right: 0.8em;
   text-align: right; }
+
+/* for centering */
+img{width:100px;float:right; margin-top:5px}
+.box { display: inline-block; letter-spacing: 4px; }
+.head{ text-align: center; }
+.head:after{ content: ""; display: inline-block; height: 100%; vertical-align: middle; }
+.logo {
+  height: 28px !important;
+}
