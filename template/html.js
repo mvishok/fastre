@@ -63,9 +63,7 @@ export default async function renderHTML($){
         let tagBody = await renderHTML(load($(request).html()), null, false);
         $(request).replaceWith(`<span>${tagBody}</span>`);
 
-        if (id){
-            removeData(id);
-        } else {
+        if (!id) {
             removeData("inherit");
         }
         requests = $('request');
@@ -110,6 +108,36 @@ export default async function renderHTML($){
         }
     });
 
+    const setAttr = $('attr');
+    setAttr.each((index, tag) => {
+        const id = $(tag).attr('id');
+        const _class = $(tag).attr('class');
+        const attr = $(tag).attr('attr');
+        const val = $(tag).attr('val');
+        const _eval = $(tag).attr('eval');
+        const type = $(tag).attr('type');
+        let selector, value;
+        
+        if (id){
+            selector = `#${id}`;
+        } else if (_class){
+            selector = _class.split(" ").join(".");
+        } else {
+            log(`Either id or class is required for attr tag`, 'error');
+            return
+        }
 
+        if (val){
+            if (type) value = setType(type, val);
+            else value = autoType(val);
+        } else if (_eval){
+            if (type) value = setType(type, strRender(_eval));
+            else value = autoType(strRender(_eval));
+        }
+
+        $(selector).attr(attr, value);
+        $(tag).replaceWith("<span></span>");
+    }); 
+    
     return $.html();
 }
