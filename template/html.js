@@ -4,12 +4,13 @@ import { log } from "../modules/log.js";
 import bent from "bent";
 import { performance } from 'perf_hooks';
 import { autoType, setType } from "../modules/type.js";
+import { strRender } from "./string.js";
 
 export default async function renderHTML($){
 
-    const requests = $('request');
-    for (let i = 0; i < requests.length; i++){
-        const request = requests.eq(i);
+    let requests = $('request');
+    while (requests.length > 0){
+        const request = requests.eq(0);
         const url = $(request).attr('to');
         const method = $(request).attr('method') || 'get';
         let headers = $(request).attr('headers') || "";
@@ -20,6 +21,8 @@ export default async function renderHTML($){
         } catch {
             log(`[OUT] [${method}] ${url} failed`, 'error');
             log("Invalid JSON", 'error');
+            $(request).replaceWith("");
+            requests = $('request');
             continue;
         }
 
@@ -42,9 +45,12 @@ export default async function renderHTML($){
             const time = performance.getEntriesByName('B to C')[0].duration.toFixed(2);
             performance.clearMeasures('B to C');
             log(`[OUT] [${method}] ${url} success in ${time}ms`, 'info');
+            
         } catch (err){
             log(`[OUT] [${method}] ${url} failed`, 'error');
             log(err, 'error');
+            $(request).replaceWith("");
+            requests = $('request');
             continue;
         }
 
@@ -62,12 +68,14 @@ export default async function renderHTML($){
         } else {
             removeData("inherit");
         }
+        requests = $('request');
     }
 
     const dataTags = $('data');
     dataTags.each((index, tag) => {
         const id = $(tag).attr('id');
         let val = $(tag).attr('val');
+        let  _eval= $(tag).attr('eval');
         const type = $(tag).attr('type');
         let keys = $(tag).attr('key') || "";
 
@@ -76,10 +84,9 @@ export default async function renderHTML($){
         if (!id){
             log("Data tag without id", 'error');
             return
-        } else if (!data[id] && val){
-            
-            val = setType(type, val);
-
+        } else if (!data[id] && (val || _eval)){
+            if (val) val = setType(type, val);
+            else val = strRender(_eval);
             appendData(id, val)
             $(tag).replaceWith("");
             return
