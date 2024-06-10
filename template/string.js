@@ -1,6 +1,7 @@
 import fn from "../functions/caller.js";
 import { data } from "../storage/unique.js"
 import { log } from "../modules/log.js";
+import { autoType } from "../modules/type.js";
 
 export function strRender(str){
     
@@ -46,6 +47,10 @@ export function strRender(str){
         for (let j = 0; j < args.length; j++) {
             args[j] = strRender(args[j]);
             if (args[j] === undefined) return undefined;
+            args[j] = autoType(args[j]);
+            if (typeof args[j] == "string"){
+                args[j] = `'${args[j]}'`;
+            }
         }
 
         const func = str.slice(0, str.indexOf("("))
@@ -53,6 +58,6 @@ export function strRender(str){
         return str;
     }
 
-    log(`Unkown ${str}`, 'error')
+    log(`Unknown ${str}`, 'error')
     return undefined;
 }
