@@ -24,7 +24,7 @@ export default function fn(name, args){
         } else if (args[i] == "false"){
             args[i] = false;
         } else {
-            log(`Unkown ${args[i]}`, 'error')
+            log(`Unknown ${args[i]}`, 'error')
         }
     }
 
