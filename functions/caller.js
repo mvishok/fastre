@@ -1,3 +1,4 @@
+import { log } from "../modules/log.js";
 import * as string from "./strings.js";
 
 const functions = {
@@ -13,7 +14,8 @@ const functions = {
 export default function fn(name, args){
 
     for (let i = 0; i < args.length; i++){
-        if (args[i].startsWith('"') && args[i].endsWith('"') || args[i].startsWith("'") && args[i].endsWith("'")){
+        if (typeof args[i] == "object") args[i] = JSON.stringify(args[i]);
+        else if (args[i].startsWith('"') && args[i].endsWith('"') || args[i].startsWith("'") && args[i].endsWith("'")){
             args[i] = args[i].slice(1, -1);
         } else if (!isNaN(args[i])){
             args[i] = Number(args[i]);
@@ -22,7 +24,7 @@ export default function fn(name, args){
         } else if (args[i] == "false"){
             args[i] = false;
         } else {
-            args[i] = args[i].toString();
+            log(`Unkown ${args[i]}`, 'error')
         }
     }
 
@@ -33,7 +35,7 @@ export default function fn(name, args){
         } else if (typeof r == "object"){
             r = `'${JSON.stringify(r)}'`
         } else if (typeof r == "string"){
-            r = `'${r}'`
+            r = `${r}`
         } else if (typeof r == "boolean"){
             r = r ? "true" : "false";
         } else {
