@@ -1,14 +1,14 @@
 {
-    "name": "runtime",
+    "name": "fastre",
     "version": "1.0.0",
-    "description": "A lightweight web runtime that facilitates easy web development",
+    "description": "A simple runtime for web development",
     "main": "runtime.js",
     "type": "module",
     "scripts": {
-        "server": "node runtime.js"
+        "server": "node fastre.js"
     },
     "keywords": [
-        "runtime",
+        "fastre",
         "web",
         "development"
     ],
@@ -21,9 +21,9 @@
         "cheerio": "^1.0.0-rc.12",
         "minimist": "^1.2.8"
     },
-    "homepage": "https://vishok.is-a.dev/runtime",
+    "homepage": "https://vishok.is-a.dev/fastre",
     "repository": {
         "type": "git",
-        "url": "https://github.com/mvishok/runtime.git"
+        "url": "https://github.com/mvishok/fastre.git"
     }
 }
