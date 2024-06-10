@@ -49,6 +49,7 @@ export function strRender(str){
             if (args[j] === undefined) return undefined;
             args[j] = autoType(args[j]);
             if (typeof args[j] == "string"){
+                args[j] = args[j].replace(/'/g, "\\'");
                 args[j] = `'${args[j]}'`;
             }
         }
