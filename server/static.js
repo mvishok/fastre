@@ -5,7 +5,7 @@ import path from 'path';
 import { log } from '../modules/log.js';
 import render from '../template/template.js';
 
-export default function serveStatic(path){
+export default async function serveStatic(path){
     let status, headers, body;
     //if file exists
     if (existsSync(path)){
@@ -15,7 +15,12 @@ export default function serveStatic(path){
         status = 404;
         headers = {"Content-Type": "text/html"}
         if (config.errors?.["404"]){
-            render(config.errors["404"]);
+            body = await render(config.errors["404"]);
+            if (body[0] == 200){
+                body = body[2];
+            } else {
+                body = notfound;
+            }
         } else {
             body = notfound;
         }
