@@ -1,14 +1,18 @@
 import { performance } from 'perf_hooks';
 import { join } from "path";
 import { log } from "../modules/log.js";
-import { clearData } from "../storage/unique.js";
+import { appendData, clearData } from "../storage/unique.js";
 import getParams from "./param.js";
 import { config } from "../storage/global.js"
 import serveStatic from "./static.js";
 import render from '../template/template.js';
+import env from '../modules/env.js';
 
 export async function serve(req, res){
     performance.mark('A');
+
+    //load env variables
+    appendData('env', env(config))
 
     if (req.url.endsWith('/')){
         req.url += 'index.html';
@@ -26,7 +30,7 @@ export async function serve(req, res){
 
     //static file
     if (!path.endsWith('.html') && !path.endsWith('.db')){
-        [status, headers, body] = serveStatic(path);
+        [status, headers, body] = await serveStatic(path);
     }
 
     //html file
