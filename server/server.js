@@ -14,11 +14,12 @@ export async function serve(req, res){
     //load env variables
     appendData('env', env(config))
 
-    if (req.url.endsWith('/')){
-        req.url += 'index.html';
+    const url = new URL(req.url, `http://${req.headers.host}`);
+    
+    if (url.pathname.endsWith('/')){
+        url.pathname += 'index.html';
     }
 
-    const url = new URL(req.url, `http://${req.headers.host}`);
     const path = join(config.dir, url.pathname);
     let status, headers, body;
 
