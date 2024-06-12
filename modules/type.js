@@ -49,3 +49,22 @@ export function autoType(val){
         return val;
     }
 }
+
+export function getType(val){
+    if (typeof val == "string"){
+        if (val == "true" || val == "false"){
+            return "boolean";
+        } else if (!isNaN(val)){
+            return "number";
+        } else {
+            try {
+                JSON.parse(val);
+                return "object";
+            } catch (error) {
+                return "string";
+            }
+        }
+    } else {
+        return typeof val;
+    }
+}
