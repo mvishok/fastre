@@ -23,6 +23,7 @@ export function strRender(str){
     }
     //if it is a literal representation
     if (str.startsWith('"') && str.endsWith('"') || str.startsWith("'") && str.endsWith("'")){
+        str = str.slice(1, -1);
         return str;
     }
     //if it is a number
