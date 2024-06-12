@@ -9,28 +9,6 @@ import condition from "./conditions.js";
 
 export default async function renderHTML($){
 
-    //if condition tag
-    let iftag = $('if');
-    while (iftag.length > 0){
-        const cond = iftag.attr('condition');
-        const elseBody = iftag.find('else').last().html() || "<span></span>";
-        if (cond){
-            if (condition(cond)){
-                iftag.find('else').last().replaceWith("<span></span>");
-                let body = await renderHTML(load(iftag.html(), null, false));
-                iftag.replaceWith(`<span>${body}</span>`);
-            } else {
-                let body = await renderHTML(load(elseBody, null, false));
-                iftag.replaceWith(`<span>${body}</span>`);
-            }
-        } else {
-            log("If tag without condition", 'error');
-            iftag.replaceWith("<span></span>");
-        }
-        iftag = $('if');
-    }
-
-
     let requests = $('request');
     while (requests.length > 0){
         const request = requests.eq(0);
@@ -90,6 +68,73 @@ export default async function renderHTML($){
             removeData("inherit");
         }
         requests = $('request');
+    }
+    
+    //for loop tag
+    let fortag = $('for');
+    while (fortag.length > 0){
+        const tag = fortag.eq(0);
+        const id = tag.attr('id');
+        const key = tag.attr('key') || "inherit";
+        let body = tag.html();
+
+        if (!id){
+            log("For tag without id", 'error');
+            fortag.replaceWith("<span></span>");
+            fortag = $('for');
+            continue;
+        }
+
+        let val = strRender(id);
+
+        if (!val){
+            log(`${id} is not defined`, 'error');
+            fortag.replaceWith("<span></span>");
+            fortag = $('for');
+            continue;
+        }
+
+        if (Array.isArray(val)){
+            let bodyHTML = "";
+            for (const item of val){
+                appendData(key, item);
+                bodyHTML += await renderHTML(load(body, null, false));
+            }
+            $(tag).replaceWith(`<span>${bodyHTML}</span>`);
+        } else if (typeof val === 'object'){
+            if (key != "inherit") log("Key is ignored for object iteration", 'warn');
+            let bodyHTML = "";
+            for (const [key, value] of Object.entries(val)){
+                appendData(key, value);
+                bodyHTML += await renderHTML(load(body, null, false));
+            }
+            $(tag).replaceWith(`<span>${bodyHTML}</span>`);
+        } else {
+            log(`${id} is not iterable`, 'error');
+            $(tag).replaceWith("<span></span>");
+        }
+        fortag = $('for');
+    }
+
+    //if condition tag
+    let iftag = $('if');
+    while (iftag.length > 0){
+        const cond = iftag.attr('condition');
+        const elseBody = iftag.find('else').last().html() || "<span></span>";
+        if (cond){
+            if (condition(cond)){
+                iftag.find('else').last().replaceWith("<span></span>");
+                let body = await renderHTML(load(iftag.html(), null, false));
+                iftag.replaceWith(`<span>${body}</span>`);
+            } else {
+                let body = await renderHTML(load(elseBody, null, false));
+                iftag.replaceWith(`<span>${body}</span>`);
+            }
+        } else {
+            log("If tag without condition", 'error');
+            iftag.replaceWith("<span></span>");
+        }
+        iftag = $('if');
     }
 
     const dataTags = $('data');
