@@ -5,8 +5,31 @@ import bent from "bent";
 import { performance } from 'perf_hooks';
 import { autoType, setType } from "../modules/type.js";
 import { strRender } from "./string.js";
+import condition from "./conditions.js";
 
 export default async function renderHTML($){
+
+    //if condition tag
+    let iftag = $('if');
+    while (iftag.length > 0){
+        const cond = iftag.attr('condition');
+        const elseBody = iftag.find('else').last().html() || "<span></span>";
+        if (cond){
+            if (condition(cond)){
+                iftag.find('else').last().replaceWith("<span></span>");
+                let body = await renderHTML(load(iftag.html(), null, false));
+                iftag.replaceWith(`<span>${body}</span>`);
+            } else {
+                let body = await renderHTML(load(elseBody, null, false));
+                iftag.replaceWith(`<span>${body}</span>`);
+            }
+        } else {
+            log("If tag without condition", 'error');
+            iftag.replaceWith("<span></span>");
+        }
+        iftag = $('if');
+    }
+
 
     let requests = $('request');
     while (requests.length > 0){
