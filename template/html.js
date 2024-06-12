@@ -99,14 +99,7 @@ export default async function renderHTML($){
             for (const item of val){
                 appendData(key, item);
                 bodyHTML += await renderHTML(load(body, null, false));
-            }
-            $(tag).replaceWith(`<span>${bodyHTML}</span>`);
-        } else if (typeof val === 'object'){
-            if (key != "inherit") log("Key is ignored for object iteration", 'warn');
-            let bodyHTML = "";
-            for (const [key, value] of Object.entries(val)){
-                appendData(key, value);
-                bodyHTML += await renderHTML(load(body, null, false));
+                removeData(key);
             }
             $(tag).replaceWith(`<span>${bodyHTML}</span>`);
         } else {
