@@ -68,3 +68,32 @@ export function getType(val){
         return typeof val;
     }
 }
+
+export function contentType(path){
+    const ext = path.split('.').pop();
+
+    switch (ext) {
+        case 'html':
+            return 'text/html';
+        case 'css':
+            return 'text/css';
+        case 'js':
+            return 'text/javascript';
+        case 'json':
+            return 'application/json';
+        case 'png':
+            return 'image/png';
+        case 'jpg':
+            return 'image/jpg';
+        case 'jpeg':
+            return 'image/jpeg';
+        case 'gif':
+            return 'image/gif';
+        case 'svg':
+            return 'image/svg+xml';
+        case 'ico':
+            return 'image/x-icon';
+        default:
+            return 'text/plain';
+    }
+}
