@@ -26,5 +26,8 @@
     "repository": {
         "type": "git",
         "url": "https://github.com/mvishok/fastre.git"
+    },
+    "bin":{
+        "fastre": "./fastre.js"
     }
 }
