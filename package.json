@@ -25,9 +25,9 @@
     "homepage": "https://fastre.vishok.me/",
     "repository": {
         "type": "git",
-        "url": "https://github.com/mvishok/fastre.git"
+        "url": "git+https://github.com/mvishok/fastre.git"
     },
-    "bin":{
-        "fastre": "./fastre.js"
+    "bin": {
+        "fastre": "fastre.js"
     }
 }
