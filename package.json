@@ -1,8 +1,8 @@
 {
     "name": "fastre",
-    "version": "1.0.0",
-    "description": "A simple runtime for web development",
-    "main": "runtime.js",
+    "version": "0.0.1-dev",
+    "description": "A simple runtime engine for web development",
+    "main": "fastre.js",
     "type": "module",
     "scripts": {
         "server": "node fastre.js"
@@ -22,7 +22,7 @@
         "expr-eval": "^2.0.2",
         "minimist": "^1.2.8"
     },
-    "homepage": "https://vishok.is-a.dev/fastre",
+    "homepage": "https://fastre.vishok.me/",
     "repository": {
         "type": "git",
         "url": "https://github.com/mvishok/fastre.git"
