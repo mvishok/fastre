@@ -25,7 +25,8 @@ export function capitalize(args){
 }
 
 export function replace(args){
-    return args[0].replace(new RegExp(args[1], 'g'), args[2]);
+    const escapedPattern = args[1].replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+    return args[0].replace(new RegExp(escapedPattern, 'g'), args[2]);
 }
 
 export function replaceFirst(args){
@@ -34,4 +35,8 @@ export function replaceFirst(args){
 
 export function split(args){
     return args[0].split(args[1]);
+}
+
+export function concat(args){
+    return args.join("");
 }
