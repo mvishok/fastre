@@ -36,7 +36,7 @@ export function autoType(val){
             return true;
         } else if (val == "false"){
             return false;
-        } else if (!isNaN(val)){
+        } else if (!isNaN(val) && val !== " "){
             return Number(val);
         } else {
             try {
@@ -95,5 +95,14 @@ export function contentType(path){
             return 'image/x-icon';
         default:
             return 'text/plain';
+    }
+}
+
+export function isUrl(str){
+    try {
+        new URL(str);
+        return true;
+    } catch (error) {
+        return false;
     }
 }
