@@ -3,7 +3,7 @@ import { appendData, data, removeData } from "../storage/unique.js";
 import { log } from "../modules/log.js";
 import bent from "bent";
 import { performance } from 'perf_hooks';
-import { autoType, setType } from "../modules/type.js";
+import { autoType, isUrl, setType } from "../modules/type.js";
 import { strRender } from "./string.js";
 import condition from "./conditions.js";
 
@@ -12,10 +12,29 @@ export default async function renderHTML($){
     let requests = $('request');
     while (requests.length > 0){
         const request = requests.eq(0);
-        const url = $(request).attr('to');
+        let url = $(request).attr('to');
         const method = $(request).attr('method') || 'get';
         let headers = $(request).attr('headers') || "";
         let rbody = null;
+
+        //chck if url is valid or not
+        if (!url){
+            log("Request tag without url", 'error');
+            $(request).replaceWith("");
+            requests = $('request');
+            continue;
+        }
+
+        //if it is not a valid url, strRender it
+        if (!isUrl(url)){
+            url = strRender(url);
+            if (!isUrl(url)){
+                log("Invalid URL", 'error');
+                $(request).replaceWith("");
+                requests = $('request');
+                continue;
+            }
+        }
 
         try{
             rbody = $(request).attr('body') ? JSON.parse($(request).attr('body')): "";
@@ -165,6 +184,7 @@ export default async function renderHTML($){
                     if (v===undefined) break;
                 }
             }
+            if (_eval) v = strRender(_eval, v);
             $(tag).replaceWith(typeof v === 'object' ? JSON.stringify(v, null, 2) : v.toString());
         }
     });
@@ -177,6 +197,7 @@ export default async function renderHTML($){
         const val = $(tag).attr('val');
         const _eval = $(tag).attr('eval');
         const type = $(tag).attr('type');
+        const cond = $(tag).attr('condition') || "true";
         let selector, value;
         
         if (id){
@@ -196,8 +217,12 @@ export default async function renderHTML($){
             else value = autoType(strRender(_eval));
         }
 
-        $(selector).attr(attr, value);
-        $(tag).replaceWith("<span></span>");
+        if (condition(cond)){
+            $(selector).attr(attr, value);
+            $(tag).replaceWith("<span></span>");
+        } else {
+            $(tag).replaceWith("<span></span>");
+        }
     }); 
     
     return $.html();
