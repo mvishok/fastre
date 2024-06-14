@@ -60,7 +60,7 @@ export default function condition(str){
     } else {
         for (const s of str) {
             if (ignore.includes(s)) {
-                condition += s;
+                condition += `${s} `;
                 continue;
             }
             let i = strRender(s);
@@ -69,7 +69,7 @@ export default function condition(str){
             } else if (getType(i) === 'object') {
                 i = JSON.stringify(i);
             }
-            condition += i;
+            condition += `${i} `;
         }
     }
 
