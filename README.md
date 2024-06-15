@@ -1,118 +1,55 @@
-# This project is being re-written for better syntax and performance.
+<h1 align="center">Welcome to fastre 👋</h1>
+<p>
+  <a href="https://www.npmjs.com/package/fastre" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/fastre.svg">
+  </a>
+  <a href="https://fastre.vishok.me/docs/" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/mvishok/fastre/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/mvishok/fastre/blob/master/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/mvishok/fastre" />
+  </a>
+</p>
 
-# Climine Runtime
+> A lightweight and straightforward runtime engine for web development designed to streamline the process of building dynamic websites, using HTML like syntax
 
-Climine Runtime is a lightweight and straightforward runtime environment for web development designed to streamline the process of building dynamic websites, without the complexity of traditional backend setups or server-side scripting languages. With Climine Runtime, developers can easily convert static HTML/CSS/JS designs into dynamic web applications by integrating API responses directly into their HTML markup.
+### 🏠 [Homepage](https://fastre.vishok.me/)
 
-## Who is it for?
- - **Beginners:** Climine Runtime offers a user-friendly solution for those new to web development, providing a gentle introduction to dynamic web content.
+## Install
 
- - **Small Projects:** For quickly prototyping and deploying simple dynamic websites without the need for extensive backend infrastructure.
-## Installation
-
-To install Climine Runtime, you have a couple of options:
-
- - ### Using Pre-built Binaries
- You can download pre-built binaries for your operating system from the [Releases](https://github.com/climine/climine-runtime/releases/latest) page. Once downloaded, extract the archive and add the executable to your system's PATH.
-    
- - ### Compiling from Source
- If pre-built binaries are unavailable for your operating system, you can compile Climine Runtime from source. Follow these steps:
- 
- 1. Clone the repository: 
- ```bash
- git clone https://github.com/climine/climine-runtime.git
- ```
- 2. Navigate to the project directory: 
- ```bash
- cd runtime
- ```
- 3. Install dependencies: 
- ```bash
- npm install
- ```
- 4. Build the project: 
- ```bash
- npm run build
- ```
- 5. The compiled binary will be available in the dist directory.
-  
-  
-That's it! You're now ready to use Climine Runtime.
-
-## Usage/Examples
-
-Let's walk through an example of using Climine Runtime to create a simple dynamic website. We'll start by defining our project structure and then showcase the contents of the configuration files, HTML markup, and API request file.
-
-
-### Project Structure
-```bash
-my-climine-project/
-├── config.json
-├── index.html
-└── index.json
-
+```sh
+npx install fastre
 ```
 
-### Configuration (config.json)
-```json
-{
-    "port": 8080,
-    "dir": "./",
-    "errors": {
-        "404": "/error/404/"
-    }
-}
+## Usage
+
+```sh
+npx fastre --config path/to/config.json
 ```
 
-### API Request File (index.json)
-```json
-{
-    "request1": {
-        "to": "https://api.example.com/data&q={{query}}",
-        "method": "GET",
-        "headers": {
-            "Content-Type": "application/json"
-        },
-        "require": {
-            "query": null
-        }
-    }
-}
-```
+## Author
 
-### HTML Markup (index.html)
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>My Climine Project</title>
-</head>
-<body>
-  <h1>Welcome to Climine Runtime!</h1>
-  <p>This is a dynamic website powered by Climine.</p>
-  <p>Here's some dynamic content:</p>
-  <p>{{ request1.responseKey }}</p>
-</body>
-</html>
-```
+👤 **Vishok Manikantan**
 
-In this example, `config.json` defines the configuration for the Climine Runtime. `index.html` contains the HTML markup, while `index.json` defines an API request that fetches dynamic data to be inserted into that HTML markup
-## Features
+* Website: https://vishok.me/
+* Github: [@mvishok](https://github.com/mvishok)
+* LinkedIn: [@vishokmanikantan](https://linkedin.com/in/vishokmanikantan)
 
-- **API Requests:** Define and execute API requests directly within HTML files using simple configuration syntax.
+## 🤝 Contributing
 
- - **HTTP Method Support:** Handle GET and POST variables when users visit Climine projects, allowing for dynamic interaction with client-side content.
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/mvishok/fastre/issues). You can also take a look at the [contributing guide](https://github.com/mvishok/fastre/blob/master/CONTRIBUTING.md).
 
- - **Custom Error Pages:** Configure error pages for graceful error responses
+## Show your support
 
- - **Dynamic Content Rendering:** Automatically render dynamic content fetched from API responses directly into HTML markup.
+Give a ⭐️ if this project helped you!
 
- - **Minimal Configuration:** Requires minimal setup and configuration for rapid development of dynamic websites.
-## Support
+## 📝 License
 
-For support or inquiries, please use the [Issues](https://github.com/climine/climine-runtime/issues) section on this GitHub Repo. We'll do our best to assist you promptly!
-## License
+Copyright © 2024 [Vishok Manikantan](https://github.com/mvishok).<br />
+This project is [MIT](https://github.com/mvishok/fastre/blob/master/LICENSE) licensed.
 
-Climine Runtime is licensed under the [MIT](https://github.com/climine/climine-runtime/blob/main/LICENSE) License. See LICENSE for more information.
-
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
