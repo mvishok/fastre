@@ -3,6 +3,9 @@ Templating allows developers to create dynamic web pages by injecting dynamic co
 
 FASTRE uses a simple and intuitive templating engine, with HTML-like syntax that allows developers to embed dynamic content directly into their HTML files. This makes it easy to create dynamic web pages without the need for complex JavaScript code or server-side rendering.
 
+>[!NOTE]
+>Tags outside of a block is not accessible inside a block, and vice versa. Use `condition` attribute if you want to set value of existing tags inside an in condition.
+
 # Parameters
 
 By default, FASTRE loads the request parameters (i.e., GET and POST parameters) and makes them available as variables within the template. These parameters can be accessed directly by their names in the template code, just like regular variables.
@@ -74,6 +77,9 @@ The `type` attribute specifies the type of the value in the `val` attribute. Thi
 
 - `eval` (optional)\
 The `eval` attribute specifies an expression to evaluate and assign to the attribute. This attribute is used to perform calculations, transformations, or other operations on the data before assigning it to the attribute.
+
+- `condition` (optional)\
+The `condition` attribute specifies the condition for assigning the attribute. The condition must be true to set the attribute.
 
 > [!NOTE]
 > The requirement of either `id` or `class` attribute is mutually exclusive. You can only specify one of them, not both. One of them is required to target the HTML elements.
