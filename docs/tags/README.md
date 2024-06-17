@@ -146,3 +146,7 @@ Here's an example of using the `request` tag in FASTRE to fetch data from an ext
 </request>
 ```
 
+# if
+
+The `if` tag is used to set conditional blocks and breaks inside the HTML
+
