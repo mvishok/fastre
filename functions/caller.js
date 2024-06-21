@@ -38,7 +38,7 @@ export default function fn(name, args){
         if (r === undefined){
             r = 0;
         } else if (typeof r == "object"){
-            r = `'${JSON.stringify(r)}'`
+            r = `${JSON.stringify(r)}`
         } else if (typeof r == "string"){
             r = `${r}`
         } else if (typeof r == "boolean"){
