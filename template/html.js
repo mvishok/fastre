@@ -13,14 +13,14 @@ export default async function renderHTML($){
     while (requests.length > 0){
         const request = requests.eq(0);
         let url = $(request).attr('to');
-        const method = $(request).attr('method') || 'get';
+        const method = $(request).attr('method') || 'GET';
         let headers = $(request).attr('headers') || "";
         let rbody = null;
 
         //chck if url is valid or not
         if (!url){
             log("Request tag without url", 'error');
-            $(request).replaceWith("");
+            $(request).replaceWith("<span></span>");
             requests = $('request');
             continue;
         }
@@ -30,7 +30,7 @@ export default async function renderHTML($){
             url = strRender(url);
             if (!isUrl(url)){
                 log("Invalid URL", 'error');
-                $(request).replaceWith("");
+                $(request).replaceWith("<span></span>");
                 requests = $('request');
                 continue;
             }
@@ -41,7 +41,7 @@ export default async function renderHTML($){
         } catch {
             log(`[OUT] [${method}] ${url} failed`, 'error');
             log("Invalid JSON", 'error');
-            $(request).replaceWith("");
+            $(request).replaceWith("<span></span>");
             requests = $('request');
             continue;
         }
@@ -69,7 +69,7 @@ export default async function renderHTML($){
         } catch (err){
             log(`[OUT] [${method}] ${url} failed`, 'error');
             log(err, 'error');
-            $(request).replaceWith("");
+            $(request).replaceWith("<span></span>");
             requests = $('request');
             continue;
         }
@@ -81,7 +81,7 @@ export default async function renderHTML($){
         }
 
         let tagBody = await renderHTML(load($(request).html()), null, false);
-        $(request).replaceWith(`<span>${tagBody}</span>`);
+        tagBody == "" ? $(request).replaceWith(`<span></span>`) : $(request).replaceWith(`${tagBody}`);
 
         if (!id) {
             removeData("inherit");
@@ -120,7 +120,7 @@ export default async function renderHTML($){
                 bodyHTML += await renderHTML(load(body, null, false));
                 removeData(key);
             }
-            $(tag).replaceWith(`<span>${bodyHTML}</span>`);
+            bodyHTML == "" ? $(tag).replaceWith("<span></span>") : $(tag).replaceWith(`${bodyHTML}`);
         } else {
             log(`${id} is not iterable`, 'error');
             $(tag).replaceWith("<span></span>");
@@ -137,10 +137,10 @@ export default async function renderHTML($){
             if (condition(cond)){
                 iftag.find('else').last().replaceWith("<span></span>");
                 let body = await renderHTML(load(iftag.html(), null, false));
-                iftag.replaceWith(`<span>${body}</span>`);
+                body == "" ? iftag.replaceWith("<span></span>") : iftag.replaceWith(`${body}`);
             } else {
                 let body = await renderHTML(load(elseBody, null, false));
-                iftag.replaceWith(`<span>${body}</span>`);
+                body == "" ? iftag.replaceWith("<span></span>") : iftag.replaceWith(`${body}`);
             }
         } else {
             log("If tag without condition", 'error');
@@ -163,10 +163,10 @@ export default async function renderHTML($){
             log("Data tag without id", 'error');
             return
         } else if (!data[id] && (val || _eval)){
-            if (val) val = setType(type, val);
-            else val = strRender(_eval);
+            if (val) type ? val = setType(type, val) : val = autoType(val);
+            else type ? val = setType(type, strRender(_eval)) : val = autoType(strRender(_eval));
             appendData(id, val)
-            $(tag).replaceWith("");
+            $(tag).replaceWith("<span></span>");
             return
         } else if (!data[id]){
             if (id == "inherit"){
