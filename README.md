@@ -52,4 +52,4 @@ Copyright © 2024 [Vishok Manikantan](https://github.com/mvishok).<br />
 This project is [MIT](https://github.com/mvishok/fastre/blob/master/LICENSE) licensed.
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
+_This README was made using [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_ 
