@@ -10,11 +10,11 @@ FASTRE uses a simple and intuitive templating engine, with HTML-like syntax that
 
 By default, FASTRE loads the request parameters (i.e., GET and POST parameters) and makes them available as variables within the template. These parameters can be accessed directly by their names in the template code, just like regular variables.
 
-# data
+# `data` tag
 
 The `data` tag is used to inject dynamic content into HTML files. It allows you to reference variables, environment variables, data retrieved from API requests or expressions directly within your HTML code.
 
-### Attributes of the `data` Tag
+### Attributes of the `<data>` Tag
 
 The `data` tag in FASTRE supports the following attributes:
 
@@ -55,7 +55,7 @@ The `eval` attribute specifies an expression to evaluate and assign to the ident
 <p>The value of y is: <data id="y"></data></p>
 ```
 
-# attr
+# `attr` tag
 The `attr` tag is used to set attributes on HTML elements dynamically. It allows you to bind variables, environment variables, data retrieved from API requests or expressions to the attributes of HTML elements.
 
 ### Attributes of the `attr` Tag
@@ -98,7 +98,10 @@ The `condition` attribute specifies the condition for assigning the attribute. T
 <attr id="myElement" attr="style" eval="result[0]['color']" />
 ```
 
-# request
+> [!WARNING]
+> Always use `condition` attribute instead of placing `attr` tag inside `if` tag (or any block). This is because `attr` tag looks for the target element in the current scope, so placing it inside `if` tag might not work as expected.
+
+# `request` tag
 
 ### API Requests
 
@@ -146,18 +149,85 @@ Here's an example of using the `request` tag in FASTRE to fetch data from an ext
 </request>
 ```
 
-# if
+# `if` tag
 
-The `if` tag is used to set conditional blocks and breaks inside the HTML
+The `if` tag is used to conditionally render content based on the value of an expression. It allows you to control the visibility of HTML elements, sections, or blocks based on specific conditions, enabling dynamic content rendering in your web pages.
 
-### Usage
+### Syntax
 
-The `condition` attribute specifies the condition on which the body (tag contents) will get executed.
+The syntax of the `if` tag follows a simple `if-else` structure, with an optional `else` block to render content when the condition is false.
 
-Example:
 ```html
-<if condition='condition`>
-...
+<if condition="expression">
+    <!-- Content to render if the condition is true -->
+    <else>
+        <!-- Content to render if the condition is false -->
+    </else>
 </if>
 ```
 
+### Attributes of the `if` Tag
+
+The `if` tag in FASTRE supports the following attributes:
+
+- `condition` (required)\
+The `condition` attribute specifies the expression to evaluate to determine whether to render the content inside the `if` block. This attribute is required and must be a valid JavaScript expression that returns a boolean value.
+
+### Example Usage
+
+Here's an example of using the `if` tag in FASTRE to conditionally render content based on the value of a variable:
+
+```html
+<if condition="isLoggedIn">
+    <p>Welcome, <data id="username"></data>!</p>
+    <button>Logout</button>
+    <else>
+        <p>Please log in to continue.</p>
+        <button>Login</button>
+    </else>
+</if>
+```
+
+# `for` tag
+
+The `for` tag is used to iterate over a collection of items and render content for each item in the collection. It allows you to create dynamic lists, tables, or other repeating elements based on the data retrieved from API requests, environment variables, or other sources.
+
+### Syntax
+
+The syntax of the `for` tag follows a simple `for-in` loop structure.
+    
+```html
+<for id="results" key="item">
+    <!-- Content to render for each item -->
+    <data id="item"></data>
+</for>
+```
+
+### Attributes of the `for` Tag
+
+The `for` tag in FASTRE supports the following attributes:
+
+- `id` (required)\
+The `id` attribute specifies the unique identifier of the collection to iterate over. This identifier is used to reference the collection in other parts of the template or to retrieve data from API requests.
+
+- `key` (optional)\
+The `key` attribute specifies the variable name to represent each item in the collection. This attribute is used to access the properties or values of each item within the loop. If not provided, the default key is `inherit`.
+
+### Example Usage
+
+Here's an example of using the `for` tag in FASTRE to iterate over a list of items and render content for each item:
+
+```html
+<for id="results" key="item">
+    <div>
+        <h2><data id="item[title]"></data></h2>
+        <p><data id="item[description]"></data></p>
+        <if condition="item[price]>100">
+            <p>Price is greater than 100</p>
+            <else>
+                <p>Price is less than or equal to 100</p>
+            </else>
+        </if>
+    </div>
+</for>
+```
