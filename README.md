@@ -38,7 +38,11 @@ npx fastre --config path/to/config.json
 * Github: [@mvishok](https://github.com/mvishok)
 * LinkedIn: [@vishokmanikantan](https://linkedin.com/in/vishokmanikantan)
 
-## 🤝 Contributing
+## Acknowledgements
+ - [mikeal](https://github.com/mikeal/bent/) - For the awesome http client
+ - [silentmatt](https://github.com/silentmatt/expr-eval) - For the expression evaluator
+ 
+## 🤝 Contribting
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/mvishok/fastre/issues). You can also take a look at the [contributing guide](https://github.com/mvishok/fastre/blob/master/CONTRIBUTING.md).
 
