@@ -39,11 +39,34 @@ export function strRender(str){
     }
 
     //if it is a function call
+    //if it is a function call
     if (str.includes("(") && str.endsWith(")")){
-        //args = between first open parenthesis and last close parenthesis, split by comma
-        let args = str.slice(str.indexOf("(")+1, str.lastIndexOf(")"))
-        args = args.split(",")
-        args = args.map(arg => arg.trim()) //remove whitespace
+        //args = between first open parenthesis and last close parenthesis
+        let argsString = str.slice(str.indexOf("(")+1, str.lastIndexOf(")"));
+        let args = [];
+        let currentArg = '';
+        let inSingleQuote = false;
+        let inDoubleQuote = false;
+        let inArray = false;
+
+        for (let char of argsString) {
+            if (char === "'" && !inDoubleQuote) {
+                inSingleQuote = !inSingleQuote;
+            } else if (char === '"' && !inSingleQuote) {
+                inDoubleQuote = !inDoubleQuote;
+            } else if (char === '[' && !inArray) {
+                inArray = !inArray;
+            } else if (char === ',' && !inSingleQuote && !inDoubleQuote && !inArray) {
+                args.push(currentArg.trim());
+                currentArg = '';
+                continue;
+            }
+            currentArg += char;
+        }
+        if (currentArg) {
+            args.push(currentArg.trim());
+        }
+
         for (let j = 0; j < args.length; j++) {
             args[j] = strRender(args[j]);
             if (args[j] === undefined) return undefined;
@@ -58,6 +81,7 @@ export function strRender(str){
         str = fn(func, args)
         return str;
     }
+
 
     //if it is an array access (allow multiple levels)
     if (str.includes("[") && str.endsWith("]")){
