@@ -10,22 +10,21 @@ export function strRender(str){
         str = data[str]
         return str;
     } 
-    //if it is a array access (allow multiple levels)
-    if (str.includes("[") && str.endsWith("]")){
-        let keys = str.split("[")
-        let v = data[keys[0]]
-        for (let j = 1; j < keys.length; j++) {
-            v = v[keys[j].replace("]", "")];
-            if (v===undefined) break;
-        }
-        str = v;
+
+    //if it is a literal array representation
+    if (str.startsWith("[") && str.endsWith("]") && str.includes(",")){
+        str = str.slice(1, -1);
+        str = str.split(",");
+        str = str.map(e => e.trim());
         return str;
     }
+
     //if it is a literal representation
     if (str.startsWith('"') && str.endsWith('"') || str.startsWith("'") && str.endsWith("'")){
         str = str.slice(1, -1);
         return str;
     }
+
     //if it is a number
     if (!isNaN(str)){
         return Number(str);
@@ -57,6 +56,18 @@ export function strRender(str){
 
         const func = str.slice(0, str.indexOf("("))
         str = fn(func, args)
+        return str;
+    }
+
+    //if it is an array access (allow multiple levels)
+    if (str.includes("[") && str.endsWith("]")){
+        let keys = str.split("[")
+        let v = data[keys[0]]
+        for (let j = 1; j < keys.length; j++) {
+            v = v[keys[j].replace("]", "")];
+            if (v===undefined) break;
+        }
+        str = v;
         return str;
     }
 
