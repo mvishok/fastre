@@ -2,11 +2,13 @@ import { performance } from 'perf_hooks';
 import { join } from "path";
 import { log } from "../modules/log.js";
 import { appendData, clearData } from "../storage/unique.js";
+import { setCookies } from "./cookie.js";
 import getParams from "./param.js";
 import { config } from "../storage/global.js"
 import serveStatic from "./static.js";
 import render from '../template/template.js';
 import env from '../modules/env.js';
+import getCookies from './cookie.js';
 
 export async function serve(req, res){
     performance.mark('A');
@@ -29,6 +31,10 @@ export async function serve(req, res){
         log("Error parsing params", "error");
     }
 
+    if (!getCookies(req)){
+        log("Error parsing cookies", "error");
+    }
+
     //static file
     if (!path.endsWith('.html') && !path.endsWith('.db')){
         [status, headers, body] = await serveStatic(path);
@@ -38,6 +44,8 @@ export async function serve(req, res){
     else if (path.endsWith('.html')){
         [status, headers, body] = await render(path);
     }
+
+    res = setCookies(res);
 
     res.writeHead(status, headers);
     res.end(body);
