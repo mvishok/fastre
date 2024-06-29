@@ -1,5 +1,5 @@
 import { load } from "cheerio";
-import { appendData, data, removeData } from "../storage/unique.js";
+import { appendCookie, appendData, data, removeData } from "../storage/unique.js";
 import { log } from "../modules/log.js";
 import bent from "bent";
 import { performance } from 'perf_hooks';
@@ -223,7 +223,32 @@ export default async function renderHTML($){
         } else {
             $(tag).replaceWith("<span></span>");
         }
-    }); 
+    });
+
+    const setCookie = $('cookie');
+    setCookie.each((index, tag) => {
+        const key = $(tag).attr('key');
+        const val = $(tag).attr('val');
+        const _eval = $(tag).attr('eval');
+        const path = $(tag).attr('path');
+        const domain = $(tag).attr('domain') || '';
+        const secure = $(tag).attr('secure') || false;
+        const expires = $(tag).attr('expires') || '';
+
+        if (!key){
+            log("Cookie tag without key", 'error');
+            return
+        } else if (val){
+            appendCookie(`${key}=${val};${path ? `Path=${path};` : ''}${domain ? `Domain=${domain};` : ''} ${secure ? `Secure;` : ''}${expires ? `Expires=${expires};` : ''}`)
+        } else if (_eval){
+            appendCookie(`${key}=${strRender(_eval)};${path ? `Path=${path};` : ''}${domain ? `Domain=${domain};` : ''}${secure ? `Secure;` : ''}${expires ? `Expires=${expires};` : ''}`)
+        } else {
+            log("No value or eval provided for cookie tag", 'error');
+        }
+
+        $(tag).replaceWith("<span></span>");
+    });
+
     
     return $.html();
 }
