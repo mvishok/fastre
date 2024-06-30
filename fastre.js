@@ -3,10 +3,10 @@ import boxen from 'boxen';
 import chalk from 'chalk';
 import { performance } from 'perf_hooks';
 
-const v = '0.1.7';
+const v = '1.0.1';
 
 console.log(
-    boxen(chalk.hex("#04e1c3").bold(`Runtime ${v}`), {
+    boxen(chalk.hex("#04e1c3").bold(`FASTRE ${v}`), {
         padding: 1,
         margin: 1,
         borderStyle: 'double',
@@ -15,7 +15,7 @@ console.log(
 
 performance.mark('start');
 
-log('Starting Runtime...', 'info');
+log('Starting FASTRE...', 'info');
 
 //native
 import http from 'http';
@@ -58,7 +58,7 @@ server.listen(config.port, () => {
     performance.mark('end');
     performance.measure('start to end', 'start', 'end');
     const started = performance.getEntriesByName('start to end')[0].duration.toFixed(2);
-    log(`Runtime has started successfully in ${started}ms`, 'success');
+    log(`FASTRE has started successfully in ${started}ms`, 'success');
     log(`Listening on port ${config.port}`, 'info');
     console.log(chalk.blue.bold(`[INFO] Server running at http://localhost:${config.port} serving from ${config.dir}`));
 });
