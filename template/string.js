@@ -56,6 +56,8 @@ export function strRender(str){
                 inDoubleQuote = !inDoubleQuote;
             } else if (char === '[' && !inArray) {
                 inArray = !inArray;
+            } else if (char === ']' && inArray) {
+                inArray = !inArray;
             } else if (char === ',' && !inSingleQuote && !inDoubleQuote && !inArray) {
                 args.push(currentArg.trim());
                 currentArg = '';
