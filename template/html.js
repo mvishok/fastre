@@ -162,7 +162,7 @@ export default async function renderHTML($){
         if (!id){
             log("Data tag without id", 'error');
             return
-        } else if (!data[id] && (val || _eval)){
+        } else if (val || _eval){
             if (val) type ? val = setType(type, val) : val = autoType(val);
             else type ? val = setType(type, strRender(_eval)) : val = autoType(strRender(_eval));
             appendData(id, val)
