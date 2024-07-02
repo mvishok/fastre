@@ -90,7 +90,7 @@ export function strRender(str){
         let keys = str.split("[")
         let v = data[keys[0]]
         for (let j = 1; j < keys.length; j++) {
-            v = v[keys[j].replace("]", "")];
+            v = v?.[keys[j].replace("]", "")];
             if (v===undefined) break;
         }
         str = v;
