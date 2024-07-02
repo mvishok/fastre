@@ -55,6 +55,8 @@ export default function condition(str){
             i = `'${i}'`;
         } else if (getType(i) === 'object') {
             i = JSON.stringify(i);
+        } else if (i == undefined) {
+            i = 0;
         }
         condition += i;
     } else {
@@ -69,6 +71,8 @@ export default function condition(str){
             } else if (getType(i) === 'object') {
                 i = JSON.stringify(i);
             }
+            if (i == undefined)
+                i = 0;
             condition += `${i} `;
         }
     }
