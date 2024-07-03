@@ -31,6 +31,7 @@ export default async function renderHTML($){
                 selector = _class.split(" ").join(".");
             } else {
                 log(`Either id or class is required for attr tag`, 'error');
+                $(tag).replaceWith("<span></span>");
                 tags = $(tagsString);
                 continue;
             }
