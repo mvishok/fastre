@@ -2,6 +2,8 @@ import {isAbsolute, resolve} from 'path';
 import {readFileSync} from 'fs';
 import {log} from './log.js';
 
+var loaded = {};
+
 //load environment variables
 
 export default function env(config){
@@ -26,5 +28,12 @@ export default function env(config){
 
     vars = {...process.env, ...vars};
 
-    return vars;
+    //load env variables into loaded
+    for (const key in vars){
+        loaded[key] = vars[key];
+    }
+}
+
+export function getEnv(){
+    return loaded;
 }

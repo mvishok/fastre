@@ -29,6 +29,7 @@ import { serve } from './server/server.js';
 //variables
 const args = minimist(process.argv.slice(2));
 import { config, appendConfig, clearConfig } from './storage/global.js';
+import env from './modules/env.js';
 
 if (args.silent) disableLogs();
 
@@ -41,6 +42,7 @@ if (!args.config){
     for (const key in config){
         appendConfig(key, config[key]);
     }
+    env(config);
 }
 
 const server = http.createServer(async (req, res) => {
