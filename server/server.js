@@ -7,14 +7,14 @@ import getParams from "./param.js";
 import { config } from "../storage/global.js"
 import serveStatic from "./static.js";
 import render from '../template/template.js';
-import env from '../modules/env.js';
+import { getEnv } from '../modules/env.js';
 import getCookies from './cookie.js';
 
 export async function serve(req, res){
     performance.mark('A');
 
     //load env variables
-    appendData('env', env(config))
+    appendData('env', getEnv())
 
     const url = new URL(req.url, `http://${req.headers.host}`);
     
@@ -36,12 +36,12 @@ export async function serve(req, res){
     }
 
     //static file
-    if (!path.endsWith('.html') && !path.endsWith('.db')){
+    if (!path.endsWith('.html') && !path.endsWith('.req')){
         [status, headers, body] = await serveStatic(path);
     }
 
-    //html file
-    else if (path.endsWith('.html')){
+    //html file or req file
+    else if (path.endsWith('.html') || path.endsWith('.req')){
         [status, headers, body] = await render(path);
     }
 
