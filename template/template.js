@@ -24,7 +24,20 @@ export default async function render(path){
     body = await renderHTML(load(body));
 
     status = 200;
-    headers = {"Content-Type": "text/html"};
+    headers = {};
+
+    if (path.split('.').pop() === 'req'){
+        headers["Content-Type"] = "application/json";
+        try {
+            body = JSON.stringify(JSON.parse(body.replace(/<[^>]*>/g, '')));
+        } catch (error) {
+            log(`[500] ${path} didnot return valid JSON`, 'error');
+            status = 500;
+            body = JSON.stringify({error: "Internal Server Error"});
+        }
+    } else {
+        headers["Content-Type"] = "text/html";
+    }
 
     return [status, headers, body];
 }
