@@ -164,8 +164,9 @@ export default async function renderHTML($){
 
             if (!id){
                 log("Data tag without id", 'error');
+                $(tag).replaceWith("<span></span>");
                 tags = $(tagsString);
-                continue;
+                continue;    
             } else if (val || _eval){
                 if (val) type ? val = setType(type, val) : val = autoType(val);
                 else type ? val = setType(type, strRender(_eval)) : val = autoType(strRender(_eval));
@@ -176,10 +177,12 @@ export default async function renderHTML($){
             } else if (!data[id]){
                 if (id == "inherit"){
                     log(`No parent data found to inherit`, 'error');
+                    $(tag).replaceWith("<span></span>");
                     tags = $(tagsString);
                     continue;
                 } else {
                     log(`${id} is not defined`, 'error');
+                    $(tag).replaceWith("<span></span>");
                     tags = $(tagsString);
                     continue;
                 }
