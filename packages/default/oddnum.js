@@ -1,6 +1,6 @@
-export default function main(tag){
-    const till = parseInt(tag.attr('till')) || 10;
-    const seperator = tag.attr('seperator') || "<br>";
+export default function main(tag, strRender){
+    const till = parseInt(strRender(tag.attr('till'))) || 10;
+    const seperator = strRender(tag.attr('seperator')) || "<br>";
     
     let result = "";
     for (let i = 0; i < till; i++){
