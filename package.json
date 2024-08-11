@@ -1,6 +1,6 @@
 {
     "name": "fastre",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "description": "A simple runtime engine for web development",
     "main": "fastre.js",
     "type": "module",
