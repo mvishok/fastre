@@ -30,6 +30,7 @@ import { serve } from './server/server.js';
 const args = minimist(process.argv.slice(2));
 import { config, appendConfig, clearConfig } from './storage/global.js';
 import env from './modules/env.js';
+import { loadPackages } from './modules/packages.js';
 
 if (args.silent) disableLogs();
 
@@ -44,6 +45,8 @@ if (!args.config){
     }
     env(config);
 }
+
+loadPackages();
 
 const server = http.createServer(async (req, res) => {
     await serve(req, res)

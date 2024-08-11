@@ -1,5 +1,6 @@
 import { load } from "cheerio";
 import { appendCookie, appendData, data, removeData } from "../storage/unique.js";
+import { packages } from "../storage/global.js";
 import { log } from "../modules/log.js";
 import bent from "bent";
 import { performance } from 'perf_hooks';
@@ -8,7 +9,7 @@ import { strRender } from "./string.js";
 import condition from "./conditions.js";
 
 export default async function renderHTML($){
-    const tagsString = 'request, for, if, data, attr, cookie'
+    const tagsString = 'request, for, if, data, attr, cookie, ' + Object.keys(packages).join(", ");
     let tags = $(tagsString);
     while (tags.length > 0){
 
@@ -260,6 +261,20 @@ export default async function renderHTML($){
             }
 
             $(tag).replaceWith("<span></span>");
+            tags = $(tagsString);
+            continue;
+        }
+
+        //else if it is a tag in packages
+        if (packages[tagName]){
+            
+            //import the package packages[tagName]
+            const pkg = await import("file://" + new URL(packages[tagName]).href);
+            const pkgFunc = pkg.default; //default export of the package
+
+            let result = await pkgFunc(tag);
+            $(tag).replaceWith(result);
+            
             tags = $(tagsString);
             continue;
         }
