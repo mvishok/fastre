@@ -35,14 +35,21 @@ export async function serve(req, res){
         log("Error parsing cookies", "error");
     }
 
-    //static file
-    if (!path.endsWith('.html') && !path.endsWith('.req')){
-        [status, headers, body] = await serveStatic(path);
-    }
+    try {
+        //static file
+        if (!path.endsWith('.html') && !path.endsWith('.req')){
+            [status, headers, body] = await serveStatic(path);
+        }
 
-    //html file or req file
-    else if (path.endsWith('.html') || path.endsWith('.req')){
-        [status, headers, body] = await render(path);
+        //html file or req file
+        else if (path.endsWith('.html') || path.endsWith('.req')){
+            [status, headers, body] = await render(path);
+        }
+    } catch (e) {
+        status = 500;
+        headers = {};
+        body = 'Internal Server Error';
+        log(e, 'error');
     }
 
     res = setCookies(res);
