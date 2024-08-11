@@ -272,7 +272,7 @@ export default async function renderHTML($){
             const pkg = await import("file://" + new URL(packages[tagName]).href);
             const pkgFunc = pkg.default; //default export of the package
 
-            let result = await pkgFunc(tag);
+            let result = await pkgFunc(tag, strRender);
             $(tag).replaceWith(result);
             
             tags = $(tagsString);
