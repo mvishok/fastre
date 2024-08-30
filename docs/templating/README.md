@@ -231,3 +231,54 @@ Here's an example of using the `for` tag in FASTRE to iterate over a list of ite
     </div>
 </for>
 ```
+
+# `cookie` tag
+
+<!-- cookie tag sets cookies. cookie is loaded by default into memory on request -->
+
+The `cookie` tag is used to set cookies in the response headers. It allows you to store data on the client-side, enabling persistent user sessions, personalized content, and other features that require client-side storage.
+
+Cookies are, by default, loaded into memory on request. This means that you can access cookies directly in your template code without the need for additional configuration or setup, just like regular variables.
+
+### Syntax
+
+The syntax of the `cookie` tag is straightforward, with attributes to specify the name, value, and other properties of the cookie.
+
+
+```html
+<cookie key="name" val="value" path="/" domain="example.com" secure="true" expires="2022-12-31T23:59:59Z" />
+```
+
+### Attributes of the `cookie` Tag
+
+The `cookie` tag in FASTRE supports the following attributes:
+
+- `key` (required)\
+The `key` attribute specifies the name of the cookie to set. This attribute is required and determines the identifier of the cookie.
+
+- `val` (optional)\
+The `val` attribute specifies the value of the cookie to set. This attribute is required and determines the content of the cookie.
+
+- `eval` (optional)\
+The `eval` attribute specifies an expression to evaluate and assign to the cookie value. This attribute is used to perform calculations, transformations, or other operations on the data before assigning it to the cookie.
+
+- `path` (optional)\
+The `path` attribute specifies the path on the server where the cookie is valid. This attribute is used to restrict the cookie to specific URLs on the server.
+
+- `domain` (optional)\
+The `domain` attribute specifies the domain where the cookie is valid. This attribute is used to restrict the cookie to specific domains.
+
+- `secure` (optional)\
+The `secure` attribute specifies whether the cookie should only be sent over secure connections (HTTPS). This attribute is used to enhance the security of the cookie data.
+
+- `expires` (optional)\
+The `expires` attribute specifies the expiration date and time of the cookie. This attribute is used to determine when the cookie should expire and no longer be valid.
+
+### Example Usage
+
+```html
+<cookie key="name" val="value" path="/" domain="example.com" secure="true" expires="2022-12-31T23:59:59Z" />
+```
+
+> [!NOTE]
+> Either `val` or `eval` attribute is required. If both are provided, `eval` attribute will be used.

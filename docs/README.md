@@ -6,6 +6,10 @@
 
 Distributed under the MIT License. See [MIT License](https://github.com/mvishok/fastre?tab=MIT-1-ov-file) for more information.
 
+### Version
+
+The current documentation is for `version 1.3.0` of FASTRE.
+
 ### Contact
 
 Vishok M - hello@vishok.me
